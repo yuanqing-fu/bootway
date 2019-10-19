@@ -1,6 +1,6 @@
 <template>
   <div class="task-type-unit" :class="classObject">
-    <div class="task-type-bar">{{ task.important }}</div>
+    <div class="task-type-bar">{{ task.important }} {{ task.urgent }}</div>
     <div class="day-task-view">
       <div class="day-task">
         <div class="day-task-inner" :style="styleObject">

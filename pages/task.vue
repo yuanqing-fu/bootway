@@ -3,15 +3,17 @@
     <day-header></day-header>
     <div class="middle-container day-task-container">
       <task-type
-        v-for="task in taskList"
+        v-for="task in orderedTaskList"
         :key="task.task_id"
         :task="task"
       ></task-type>
     </div>
     <day-footer class="day-footer">
       <template>
-        <div class="fun-area"></div>
-        <div class="day-time-bar">123</div>
+        <task-input
+          :task-values="taskValues"
+          @taskChange="addTask"
+        ></task-input>
       </template>
     </day-footer>
   </div>
@@ -19,6 +21,7 @@
 
 <script>
 import TaskType from '~/components/TaskType.vue'
+import TaskInput from '~/components/TaskInput.vue'
 import DayHeader from '~/components/Header.vue'
 import DayFooter from '~/components/Footer.vue'
 
@@ -26,18 +29,109 @@ export default {
   components: {
     DayHeader,
     DayFooter,
-    TaskType
+    TaskType,
+    TaskInput
   },
   data() {
     return {
-      // tasks: [1, 2, 3]
+      taskValues: {
+        name: '',
+        type: 'classB'
+      },
+      taskList: []
+    }
+  },
+  computed: {
+    orderedTaskList() {
+      let classATaskList = [] // type: { important:1, urgent:1 }
+      let classBTaskList = [] // type: { important:0, urgent:1 }
+      let classCTaskList = [] // type: { important:1, urgent:0 }
+      let classDTaskList = [] // type: { important:0, urgent:0 }
+
+      classATaskList = this.getTypedTaskList(this.taskList, {
+        important: 1,
+        urgent: 1
+      })
+
+      classBTaskList = this.getTypedTaskList(this.taskList, {
+        important: 0,
+        urgent: 1
+      })
+
+      classCTaskList = this.getTypedTaskList(this.taskList, {
+        important: 1,
+        urgent: 0
+      })
+
+      classDTaskList = this.getTypedTaskList(this.taskList, {
+        important: 0,
+        urgent: 0
+      })
+
+      const filteredTaskList = classATaskList
+        .concat(classBTaskList)
+        .concat(classCTaskList)
+        .concat(classDTaskList)
+
+      // filteredTaskList.push(classATaskList)
+      // filteredTaskList.push(classBTaskList)
+      // filteredTaskList.push(classCTaskList)
+      // filteredTaskList.push(classDTaskList)
+
+      // eslint-disable-next-line no-console
+      console.log('filteredTaskList ', filteredTaskList)
+      return filteredTaskList
     }
   },
   async asyncData({ $axios }) {
+    // async function stall(stallTime = 3000) {
+    //   await new Promise((resolve) => window.setTimeout(resolve, stallTime))
+    // }
+    //
+    // await stall() // 暂停执行，用来模拟慢速网络
+
     const response = await $axios.get(`http://api.test.com/tasks`)
     // eslint-disable-next-line no-console
-    console.log(response.data)
-    return { taskList: response.data }
+    console.log('asyncData ', response.data)
+    return {
+      taskList: response.data
+    }
+  },
+  methods: {
+    getImportantValue(type) {
+      if (type.includes('classA') || type.includes('classC')) {
+        return 1
+      } else {
+        return 0
+      }
+    },
+    getUrgentValue(type) {
+      if (type.includes('classA') || type.includes('classB')) {
+        return 1
+      } else {
+        return 0
+      }
+    },
+    getTypedTaskList(taskList, typeObj) {
+      return taskList
+        .filter(function(el) {
+          return (
+            el.important === typeObj.important && el.urgent === typeObj.urgent
+          )
+        })
+        .sort((a, b) => new Date(a.start_date) - new Date(b.start_date))
+    },
+    addTask() {
+      // eslint-disable-next-line no-console
+      console.log('add task', this.taskValues.name, this.taskValues.type)
+      this.taskList.push({
+        task_name: this.taskValues.name,
+        important: this.getImportantValue(this.taskValues.type),
+        urgent: this.getUrgentValue(this.taskValues.type),
+        start_date: new Date().toISOString()
+      })
+      this.taskValues.name = ''
+    }
   }
 }
 </script>

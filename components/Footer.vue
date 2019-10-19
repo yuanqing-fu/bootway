@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 <style>
@@ -8,10 +8,6 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-}
-
-.footer .fun-area {
-  flex: 0 0 var(--leftbar-size);
 }
 
 .footer .day-time-bar {

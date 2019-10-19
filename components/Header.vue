@@ -1,7 +1,11 @@
 <template>
   <div class="header">
-    <nuxt-link class="" to="/">Home</nuxt-link>
-    <nuxt-link class="" to="/task">Task</nuxt-link>
+    <nuxt-link class="" to="/">
+      Home
+    </nuxt-link>
+    <nuxt-link class="" to="/task">
+      Task
+    </nuxt-link>
   </div>
 </template>
 <style>
