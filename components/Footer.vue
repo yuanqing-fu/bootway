@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <slot />
+    Home Footer
   </div>
 </template>
 <style>

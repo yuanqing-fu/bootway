@@ -8,14 +8,7 @@
         :task="task"
       ></task-type>
     </div>
-    <day-footer class="day-footer">
-      <template>
-        <task-input
-          :task-values="taskValues"
-          @taskChange="addTask"
-        ></task-input>
-      </template>
-    </day-footer>
+    <task-input :task-values="taskValues" @taskChange="addTask"></task-input>
   </div>
 </template>
 
@@ -23,12 +16,10 @@
 import TaskType from '~/components/TaskType.vue'
 import TaskInput from '~/components/TaskInput.vue'
 import DayHeader from '~/components/Header.vue'
-import DayFooter from '~/components/Footer.vue'
 
 export default {
   components: {
     DayHeader,
-    DayFooter,
     TaskType,
     TaskInput
   },
@@ -90,7 +81,8 @@ export default {
     //
     // await stall() // 暂停执行，用来模拟慢速网络
 
-    const response = await $axios.get(`http://api.test.com/tasks`)
+    // const response = await $axios.get(`http://api.test.com/tasks`)
+    const response = await $axios.get(`http://localhost:3003/tasks`)
     // eslint-disable-next-line no-console
     console.log('asyncData ', response.data)
     return {

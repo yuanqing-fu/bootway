@@ -48,11 +48,6 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      showTip: false
-    }
-  },
   props: {
     taskValues: {
       type: Object,
@@ -62,6 +57,11 @@ export default {
           type: 'classD'
         }
       }
+    }
+  },
+  data() {
+    return {
+      showTip: false
     }
   },
   methods: {
@@ -77,4 +77,10 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+.task-input-bar {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+</style>

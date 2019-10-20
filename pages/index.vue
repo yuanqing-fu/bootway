@@ -4,11 +4,7 @@
     <div class="middle-container">
       Home Page Middle
     </div>
-    <home-footer class="home-footer">
-      <template>
-        Home Footer
-      </template>
-    </home-footer>
+    <home-footer />
   </div>
 </template>
 
