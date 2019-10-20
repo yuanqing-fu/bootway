@@ -81,8 +81,8 @@ export default {
     //
     // await stall() // 暂停执行，用来模拟慢速网络
 
-    // const response = await $axios.get(`http://api.test.com/tasks`)
-    const response = await $axios.get(`http://localhost:3003/tasks`)
+    // const response = await $axios.get(`http://localhost:3003/tasks`)
+    const response = await $axios.get('/tasks')
     // eslint-disable-next-line no-console
     console.log('asyncData ', response.data)
     return {

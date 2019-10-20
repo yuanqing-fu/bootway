@@ -1,5 +1,6 @@
 export default {
   mode: 'spa',
+  dev: process.env.NODE_ENV !== 'production',
   /*
    ** Headers of the page
    */
@@ -27,7 +28,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
