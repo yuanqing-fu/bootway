@@ -1,6 +1,11 @@
 <template>
   <div class="wrapper task-day-page">
-    <day-header></day-header>
+    <day-header>
+      <template v-slot:test>
+        <button @click="checkMe">Check Me</button>
+        <button @click="logOut">Log Out</button>
+      </template>
+    </day-header>
     <div class="middle-container day-task-container">
       <task-type
         v-for="task in orderedTaskList"
@@ -123,6 +128,17 @@ export default {
         start_date: new Date().toISOString()
       })
       this.taskValues.name = ''
+    },
+    checkMe() {
+      this.$store.dispatch('auth/fetch').then((result) => {
+        // eslint-disable-next-line no-console
+        console.log('Check Me Result:', result)
+      })
+    },
+    logOut() {
+      this.$store.dispatch('auth/reset').then(() => {
+        this.$router.push('/')
+      })
     }
   }
 }

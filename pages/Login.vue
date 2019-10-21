@@ -10,14 +10,14 @@
 
         <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
 
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="submit">
           <fieldset class="form-group">
             <input
               v-model="email"
               class="form-control form-control-lg"
               type="text"
               placeholder="Email"
-              :disabled="submitting"
+              :disabled="loading"
             />
           </fieldset>
           <fieldset class="form-group">
@@ -26,12 +26,12 @@
               class="form-control form-control-lg"
               type="password"
               placeholder="Password"
-              :disabled="submitting"
+              :disabled="loading"
             />
           </fieldset>
           <button
             class="btn btn-lg btn-primary pull-xs-right"
-            :disabled="submitting"
+            :disabled="loading"
           >
             Sign in
           </button>
@@ -51,7 +51,39 @@ export default {
     HomeFooter
   },
   data() {
-    return {}
+    return {
+      email: '',
+      password: '',
+      alert: null,
+      loading: false
+    }
+  },
+  methods: {
+    submit() {
+      this.alert = null
+      this.loading = true
+      this.$store
+        .dispatch('auth/login', {
+          email: this.email,
+          password: this.password
+        })
+        .then((result) => {
+          // eslint-disable-next-line no-console
+          console.log('result', result)
+          this.alert = { type: 'success', message: result.data.message }
+          this.loading = false
+          // this.$router.push('/admin') //页面跳转
+        })
+        .catch((error) => {
+          this.loading = false
+          if (error.response && error.response.data) {
+            this.alert = {
+              type: 'error',
+              message: error.response.data.message || error.response.status
+            }
+          }
+        })
+    }
   }
 }
 </script>

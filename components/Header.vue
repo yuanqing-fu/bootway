@@ -6,6 +6,7 @@
     <nuxt-link class="" to="/task">
       Task
     </nuxt-link>
+    <slot name="test"></slot>
   </div>
 </template>
 <style>

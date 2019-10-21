@@ -5660,6 +5660,11 @@ jimp-compact@^0.8.0:
   resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.8.4.tgz#0878a0c30f22d2d4f8b33e96722eb09d20770627"
   integrity sha512-9mvZ7/TJ28bWtdx0RxmfiOTzSom4zuRniFTLtJHfNL6HxQdnRtjmX8XIRjmofgVXj2TW/GgSuZKB3dSZ5hNhKg==
 
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
+
 js-levenshtein@^1.1.3:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
