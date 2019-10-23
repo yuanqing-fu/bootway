@@ -8,9 +8,9 @@ export default function({ $axios, env }) {
   //   ? 'http://localhost:3003'
   //   : 'http://api.bootway.com'
 
-  // $axios.defaults.baseURL = 'http://api.bootway.com'
+  $axios.defaults.baseURL = 'http://api.bootway.com'
 
-  $axios.defaults.baseURL = 'http://api.test.com'
+  // $axios.defaults.baseURL = 'http://api.test.com'
   const token = cookies.get('x-access-token')
 
   if (token) setAuthToken(token, $axios)

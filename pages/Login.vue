@@ -63,7 +63,7 @@ export default {
       this.alert = null
       this.loading = true
       this.$store
-        .dispatch('auth/login', {
+        .dispatch('login', {
           email: this.email,
           password: this.password
         })
@@ -72,7 +72,9 @@ export default {
           console.log('result', result)
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
-          // this.$router.push('/admin') //页面跳转
+          // eslint-disable-next-line no-console
+          console.log(this.$router.referrer)
+          this.$router.push('/task') // 页面跳转
         })
         .catch((error) => {
           this.loading = false

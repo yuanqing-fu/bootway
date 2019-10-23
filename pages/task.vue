@@ -4,6 +4,8 @@
       <template v-slot:test>
         <button @click="checkMe">Check Me</button>
         <button @click="logOut">Log Out</button>
+        <p v-if="user">Hello, {{ user.name }} {{ user.email }}</p>
+        <p v-else>The user is not authenticated!</p>
       </template>
     </day-header>
     <div class="middle-container day-task-container">
@@ -38,6 +40,9 @@ export default {
     }
   },
   computed: {
+    user() {
+      return this.$store.state.user ? this.$store.state.user : null
+    },
     orderedTaskList() {
       let classATaskList = [] // type: { important:1, urgent:1 }
       let classBTaskList = [] // type: { important:0, urgent:1 }
@@ -75,7 +80,7 @@ export default {
       // filteredTaskList.push(classDTaskList)
 
       // eslint-disable-next-line no-console
-      console.log('filteredTaskList ', filteredTaskList)
+      // console.log('filteredTaskList ', filteredTaskList)
       return filteredTaskList
     }
   },
@@ -89,7 +94,7 @@ export default {
     // const response = await $axios.get(`http://localhost:3003/tasks`)
     const response = await $axios.get('/tasks')
     // eslint-disable-next-line no-console
-    console.log('asyncData ', response.data)
+    // console.log('*********** asyncData ', response.data)
     return {
       taskList: response.data
     }
@@ -130,13 +135,13 @@ export default {
       this.taskValues.name = ''
     },
     checkMe() {
-      this.$store.dispatch('auth/fetch').then((result) => {
+      this.$store.dispatch('fetch').then((result) => {
         // eslint-disable-next-line no-console
         console.log('Check Me Result:', result)
       })
     },
     logOut() {
-      this.$store.dispatch('auth/reset').then(() => {
+      this.$store.dispatch('reset').then(() => {
         this.$router.push('/')
       })
     }

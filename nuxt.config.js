@@ -1,5 +1,5 @@
 export default {
-  mode: 'spa',
+  mode: 'universal',
   dev: process.env.NODE_ENV !== 'production',
   /*
    ** Headers of the page
@@ -24,7 +24,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -32,6 +32,9 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
+  router: {
+    middleware: ['auth']
+  },
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module'
