@@ -13,7 +13,7 @@
         <form @submit.prevent="submit">
           <fieldset class="form-group">
             <input
-              v-model="name"
+              v-model.trim="name"
               class="form-control form-control-lg"
               type="text"
               placeholder="用户名"
@@ -23,7 +23,7 @@
           </fieldset>
           <fieldset class="form-group">
             <input
-              v-model="email"
+              v-model.trim="email"
               class="form-control form-control-lg"
               type="text"
               placeholder="邮箱"
@@ -33,7 +33,7 @@
           </fieldset>
           <fieldset class="form-group">
             <input
-              v-model="password"
+              v-model.trim="password"
               class="form-control form-control-lg"
               type="password"
               placeholder="密码"
@@ -74,6 +74,10 @@ export default {
   },
   methods: {
     submit() {
+      if (!this.email || !this.password) {
+        return
+      }
+
       this.alert = null
       this.loading = true
       this.$store

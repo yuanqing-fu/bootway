@@ -50,6 +50,11 @@ export const actions = {
       return response
     })
   },
+  addTask({ commit }, data) {
+    return api.tasks.add(data, this.$axios).then((response) => {
+      return response
+    })
+  },
   reset({ commit }) {
     commit('reset_user')
     resetAuthToken(this.$axios)

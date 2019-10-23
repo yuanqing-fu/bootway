@@ -4,8 +4,8 @@
       <template v-slot:test>
         <button @click="checkMe">Check Me</button>
         <button @click="logOut">Log Out</button>
-        <p v-if="user">Hello, {{ user.name }} {{ user.email }}</p>
-        <p v-else>The user is not authenticated!</p>
+        <p v-if="user">您好, {{ user.name }} {{ user.email }}</p>
+        <p v-else>用户没有登录!</p>
       </template>
     </day-header>
     <div class="middle-container day-task-container">
@@ -34,7 +34,8 @@ export default {
     return {
       taskValues: {
         name: '',
-        type: 'classB'
+        type: 'classB',
+        start_date: new Date()
       },
       taskList: []
     }
@@ -126,13 +127,42 @@ export default {
     addTask() {
       // eslint-disable-next-line no-console
       console.log('add task', this.taskValues.name, this.taskValues.type)
-      this.taskList.push({
+
+      this.alert = null
+      this.loading = true
+
+      const newTask = {
         task_name: this.taskValues.name,
         important: this.getImportantValue(this.taskValues.type),
         urgent: this.getUrgentValue(this.taskValues.type),
         start_date: new Date().toISOString()
-      })
-      this.taskValues.name = ''
+      }
+
+      this.$store
+        .dispatch('addTask', newTask)
+        .then((result) => {
+          // eslint-disable-next-line no-console
+          console.log('result', result)
+          this.alert = { type: 'success', message: result.data.message }
+          this.loading = false
+
+          this.taskList.push({
+            task_name: this.taskValues.name,
+            important: this.getImportantValue(this.taskValues.type),
+            urgent: this.getUrgentValue(this.taskValues.type),
+            start_date: new Date().toISOString()
+          })
+          this.taskValues.name = ''
+        })
+        .catch((error) => {
+          this.loading = false
+          if (error.response && error.response.data) {
+            this.alert = {
+              type: 'error',
+              message: error.response.data.message || error.response.status
+            }
+          }
+        })
     },
     checkMe() {
       this.$store.dispatch('fetch').then((result) => {
