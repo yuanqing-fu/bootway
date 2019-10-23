@@ -1,13 +1,16 @@
 <template>
   <div class="header">
     <nuxt-link class="" to="/">
-      Home
+      首页
     </nuxt-link>
-    <nuxt-link class="" to="/task">
-      Task
+    <nuxt-link class="" to="/tasks">
+      任务
     </nuxt-link>
     <nuxt-link class="" to="/login">
-      Log in
+      登录
+    </nuxt-link>
+    <nuxt-link class="" to="/register">
+      注册
     </nuxt-link>
     <slot name="test"></slot>
   </div>

@@ -19,8 +19,6 @@ export const actions = {
     return api.auth
       .me(this.$axios)
       .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log('********* set_user ***********')
         commit('set_user', response.data.result)
         return response
       })
@@ -37,8 +35,15 @@ export const actions = {
       })
   },
   login({ commit }, data) {
-    // eslint-disable-next-line no-console
     return api.auth.login(data, this.$axios).then((response) => {
+      commit('set_user', response.data.user)
+      setAuthToken(response.data.token, this.$axios)
+      cookies.set('x-access-token', response.data.token, { expires: 7 })
+      return response
+    })
+  },
+  register({ commit }, data) {
+    return api.auth.register(data, this.$axios).then((response) => {
       commit('set_user', response.data.user)
       setAuthToken(response.data.token, this.$axios)
       cookies.set('x-access-token', response.data.token, { expires: 7 })

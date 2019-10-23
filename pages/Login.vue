@@ -3,9 +3,9 @@
     <other-header></other-header>
     <div class="middle-container">
       <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">Sign in</h1>
+        <h1 class="text-xs-center">登录</h1>
         <p class="text-xs-center">
-          <nuxt-link to="/register">Need an account?</nuxt-link>
+          <nuxt-link to="/register">没有账号？</nuxt-link>
         </p>
 
         <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
@@ -16,8 +16,9 @@
               v-model="email"
               class="form-control form-control-lg"
               type="text"
-              placeholder="Email"
+              placeholder="邮箱"
               :disabled="loading"
+              maxlength="32"
             />
           </fieldset>
           <fieldset class="form-group">
@@ -25,15 +26,17 @@
               v-model="password"
               class="form-control form-control-lg"
               type="password"
-              placeholder="Password"
+              placeholder="密码"
               :disabled="loading"
+              autocomplete="off"
+              maxlength="32"
             />
           </fieldset>
           <button
             class="btn btn-lg btn-primary pull-xs-right"
             :disabled="loading"
           >
-            Sign in
+            登录
           </button>
         </form>
       </div>
@@ -73,8 +76,8 @@ export default {
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
           // eslint-disable-next-line no-console
-          console.log(this.$router.referrer)
-          this.$router.push('/task') // 页面跳转
+          // console.log(this.$router.referrer)
+          this.$router.push('/tasks') // 页面跳转
         })
         .catch((error) => {
           this.loading = false

@@ -6,7 +6,7 @@ export default function({ store, redirect, route }) {
     return redirect('/login')
   }
   if (userIsLoggedIn && urlRequiresNonAuth) {
-    return redirect('/task')
+    return redirect('/tasks')
   }
   return Promise.resolve()
 }
