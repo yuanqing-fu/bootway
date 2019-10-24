@@ -1,12 +1,7 @@
 import cookies from 'js-cookie'
 
 export default function({ $axios }) {
-  // $axios.defaults.baseURL = 'http://api.bootway.com'
-
-  $axios.defaults.baseURL =
-    process.env.NODE_ENV === 'development'
-      ? 'http://api.test.com'
-      : 'http://api.bootway.com'
+  $axios.defaults.baseURL = process.env.API
 
   const token = cookies.get('x-access-token')
 
