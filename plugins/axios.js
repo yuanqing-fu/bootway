@@ -1,8 +1,7 @@
 import cookies from 'js-cookie'
 
 export default function({ $axios }) {
-  $axios.defaults.baseURL = process.env.API
-
+  $axios.defaults.baseURL = process.env.baseURL
   const token = cookies.get('x-access-token')
 
   if (token) setAuthToken(token, $axios)

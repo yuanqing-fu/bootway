@@ -74,12 +74,8 @@ export default {
           password: this.password
         })
         .then((result) => {
-          // eslint-disable-next-line no-console
-          console.log('result', result)
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
-          // eslint-disable-next-line no-console
-          // console.log(this.$router.referrer)
           this.$router.push('/tasks') // 页面跳转
         })
         .catch((error) => {

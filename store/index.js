@@ -23,14 +23,10 @@ export const actions = {
         return response
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log('&&&&& reset user', cookies.get('x-access-token'))
         dispatch('reset')
         // commit('reset_user')
         // resetAuthToken(this.$axios)
         // cookies.remove('x-access-token')
-        // // eslint-disable-next-line no-console
-        // console.log('cookie removed', cookies.get('x-access-token'))
         return error
       })
   },

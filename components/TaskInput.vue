@@ -5,7 +5,7 @@
       v-model.trim="taskValues.name"
       type="text"
       placeholder="今天想做什么？"
-      class=""
+      class="task-input-element"
       @keyup.enter="sendTaskChangeEvent"
       @focus="showTip = true"
       @blur="showTip = false"
@@ -82,5 +82,10 @@ export default {
   flex: 0 0 40px;
   display: flex;
   flex-direction: row;
+}
+
+.task-input-bar .task-input-element {
+  border: none;
+  background-color: green;
 }
 </style>

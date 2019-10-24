@@ -2,6 +2,12 @@ require('dotenv').config()
 
 export default {
   mode: 'universal',
+  env: {
+    baseURL:
+      process.env.NODE_ENV === 'development'
+        ? 'http://api.test.com'
+        : 'http://api.bootway.com'
+  },
   /*
    ** Headers of the page
    */

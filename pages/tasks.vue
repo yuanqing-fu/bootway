@@ -75,19 +75,6 @@ export default {
       })
       classDTaskList.type = 'classD'
 
-      // const filteredTaskList = classATaskList
-      //   .concat(classBTaskList)
-      //   .concat(classCTaskList)
-      //   .concat(classDTaskList)
-
-      // filteredTaskList.push(classATaskList)
-      // filteredTaskList.push(classBTaskList)
-      // filteredTaskList.push(classCTaskList)
-      // filteredTaskList.push(classDTaskList)
-
-      // eslint-disable-next-line no-console
-      // console.log('filteredTaskList ', filteredTaskList)
-      // return filteredTaskList
       return [classATaskList, classBTaskList, classCTaskList, classDTaskList]
     }
   },
@@ -100,8 +87,6 @@ export default {
 
     // const response = await $axios.get(`http://localhost:3003/tasks`)
     const response = await $axios.get('/tasks')
-    // eslint-disable-next-line no-console
-    // console.log('*********** asyncData ', response.data)
     return {
       taskList: response.data
     }
@@ -131,9 +116,6 @@ export default {
         .sort((a, b) => new Date(a.start_date) - new Date(b.start_date))
     },
     addTask() {
-      // eslint-disable-next-line no-console
-      console.log('add task', this.taskValues.name, this.taskValues.type)
-
       this.alert = null
       this.loading = true
 
@@ -147,8 +129,6 @@ export default {
       this.$store
         .dispatch('addTask', newTask)
         .then((result) => {
-          // eslint-disable-next-line no-console
-          console.log('result', result)
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
 
@@ -166,10 +146,7 @@ export default {
         })
     },
     checkMe() {
-      this.$store.dispatch('fetch').then((result) => {
-        // eslint-disable-next-line no-console
-        console.log('Check Me Result:', result)
-      })
+      this.$store.dispatch('fetch').then((result) => {})
     },
     logOut() {
       this.$store.dispatch('reset').then(() => {
