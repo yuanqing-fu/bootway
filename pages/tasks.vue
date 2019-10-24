@@ -10,9 +10,10 @@
     </day-header>
     <div class="middle-container day-task-container">
       <task-type
-        v-for="task in orderedTaskList"
-        :key="task.task_id"
-        :task="task"
+        v-for="(taskByTypes, index) in orderedTaskList"
+        :key="`task-by-types-${index}`"
+        :task-by-types="taskByTypes"
+        :class="taskByTypes.type"
       ></task-type>
     </div>
     <task-input :task-values="taskValues" @taskChange="addTask"></task-input>
@@ -54,26 +55,30 @@ export default {
         important: 1,
         urgent: 1
       })
+      classATaskList.type = 'classA'
 
       classBTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 1
       })
+      classBTaskList.type = 'classB'
 
       classCTaskList = this.getTypedTaskList(this.taskList, {
         important: 1,
         urgent: 0
       })
+      classCTaskList.type = 'classC'
 
       classDTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 0
       })
+      classDTaskList.type = 'classD'
 
-      const filteredTaskList = classATaskList
-        .concat(classBTaskList)
-        .concat(classCTaskList)
-        .concat(classDTaskList)
+      // const filteredTaskList = classATaskList
+      //   .concat(classBTaskList)
+      //   .concat(classCTaskList)
+      //   .concat(classDTaskList)
 
       // filteredTaskList.push(classATaskList)
       // filteredTaskList.push(classBTaskList)
@@ -82,7 +87,8 @@ export default {
 
       // eslint-disable-next-line no-console
       // console.log('filteredTaskList ', filteredTaskList)
-      return filteredTaskList
+      // return filteredTaskList
+      return [classATaskList, classBTaskList, classCTaskList, classDTaskList]
     }
   },
   async asyncData({ $axios }) {
@@ -135,7 +141,7 @@ export default {
         task_name: this.taskValues.name,
         important: this.getImportantValue(this.taskValues.type),
         urgent: this.getUrgentValue(this.taskValues.type),
-        start_date: new Date().toISOString()
+        start_date: new Date()
       }
 
       this.$store
@@ -146,12 +152,7 @@ export default {
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
 
-          this.taskList.push({
-            task_name: this.taskValues.name,
-            important: this.getImportantValue(this.taskValues.type),
-            urgent: this.getUrgentValue(this.taskValues.type),
-            start_date: new Date().toISOString()
-          })
+          this.taskList.push(newTask)
           this.taskValues.name = ''
         })
         .catch((error) => {
@@ -187,30 +188,30 @@ export default {
 .day-task-container {
 }
 
-.day-task-container .task-type-unit {
+.day-task-container .task-unit {
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
 }
 
-.day-task-container .task-type-unit .task-type-bar {
+.day-task-container .task-unit .task-type-bar {
   flex: 0 0 var(--leftbar-size);
   background-color: blueviolet;
 }
 
-.day-task-container .task-type-unit .day-task-view {
+.day-task-container .task-unit .day-task-view {
   flex: 1 0 auto;
   background-color: green;
   display: flex;
   flex-direction: column;
 }
 
-.day-task-container .task-type-unit .day-task {
+.day-task-container .task-unit .day-task {
   flex: 0 0 30px;
   position: relative;
 }
 
-.day-task-container .task-type-unit .day-task .day-task-inner {
+.day-task-container .task-unit .day-task .day-task-inner {
   font-size: 13px;
   position: absolute;
   top: 6px;

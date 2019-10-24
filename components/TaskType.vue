@@ -1,48 +1,33 @@
 <template>
-  <div class="task-type-unit" :class="classObject">
-    <div class="task-type-bar">{{ task.important }} {{ task.urgent }}</div>
-    <div class="day-task-view">
-      <div class="day-task">
-        <div class="day-task-inner" :style="styleObject">
-          {{ task.task_name }}
-        </div>
-      </div>
-    </div>
+  <div class="task-groups">
+    <task-unit
+      v-for="task in taskByTypes"
+      :key="task.id"
+      :task="task"
+    ></task-unit>
   </div>
 </template>
 
 <script>
+import TaskUnit from '~/components/TaskUnit'
+
 export default {
   name: 'TaskType',
-  props: {
-    task: {
-      type: Object,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: ''
-    }
+  components: {
+    TaskUnit
   },
-  data() {
-    return {
-      classObject: {
-        'important-urgent': true,
-        'important-not-urgent': true,
-        'not-important-urgent': true,
-        'not-important-not-urgent': true
-      },
-      styleObject: {
-        left: this.getLeftPosition(new Date(this.task.start_date)) + '%'
+  props: {
+    taskByTypes: {
+      type: Array,
+      default() {
+        return []
       }
     }
   },
-  methods: {
-    // a computed getter
-    getLeftPosition(taskStartDate) {
-      return (
-        (taskStartDate - new Date(taskStartDate).setHours(0, 0, 0, 0)) /
-        1000 /
-        864
-      )
-    }
-  }
+  data() {
+    return {}
+  },
+  computed: {},
+  methods: {}
 }
 </script>

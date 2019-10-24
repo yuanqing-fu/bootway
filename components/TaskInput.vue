@@ -79,7 +79,7 @@ export default {
 </script>
 <style>
 .task-input-bar {
-  flex: 0 0 auto;
+  flex: 0 0 40px;
   display: flex;
   flex-direction: row;
 }
