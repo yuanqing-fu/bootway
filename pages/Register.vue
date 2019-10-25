@@ -2,53 +2,55 @@
   <div class="wrapper">
     <other-header></other-header>
     <div class="middle-container">
-      <div class="form-main">
-        <h1>注册</h1>
-        <p>
-          <nuxt-link to="/login">已有账号？</nuxt-link>
-        </p>
-
-        <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
-        <form @submit.prevent="submit">
-          <fieldset>
-            <label for="userName" class="label">用户名</label>
-            <input
-              id="userName"
-              v-model.trim="name"
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="请输入用户名"
-              :disabled="loading"
-              maxlength="32"
-            />
-          </fieldset>
-          <fieldset>
-            <label for="email" class="label">邮箱</label>
-            <input
-              id="email"
-              v-model.trim="email"
-              type="text"
-              placeholder="请输入邮箱"
-              :disabled="loading"
-              maxlength="32"
-            />
-          </fieldset>
-          <fieldset>
-            <label for="password" class="label">密码</label>
-            <input
-              id="password"
-              v-model.trim="password"
-              type="password"
-              placeholder="请输入密码"
-              :disabled="loading"
-              autocomplete="off"
-              maxlength="32"
-            />
-          </fieldset>
-          <button :disabled="loading">
-            注册
-          </button>
-        </form>
+      <div class="middle-container-inner form-middle-container-inner">
+        <div class="form-main">
+          <h1>注册</h1>
+          <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
+          <form @submit.prevent="submit">
+            <fieldset>
+              <label for="userName" class="label">用户名</label>
+              <input
+                id="userName"
+                v-model.trim="name"
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="请输入用户名"
+                :disabled="loading"
+                maxlength="32"
+                autofocus
+              />
+            </fieldset>
+            <fieldset>
+              <label for="email" class="label">邮箱</label>
+              <input
+                id="email"
+                v-model.trim="email"
+                type="text"
+                placeholder="请输入邮箱"
+                :disabled="loading"
+                maxlength="32"
+              />
+            </fieldset>
+            <fieldset>
+              <label for="password" class="label">密码</label>
+              <input
+                id="password"
+                v-model.trim="password"
+                type="password"
+                placeholder="请输入密码"
+                :disabled="loading"
+                autocomplete="off"
+                maxlength="32"
+              />
+            </fieldset>
+            <button class="submit" :disabled="loading">
+              创建我的账号
+            </button>
+          </form>
+          <p class="ar">
+            <nuxt-link to="/login">已有账号？</nuxt-link>
+          </p>
+        </div>
       </div>
     </div>
     <home-footer />

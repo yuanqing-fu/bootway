@@ -41,13 +41,11 @@
 }
 
 .form-main {
-  margin-top: 20px;
-  max-width: 410px;
   width: 100%;
 }
 
 .form-main form {
-  margin-top: 20px;
+  margin: 20px 0 10px 0;
 }
 
 .form-main form fieldset {
@@ -66,5 +64,32 @@
   height: 46px;
   border-radius: 5px;
   padding: 0 13px;
+}
+
+.form-main form input:focus {
+  border: 2px solid cornflowerblue;
+  padding: 0 12px;
+}
+
+.form-main a {
+  color: #db4c3f;
+  font-size: 13px;
+}
+
+.form-main .submit {
+  width: 100%;
+  height: 46px;
+  background-color: #db4c3f;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.middle-container .middle-container-inner.form-middle-container-inner {
+  max-width: 410px;
+  display: flex;
+  align-items: center;
 }
 </style>
