@@ -12,11 +12,59 @@
 }
 
 .middle-container {
-  background-color: orange;
   flex: 1 1 auto;
   position: relative;
   overflow-y: auto;
+  scroll-behavior: smooth;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.middle-container::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+
+.middle-container::-webkit-scrollbar-thumb {
+  background: darkorange;
+  border-radius: 30px;
+}
+
+.middle-container::-webkit-scrollbar-track {
+  background: black;
+}
+
+.middle-container .middle-container-inner {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 24px;
+}
+
+.form-main {
+  margin-top: 20px;
+  max-width: 410px;
+  width: 100%;
+}
+
+.form-main form {
+  margin-top: 20px;
+}
+
+.form-main form fieldset {
+  margin-bottom: 10px;
+}
+
+.form-main form .label {
+  display: block;
+  margin: 0 0 4px;
+  font-weight: bold;
+}
+
+.form-main form input {
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 46px;
+  border-radius: 5px;
+  padding: 0 13px;
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
   <div class="task-unit">
     <div class="task-type-bar">{{ task.important }} {{ task.urgent }}</div>
-    <div class="day-task-view">
+    <div class="day-task-bar">
       <div class="day-task">
-        <div class="day-task-inner">
-          {{ task.task_name }} {{ new Date(task.start_date) }}
-        </div>
+        {{ task.task_name }}
+        {{ $moment(task.start_date).format('h:mm') }}
       </div>
     </div>
   </div>

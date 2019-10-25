@@ -82,10 +82,15 @@ export default {
   flex: 0 0 40px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-input-bar .task-input-element {
-  border: none;
-  background-color: green;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
 }
 </style>

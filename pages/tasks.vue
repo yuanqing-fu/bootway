@@ -9,12 +9,16 @@
       </template>
     </day-header>
     <div class="middle-container day-task-container">
-      <task-type
-        v-for="(taskByTypes, index) in orderedTaskList"
-        :key="`task-by-types-${index}`"
-        :task-by-types="taskByTypes"
-        :class="taskByTypes.type"
-      ></task-type>
+      <div class="middle-container-inner">
+        <div class="task-groups">
+          <task-type
+            v-for="(taskByTypes, index) in orderedTaskList"
+            :key="`task-by-types-${index}`"
+            :task-by-types="taskByTypes"
+            :class="taskByTypes.type"
+          ></task-type>
+        </div>
+      </div>
     </div>
     <task-input :task-values="taskValues" @taskChange="addTask"></task-input>
   </div>
@@ -165,6 +169,10 @@ export default {
 .day-task-container {
 }
 
+.day-task-container .task-groups {
+  margin-top: 30px;
+}
+
 .day-task-container .task-unit {
   flex: 0 0 auto;
   display: flex;
@@ -176,25 +184,16 @@ export default {
   background-color: blueviolet;
 }
 
-.day-task-container .task-unit .day-task-view {
+.day-task-container .task-unit .day-task-bar {
   flex: 1 0 auto;
-  background-color: green;
-  display: flex;
-  flex-direction: column;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 0;
+  margin-left: 10px;
 }
 
 .day-task-container .task-unit .day-task {
-  flex: 0 0 30px;
-  position: relative;
-}
-
-.day-task-container .task-unit .day-task .day-task-inner {
   font-size: 13px;
-  position: absolute;
-  top: 6px;
-  left: 0;
   border-radius: 5px;
-  background-color: orange;
   padding: 0 10px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="task-groups">
+  <div class="task-group-unit">
     <task-unit
       v-for="task in taskByTypes"
       :key="task.id"

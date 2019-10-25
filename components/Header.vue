@@ -19,6 +19,9 @@
 .header {
   flex: 0 0 auto;
   background-color: #7f828b;
-  height: 44px;
+  height: 65px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 </style>

@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 export default {
   mode: 'universal',
   env: {
@@ -12,6 +10,9 @@ export default {
    ** Headers of the page
    */
   head: {
+    htmlAttrs: {
+      lang: 'zh_CN'
+    },
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -44,7 +45,8 @@ export default {
   },
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/moment'
   ],
   /*
    ** Nuxt.js modules
