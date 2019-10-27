@@ -1,12 +1,15 @@
 <template>
   <div class="task-unit">
-    <div class="task-type-bar">{{ task.important }} {{ task.urgent }}</div>
-    <div class="day-task-bar">
-      <div class="day-task">
-        {{ task.task_name }}
-        {{ $moment(task.start_date).format('h:mm') }}
-      </div>
+    <div class="task-status">
+      <label class="check-label">
+        <input class="check-input" type="checkbox" name="task-status" />
+        <span class="checkmark"></span>
+      </label>
     </div>
+    <div class="task-name">{{ task.task_name }}</div>
+    <span class="task-start-date">{{
+      $moment(task.start_date).format('hh:mm')
+    }}</span>
   </div>
 </template>
 <script>

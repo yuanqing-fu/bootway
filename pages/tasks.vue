@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper task-day-page">
-    <day-header>
+    <day-header class="task-header">
       <template v-slot:test>
         <button @click="checkMe">Check Me</button>
         <button @click="logOut">Log Out</button>
@@ -10,7 +10,7 @@
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
-        <div class="task-groups">
+        <div class="task-groups" :class="{ compact: compactTaskGroup }">
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
             :key="`task-by-types-${index}`"
@@ -37,6 +37,7 @@ export default {
   },
   data() {
     return {
+      compactTaskGroup: true,
       taskValues: {
         name: '',
         type: 'classB',
@@ -60,24 +61,28 @@ export default {
         urgent: 1
       })
       classATaskList.type = 'classA'
+      classATaskList.name = '重要且紧急'
 
       classBTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 1
       })
       classBTaskList.type = 'classB'
+      classBTaskList.name = '紧急但不重要'
 
       classCTaskList = this.getTypedTaskList(this.taskList, {
         important: 1,
         urgent: 0
       })
       classCTaskList.type = 'classC'
+      classCTaskList.name = '重要但不紧急'
 
       classDTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 0
       })
       classDTaskList.type = 'classD'
+      classDTaskList.name = '不重要也不紧急  '
 
       return [classATaskList, classBTaskList, classCTaskList, classDTaskList]
     }
@@ -174,26 +179,72 @@ export default {
 }
 
 .day-task-container .task-unit {
-  flex: 0 0 auto;
+  font-size: 13px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  padding: 5px;
 }
 
-.day-task-container .task-unit .task-type-bar {
+.task-unit .task-status {
   flex: 0 0 var(--leftbar-size);
-  background-color: blueviolet;
+  width: 30px;
+  height: 18px;
 }
 
-.day-task-container .task-unit .day-task-bar {
-  flex: 1 0 auto;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 10px 0;
-  margin-left: 10px;
+.task-unit .task-start-date {
+  flex: 0 0 auto;
+  color: lightgray;
 }
 
-.day-task-container .task-unit .day-task {
-  font-size: 13px;
+.task-unit:hover .task-start-date {
+  color: gray;
+}
+
+.task-unit .task-name {
+  flex: 1 1 auto;
+  margin: 0 10px 0 0;
+}
+
+.header.task-header {
+  background-color: #db4c3f;
+  color: white;
+}
+
+.header.task-header a {
+  color: white;
+}
+
+.task-groups .task-group-unit {
+  margin-bottom: 10px;
   border-radius: 5px;
-  padding: 0 10px;
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2);
+}
+
+.task-groups.compact .task-group-unit {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.task-groups.compact .task-group-unit::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+.task-groups.compact .task-group-unit::-webkit-scrollbar-thumb {
+  background: darkorange;
+  border-radius: 5px;
+}
+
+.task-groups.compact .task-group-unit::-webkit-scrollbar-track {
+  background: #dfdfdf;
+}
+
+.task-groups .task-group-name {
+  border-bottom: 2px solid darkorange;
+  height: 31px;
+  line-height: 31px;
+  margin-bottom: 15px;
 }
 </style>

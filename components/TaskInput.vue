@@ -79,18 +79,27 @@ export default {
 </script>
 <style>
 .task-input-bar {
-  flex: 0 0 40px;
+  flex: 0 0 60px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: darkorange;
 }
 
 .task-input-bar .task-input-element {
-  border: 1px solid #ddd;
+  font-size: 16px;
+  border: 3px solid transparent;
   outline: none;
   border-radius: 5px;
   width: 100%;
+  height: 45px;
   max-width: 500px;
+  padding: 0 10px;
+}
+
+.task-input-bar .task-input-element:focus {
+  border: 3px solid cornflowerblue;
+  box-shadow: 0 0 10px cornflowerblue;
 }
 </style>

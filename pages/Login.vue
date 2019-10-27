@@ -2,43 +2,48 @@
   <div class="wrapper">
     <other-header></other-header>
     <div class="middle-container">
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">登录</h1>
-        <p class="text-xs-center">
-          <nuxt-link to="/register">没有账号？</nuxt-link>
-        </p>
-
-        <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
-
-        <form @submit.prevent="submit">
-          <fieldset class="form-group">
-            <input
-              v-model.trim="email"
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="邮箱"
-              :disabled="loading"
-              maxlength="32"
-            />
-          </fieldset>
-          <fieldset class="form-group">
-            <input
-              v-model.trim="password"
-              class="form-control form-control-lg"
-              type="password"
-              placeholder="密码"
-              :disabled="loading"
-              autocomplete="off"
-              maxlength="32"
-            />
-          </fieldset>
-          <button
-            class="btn btn-lg btn-primary pull-xs-right"
-            :disabled="loading"
-          >
-            登录
-          </button>
-        </form>
+      <div class="middle-container-inner form-middle-container-inner">
+        <div class="form-main">
+          <div class="form-top">
+            <div class="form-top-l"><span class="logo-text">Bootway</span></div>
+            <div class="form-top-r ar">
+              <nuxt-link class="actions" to="/register">
+                注册
+              </nuxt-link>
+              <span class="actions active">登录</span>
+            </div>
+          </div>
+          <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
+          <form @submit.prevent="submit">
+            <fieldset class="form-group">
+              <input
+                id="email"
+                v-model.trim="email"
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="邮箱"
+                :disabled="loading"
+                maxlength="32"
+                autofocus
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                id="password"
+                v-model.trim="password"
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="密码"
+                :disabled="loading"
+                autocomplete="off"
+                maxlength="32"
+              />
+            </fieldset>
+            <button class="submit" :disabled="loading">
+              登&nbsp;录
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <home-footer />

@@ -4,11 +4,18 @@
     <div class="middle-container">
       <div class="middle-container-inner form-middle-container-inner">
         <div class="form-main">
-          <h1>注册</h1>
+          <div class="form-top">
+            <div class="form-top-l"><span class="logo-text">Bootway</span></div>
+            <div class="form-top-r ar">
+              <span class="actions active">注册</span>
+              <nuxt-link class="actions" to="/login">
+                登录
+              </nuxt-link>
+            </div>
+          </div>
           <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
           <form @submit.prevent="submit">
             <fieldset>
-              <label for="userName" class="label">用户名</label>
               <input
                 id="userName"
                 v-model.trim="name"
@@ -21,7 +28,6 @@
               />
             </fieldset>
             <fieldset>
-              <label for="email" class="label">邮箱</label>
               <input
                 id="email"
                 v-model.trim="email"
@@ -32,7 +38,6 @@
               />
             </fieldset>
             <fieldset>
-              <label for="password" class="label">密码</label>
               <input
                 id="password"
                 v-model.trim="password"
@@ -43,13 +48,22 @@
                 maxlength="32"
               />
             </fieldset>
+            <!--            <fieldset class="form-group">-->
+            <!--              <input-->
+            <!--                id="re-password"-->
+            <!--                v-model.trim="password"-->
+            <!--                class="form-control form-control-lg"-->
+            <!--                type="password"-->
+            <!--                placeholder="再次输入密码"-->
+            <!--                :disabled="loading"-->
+            <!--                autocomplete="off"-->
+            <!--                maxlength="32"-->
+            <!--              />-->
+            <!--            </fieldset>-->
             <button class="submit" :disabled="loading">
               创建我的账号
             </button>
           </form>
-          <p class="ar">
-            <nuxt-link to="/login">已有账号？</nuxt-link>
-          </p>
         </div>
       </div>
     </div>
