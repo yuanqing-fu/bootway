@@ -180,10 +180,11 @@ export default {
 
 .day-task-container .task-unit {
   font-size: 13px;
+  line-height: 22px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px;
+  padding: 5px 7px 5px 5px;
 }
 
 .task-unit .task-status {

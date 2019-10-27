@@ -37,6 +37,7 @@
 .middle-container .middle-container-inner {
   max-width: 680px;
   width: 100%;
+  min-width: 300px;
   margin: 0 24px;
 }
 
