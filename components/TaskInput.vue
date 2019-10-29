@@ -1,5 +1,25 @@
 <template>
-  <div class="task-input-bar">
+  <div
+    class="task-input-bar"
+    @mouseover="showSliderTooltip = true"
+    @mouseout="showSliderTooltip = false"
+  >
+    <div
+      v-show="showSliderTooltip"
+      class="date-slider-wrapper"
+      @mouseover="showSliderTooltip = true"
+    >
+      <vue-slider
+        v-model.lazy="start_date"
+        :drag-on-click="true"
+        :tooltip="'always'"
+        :use-keyboard="true"
+        :min="0"
+        :max="86400"
+        :interval="300"
+        :tooltip-formatter="formatted_start_date"
+      />
+    </div>
     <input
       ref="taskInput"
       v-model.trim="taskValues.name"
@@ -7,15 +27,13 @@
       placeholder="今天想做什么？"
       class="task-input-element"
       @keyup.enter="sendTaskChangeEvent"
-      @focus="showTip = true"
-      @blur="showTip = false"
     />
     <div class="task-type-radios">
       <input
         id="importantTypeCheckbox"
         ref="importantCheck"
         type="checkbox"
-        :checked="imporant"
+        :checked="important"
         @change="taskTypeChange"
       />
       <label title="重要" class="important" for="importantTypeCheckbox"></label>
@@ -31,7 +49,17 @@
   </div>
 </template>
 <script>
+// import component
+import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import 'vue-slider-component/dist-css/vue-slider-component.css'
+
+// import theme
+import 'vue-slider-component/theme/default.css'
+
 export default {
+  components: {
+    VueSlider
+  },
   props: {
     taskValues: {
       type: Object,
@@ -45,11 +73,15 @@ export default {
   },
   data() {
     return {
-      showTip: false
+      showSliderTooltip: false,
+      startDraggingTimeOut: undefined,
+      start_date:
+        this.taskValues.start_date.getHours() * 3600 +
+        this.taskValues.start_date.getMinutes() * 60
     }
   },
   computed: {
-    imporant() {
+    important() {
       return (
         this.taskValues.type === 'classA' || this.taskValues.type === 'classC'
       )
@@ -58,6 +90,29 @@ export default {
       return (
         this.taskValues.type === 'classA' || this.taskValues.type === 'classB'
       )
+    },
+    formatted_start_date() {
+      return this.$moment
+        .utc(this.$moment.duration(this.start_date, 'seconds').asMilliseconds())
+        .format('HH:mm')
+    }
+  },
+  watch: {
+    start_date() {
+      if (!this.startDraggingTimeOut) {
+        this.startDraggingTimeOut = window.setTimeout(() => {
+          // 延迟赋值，避免频繁赋值
+          this.taskValues.start_date.setHours(
+            this.$moment.duration(this.start_date, 'seconds').hours()
+          )
+          this.taskValues.start_date.setMinutes(
+            this.$moment.duration(this.start_date, 'seconds').minutes()
+          )
+
+          window.clearTimeout(this.startDraggingTimeOut)
+          this.startDraggingTimeOut = undefined
+        }, 500)
+      }
     }
   },
   methods: {
@@ -91,6 +146,23 @@ export default {
 }
 </script>
 <style>
+.date-slider-wrapper {
+  width: 100%;
+  position: absolute;
+  top: -11px;
+  left: 0;
+  padding: 0 50px;
+  pointer-events: auto;
+}
+
+.date-slider-wrapper .vue-slider-rail {
+  background-color: transparent;
+}
+
+.date-slider-wrapper .vue-slider-process {
+  background-color: transparent;
+}
+
 .task-input-bar {
   border-top: 3px solid darkorange;
   flex: 0 0 73px;
@@ -98,6 +170,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .task-input-bar .task-input-element {
