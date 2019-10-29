@@ -39,6 +39,7 @@
   width: 100%;
   min-width: 300px;
   margin: 0 24px;
+  position: relative;
 }
 
 .form-main {

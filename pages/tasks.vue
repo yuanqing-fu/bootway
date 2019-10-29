@@ -10,6 +10,7 @@
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
+        <task-action-bar></task-action-bar>
         <div class="task-groups" :class="{ compact: compactTaskGroup }">
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
@@ -28,19 +29,21 @@
 import TaskType from '~/components/TaskType.vue'
 import TaskInput from '~/components/TaskInput.vue'
 import DayHeader from '~/components/Header.vue'
+import TaskActionBar from '~/components/TaskActionBar.vue'
 
 export default {
   components: {
     DayHeader,
     TaskType,
-    TaskInput
+    TaskInput,
+    TaskActionBar
   },
   data() {
     return {
       compactTaskGroup: true,
       taskValues: {
         name: '',
-        type: 'classB',
+        type: 'classD',
         start_date: new Date()
       },
       taskList: []
@@ -202,6 +205,10 @@ export default {
   color: gray;
 }
 
+.task-unit:hover .checkmark {
+  background-color: lightgray;
+}
+
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
@@ -247,5 +254,9 @@ export default {
   height: 31px;
   line-height: 31px;
   margin-bottom: 15px;
+  font-weight: 500;
+  color: darkorange;
+  font-size: 13px;
+  padding-left: 5px;
 }
 </style>
