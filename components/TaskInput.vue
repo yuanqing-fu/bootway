@@ -18,7 +18,7 @@
         :checked="imporant"
         @change="taskTypeChange"
       />
-      <label class="important" for="importantTypeCheckbox"></label>
+      <label title="重要" class="important" for="importantTypeCheckbox"></label>
       <input
         id="urgentTypeCheckbox"
         ref="urgentCheck"
@@ -26,7 +26,7 @@
         :checked="urgent"
         @change="taskTypeChange"
       />
-      <label class="important" for="urgentTypeCheckbox"></label>
+      <label title="紧急" class="urgent" for="urgentTypeCheckbox"></label>
     </div>
   </div>
 </template>
@@ -158,6 +158,10 @@ export default {
 
 .task-type-radios input:checked + label:after {
   left: 50%;
+}
+
+.task-type-radios input:checked + label.important {
+  background: red;
 }
 
 .task-type-radios input {
