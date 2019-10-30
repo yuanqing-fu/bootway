@@ -18,6 +18,7 @@
         :max="86400"
         :interval="300"
         :tooltip-formatter="formatted_start_date"
+        @drag-end="sliderDragEnd"
       />
     </div>
     <input
@@ -36,7 +37,11 @@
         :checked="important"
         @change="taskTypeChange"
       />
-      <label title="重要" class="important" for="importantTypeCheckbox"></label>
+      <label
+        v-tooltip.auto="'重要'"
+        class="important"
+        for="importantTypeCheckbox"
+      ></label>
       <input
         id="urgentTypeCheckbox"
         ref="urgentCheck"
@@ -44,7 +49,11 @@
         :checked="urgent"
         @change="taskTypeChange"
       />
-      <label title="紧急" class="urgent" for="urgentTypeCheckbox"></label>
+      <label
+        v-tooltip.auto="'紧急'"
+        class="urgent"
+        for="urgentTypeCheckbox"
+      ></label>
     </div>
   </div>
 </template>
@@ -97,24 +106,6 @@ export default {
         .format('HH:mm')
     }
   },
-  watch: {
-    start_date() {
-      if (!this.startDraggingTimeOut) {
-        this.startDraggingTimeOut = window.setTimeout(() => {
-          // 延迟赋值，避免频繁赋值
-          this.taskValues.start_date.setHours(
-            this.$moment.duration(this.start_date, 'seconds').hours()
-          )
-          this.taskValues.start_date.setMinutes(
-            this.$moment.duration(this.start_date, 'seconds').minutes()
-          )
-
-          window.clearTimeout(this.startDraggingTimeOut)
-          this.startDraggingTimeOut = undefined
-        }, 500)
-      }
-    }
-  },
   methods: {
     sendTaskChangeEvent() {
       if (!this.taskValues.name) {
@@ -141,6 +132,14 @@ export default {
         this.$refs.urgentCheck.checked
       )
       this.$refs.taskInput.focus()
+    },
+    sliderDragEnd() {
+      this.taskValues.start_date.setHours(
+        this.$moment.duration(this.start_date, 'seconds').hours()
+      )
+      this.taskValues.start_date.setMinutes(
+        this.$moment.duration(this.start_date, 'seconds').minutes()
+      )
     }
   }
 }

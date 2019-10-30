@@ -2,10 +2,13 @@
   <div class="wrapper task-day-page">
     <day-header class="task-header">
       <template v-slot:test>
-        <button @click="checkMe">Check Me</button>
         <button @click="logOut">Log Out</button>
         <p v-if="user">您好, {{ user.name }} {{ user.email }}</p>
         <p v-else>用户没有登录!</p>
+      </template>
+
+      <template v-slot:dateselect>
+        <v-date-picker :modelvalue="currentSelectedDate"></v-date-picker>
       </template>
     </day-header>
     <div class="middle-container day-task-container">
@@ -21,7 +24,10 @@
         </div>
       </div>
     </div>
-    <task-input :task-values="taskValues" @taskChange="addTask"></task-input>
+    <task-input
+      :task-values="taskFormValues"
+      @taskChange="addTask"
+    ></task-input>
   </div>
 </template>
 
@@ -30,21 +36,27 @@ import TaskType from '~/components/TaskType.vue'
 import TaskInput from '~/components/TaskInput.vue'
 import DayHeader from '~/components/Header.vue'
 import TaskActionBar from '~/components/TaskActionBar.vue'
+import VDatePicker from '~/components/VDatePicker'
 
 export default {
   components: {
     DayHeader,
     TaskType,
     TaskInput,
-    TaskActionBar
+    TaskActionBar,
+    VDatePicker
   },
   data() {
     return {
+      newTaskMode: true,
       compactTaskGroup: true,
-      taskValues: {
+      taskFormValues: {
         name: '',
         type: 'classD',
         start_date: new Date()
+      },
+      currentSelectedDate: {
+        selected: new Date()
       },
       taskList: []
     }
@@ -132,9 +144,9 @@ export default {
       this.loading = true
 
       const newTask = {
-        task_name: this.taskValues.name,
-        important: this.getImportantValue(this.taskValues.type),
-        urgent: this.getUrgentValue(this.taskValues.type),
+        task_name: this.taskFormValues.name,
+        important: this.getImportantValue(this.taskFormValues.type),
+        urgent: this.getUrgentValue(this.taskFormValues.type),
         start_date: new Date()
       }
 
@@ -145,7 +157,7 @@ export default {
           this.loading = false
 
           this.taskList.push(newTask)
-          this.taskValues.name = ''
+          this.taskFormValues.name = ''
         })
         .catch((error) => {
           this.loading = false
@@ -257,6 +269,13 @@ export default {
   font-weight: 500;
   color: darkorange;
   font-size: 13px;
-  padding-left: 5px;
+}
+
+.task-groups .task-group-name span {
+  position: relative;
+  background-color: #fefefe;
+  padding: 0 5px;
+  top: 12px;
+  left: 26px;
 }
 </style>

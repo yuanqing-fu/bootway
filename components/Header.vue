@@ -13,6 +13,9 @@
       注册
     </nuxt-link>
     <slot name="test"></slot>
+    <client-only>
+      <slot name="dateselect"></slot>
+    </client-only>
   </div>
 </template>
 <style>

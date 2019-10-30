@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="task-group-name">{{ taskByTypes.name }}</div>
+    <div class="task-group-name">
+      <span>{{ taskByTypes.name }}</span>
+    </div>
     <div class="task-group-unit">
       <task-unit
         v-for="task in taskByTypes"

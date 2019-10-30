@@ -36,7 +36,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios'],
+  plugins: [
+    '~/plugins/axios',
+    { src: '~/plugins/tooltip.js', ssr: false },
+    { src: '~/plugins/datepicker', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
