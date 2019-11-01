@@ -28,6 +28,7 @@
       placeholder="今天想做什么？"
       class="task-input-element"
       @keyup.enter="sendTaskChangeEvent"
+      @mouseover="taskInputMouseover"
     />
     <div class="task-type-radios">
       <input
@@ -133,6 +134,9 @@ export default {
       )
       this.$refs.taskInput.focus()
     },
+    taskInputMouseover() {
+      this.$refs.taskInput.focus()
+    },
     sliderDragEnd() {
       this.taskValues.start_date.setHours(
         this.$moment.duration(this.start_date, 'seconds').hours()
@@ -140,6 +144,8 @@ export default {
       this.taskValues.start_date.setMinutes(
         this.$moment.duration(this.start_date, 'seconds').minutes()
       )
+
+      this.$refs.taskInput.focus()
     }
   }
 }

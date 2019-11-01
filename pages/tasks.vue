@@ -102,15 +102,18 @@ export default {
       return [classATaskList, classBTaskList, classCTaskList, classDTaskList]
     }
   },
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, store, $moment }) {
     // async function stall(stallTime = 3000) {
     //   await new Promise((resolve) => window.setTimeout(resolve, stallTime))
     // }
     //
     // await stall() // 暂停执行，用来模拟慢速网络
 
-    // const response = await $axios.get(`http://localhost:3003/tasks`)
-    const response = await $axios.get('/tasks')
+    const response = await store.dispatch(
+      'getTask',
+      $moment(new Date()).format('YYYY-MM-DD'),
+      {}
+    )
     return {
       taskList: response.data
     }
@@ -147,7 +150,7 @@ export default {
         task_name: this.taskFormValues.name,
         important: this.getImportantValue(this.taskFormValues.type),
         urgent: this.getUrgentValue(this.taskFormValues.type),
-        start_date: new Date()
+        start_date: this.taskFormValues.start_date
       }
 
       this.$store

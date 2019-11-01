@@ -5,6 +5,7 @@ export default {
     register: (data, axios) => axios.post('auth/register', data)
   },
   tasks: {
-    add: (data, axios) => axios.post('/tasks', data)
+    add: (data, axios) => axios.post('tasks', data),
+    get: (data, dynamicUrl, axios) => axios.get(`tasks/${dynamicUrl}`, data)
   }
 }
