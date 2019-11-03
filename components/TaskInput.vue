@@ -27,6 +27,7 @@
       type="text"
       placeholder="今天想做什么？"
       class="task-input-element"
+      autofocus
       @keyup.enter="sendTaskChangeEvent"
       @mouseover="taskInputMouseover"
     />
@@ -108,6 +109,9 @@ export default {
     }
   },
   methods: {
+    foucsInput() {
+      this.$refs.taskInput.focus()
+    },
     sendTaskChangeEvent() {
       if (!this.taskValues.name) {
         return
@@ -132,10 +136,10 @@ export default {
         this.$refs.importantCheck.checked,
         this.$refs.urgentCheck.checked
       )
-      this.$refs.taskInput.focus()
+      this.foucsInput()
     },
     taskInputMouseover() {
-      this.$refs.taskInput.focus()
+      this.foucsInput()
     },
     sliderDragEnd() {
       this.taskValues.start_date.setHours(

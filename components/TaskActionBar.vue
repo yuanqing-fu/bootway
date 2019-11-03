@@ -1,9 +1,10 @@
 <template>
   <div class="task-action-bar">
     <div class="action-group">
-      <div class="action">重要</div>
-      <div class="action">紧急</div>
-      <div class="action">删除</div>
+      <slot name="switch-panel"></slot>
+    </div>
+    <div class="action-group">
+      <slot name="action-panel"></slot>
     </div>
   </div>
 </template>
@@ -16,8 +17,8 @@
 }
 
 .task-action-bar .action-group {
-  position: absolute;
-  left: -20px;
+  position: relative;
+  left: -40px;
   top: 0;
 }
 

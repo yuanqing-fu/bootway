@@ -89,8 +89,9 @@ fieldset {
 .tooltip .tooltip-inner {
   background: black;
   color: white;
-  border-radius: 16px;
-  padding: 5px 10px 4px;
+  border-radius: 5px;
+  padding: 2px 4px 3px 4px;
+  font-size: 14px;
 }
 
 .tooltip .tooltip-arrow {

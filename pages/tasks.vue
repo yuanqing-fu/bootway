@@ -1,20 +1,29 @@
 <template>
   <div class="wrapper task-day-page">
     <day-header class="task-header">
-      <template v-slot:test>
-        <button @click="logOut">Log Out</button>
-        <p v-if="user">您好, {{ user.name }} {{ user.email }}</p>
-        <p v-else>用户没有登录!</p>
-      </template>
-
       <template v-slot:dateselect>
-        <v-date-picker :modelvalue="currentSelectedDate"></v-date-picker>
+        <v-date-picker
+          :modelvalue="currentDatepickerValues"
+          @dateChange="dateChange"
+        ></v-date-picker>
       </template>
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
-        <task-action-bar></task-action-bar>
-        <div class="task-groups" :class="{ compact: compactTaskGroup }">
+        <div
+          v-if="orderedTaskList.length !== 0"
+          class="task-groups"
+          :class="{ compact: compactTaskGroup }"
+        >
+          <task-action-bar>
+            <template v-slot:switch-panel>
+              <div class="action">重要</div>
+              <div class="action">紧急</div>
+            </template>
+            <template v-slot:action-panel>
+              <div class="action">删除</div>
+            </template>
+          </task-action-bar>
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
             :key="`task-by-types-${index}`"
@@ -22,9 +31,21 @@
             :class="taskByTypes.type"
           ></task-type>
         </div>
+        <div
+          v-else
+          class="task-empty"
+          @mouseover="focusInput"
+          @click="focusInput"
+        >
+          <p class="title">你有什么想做的？</p>
+          <div class="blinking">
+            <fa :icon="['fas', 'hand-point-down']" class="hand-icon-svg" />
+          </div>
+        </div>
       </div>
     </div>
     <task-input
+      ref="taskInput"
       :task-values="taskFormValues"
       @taskChange="addTask"
     ></task-input>
@@ -55,8 +76,8 @@ export default {
         type: 'classD',
         start_date: new Date()
       },
-      currentSelectedDate: {
-        selected: new Date()
+      currentDatepickerValues: {
+        dateSelected: new Date()
       },
       taskList: []
     }
@@ -99,10 +120,17 @@ export default {
       classDTaskList.type = 'classD'
       classDTaskList.name = '不重要也不紧急  '
 
-      return [classATaskList, classBTaskList, classCTaskList, classDTaskList]
+      return [
+        classATaskList,
+        classBTaskList,
+        classCTaskList,
+        classDTaskList
+      ].filter(function(el) {
+        return el.length !== 0
+      })
     }
   },
-  async asyncData({ $axios, store, $moment }) {
+  async asyncData({ store, $moment }) {
     // async function stall(stallTime = 3000) {
     //   await new Promise((resolve) => window.setTimeout(resolve, stallTime))
     // }
@@ -119,6 +147,27 @@ export default {
     }
   },
   methods: {
+    focusInput() {
+      this.$refs.taskInput.foucsInput()
+    },
+    async getTask() {
+      try {
+        const response = await this.$store.dispatch(
+          'getTask',
+          this.$moment(this.currentDatepickerValues.dateSelected).format(
+            'YYYY-MM-DD'
+          ),
+          {}
+        )
+        return response.data
+      } catch (error) {
+        window.location.reload()
+      }
+    },
+    async dateChange() {
+      this.taskList = await this.getTask()
+      this.focusInput()
+    },
     getImportantValue(type) {
       if (type.includes('classA') || type.includes('classC')) {
         return 1
@@ -170,15 +219,8 @@ export default {
               message: error.response.data.message || error.response.status
             }
           }
+          window.location.reload()
         })
-    },
-    checkMe() {
-      this.$store.dispatch('fetch').then((result) => {})
-    },
-    logOut() {
-      this.$store.dispatch('reset').then(() => {
-        this.$router.push('/')
-      })
     }
   }
 }
@@ -189,11 +231,54 @@ export default {
   --leftbar-size: 30px;
 }
 
+.task-empty {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-empty .title {
+  font-size: 20px;
+  font-weight: bold;
+  color: darkorange;
+  margin-bottom: 37px;
+}
+
+.task-empty .hand-icon-svg {
+  font-size: 100px;
+  color: darkorange;
+}
+
+.blinking {
+  animation: blinkingText 0.5s;
+  animation-iteration-count: 1;
+}
+@keyframes blinkingText {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .day-task-container {
 }
 
 .day-task-container .task-groups {
   margin-top: 30px;
+  position: relative;
 }
 
 .day-task-container .task-unit {
@@ -227,15 +312,6 @@ export default {
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
-}
-
-.header.task-header {
-  background-color: #db4c3f;
-  color: white;
-}
-
-.header.task-header a {
-  color: white;
 }
 
 .task-groups .task-group-unit {

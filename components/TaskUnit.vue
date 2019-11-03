@@ -8,7 +8,7 @@
     </div>
     <div class="task-name">{{ task.task_name }}</div>
     <span class="task-start-date">{{
-      $moment(task.start_date).format('hh:mm')
+      $moment(task.start_date).format('HH:mm')
     }}</span>
   </div>
 </template>
