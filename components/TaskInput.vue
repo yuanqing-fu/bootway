@@ -21,16 +21,6 @@
         @drag-end="sliderDragEnd"
       />
     </div>
-    <input
-      ref="taskInput"
-      v-model.trim="taskValues.name"
-      type="text"
-      placeholder="今天想做什么？"
-      class="task-input-element"
-      autofocus
-      @keyup.enter="sendTaskChangeEvent"
-      @mouseover="taskInputMouseover"
-    />
     <div class="task-type-radios">
       <input
         id="importantTypeCheckbox"
@@ -57,6 +47,19 @@
         for="urgentTypeCheckbox"
       ></label>
     </div>
+    <input
+      ref="taskInput"
+      v-model.trim="taskValues.name"
+      type="text"
+      placeholder="今天想做什么？"
+      class="task-input-element"
+      autofocus
+      @keyup.enter="sendTaskChangeEvent"
+      @mouseover="taskInputMouseover"
+    />
+    <button class="submit-task" @click="sendTaskChangeEvent">
+      <fa :icon="['fas', 'arrow-alt-circle-up']" />
+    </button>
   </div>
 </template>
 <script>
@@ -109,7 +112,7 @@ export default {
     }
   },
   methods: {
-    foucsInput() {
+    focusInput() {
       this.$refs.taskInput.focus()
     },
     sendTaskChangeEvent() {
@@ -136,10 +139,10 @@ export default {
         this.$refs.importantCheck.checked,
         this.$refs.urgentCheck.checked
       )
-      this.foucsInput()
+      this.focusInput()
     },
     taskInputMouseover() {
-      this.foucsInput()
+      this.focusInput()
     },
     sliderDragEnd() {
       this.taskValues.start_date.setHours(
@@ -183,7 +186,7 @@ export default {
 }
 
 .task-input-bar .task-input-element {
-  font-size: 16px;
+  font-size: 13px;
   border: 2px solid lightgray;
   outline: none;
   border-radius: 5px;
@@ -191,7 +194,7 @@ export default {
   height: 45px;
   max-width: 500px;
   padding: 0 10px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .task-input-bar .task-input-element:focus {
@@ -207,6 +210,7 @@ export default {
   flex-wrap: wrap;
   overflow: hidden;
   align-content: space-between;
+  transform: rotate(-90deg);
 }
 
 .task-type-radios input + label {
@@ -220,6 +224,10 @@ export default {
   border-radius: 5px;
   padding: 2px;
   transition: all 0.4s ease;
+}
+
+.task-type-radios input + label.urgent {
+  background: #ddd;
 }
 
 .task-type-radios input + label:after {
@@ -251,5 +259,17 @@ export default {
   width: 0;
   height: 0;
   opacity: 0;
+}
+.submit-task {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 35px;
+  color: orange;
+  cursor: pointer;
+}
+.submit-task:hover {
+  color: darkorange;
 }
 </style>

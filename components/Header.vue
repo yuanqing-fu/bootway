@@ -57,6 +57,7 @@ export default {
   align-items: center;
   padding: 0 10px;
   justify-content: center;
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2);
 }
 
 .header .header-inner {
@@ -89,7 +90,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: flex-end;
 }
 
@@ -104,6 +105,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-size: 13px;
 }
 
 .header .logout {
@@ -113,7 +115,7 @@ export default {
   cursor: pointer;
   padding: 0;
   font-size: 15px;
-  margin: 2px 0 0 5px;
+  margin: 2px 0 0 10px;
 }
 
 .header .logout:hover {

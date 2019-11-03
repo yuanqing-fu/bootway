@@ -50,6 +50,8 @@ export default {
 
 .datepicker-wrapper .vdp-datepicker__calendar {
   right: 0;
+  border-radius: 5px;
+  border: 2px solid darkorange;
 }
 
 .datepicker-wrapper .vdp-datepicker__calendar .cell {

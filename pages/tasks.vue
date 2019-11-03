@@ -10,20 +10,55 @@
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
+        <task-action-bar>
+          <template v-slot:switch-panel>
+            <div class="action">
+              <input id="compactAction" v-model="showCompact" type="checkbox" />
+              <label
+                v-tooltip.left="'紧凑模式'"
+                class="compact"
+                for="compactAction"
+              ></label>
+            </div>
+            <div class="action">
+              <input id="ClassACheck" v-model="showClassA" type="checkbox" />
+              <label
+                v-tooltip.left="'重要且紧急'"
+                class="ClassA"
+                for="ClassACheck"
+              ></label>
+            </div>
+            <div class="action">
+              <input id="ClassBCheck" v-model="showClassB" type="checkbox" />
+              <label
+                v-tooltip.left="'紧急但不重要'"
+                class="ClassB"
+                for="ClassBCheck"
+              ></label>
+            </div>
+            <div class="action">
+              <input id="ClassCCheck" v-model="showClassC" type="checkbox" />
+              <label
+                v-tooltip.left="'重要但不紧急'"
+                class="ClassC"
+                for="ClassCCheck"
+              ></label>
+            </div>
+            <div class="action">
+              <input id="ClassDCheck" v-model="showClassD" type="checkbox" />
+              <label
+                v-tooltip.left="'不重要也不紧急'"
+                class="ClassD"
+                for="ClassDCheck"
+              ></label>
+            </div>
+          </template>
+        </task-action-bar>
         <div
           v-if="orderedTaskList.length !== 0"
           class="task-groups"
-          :class="{ compact: compactTaskGroup }"
+          :class="{ compact: showCompact }"
         >
-          <task-action-bar>
-            <template v-slot:switch-panel>
-              <div class="action">重要</div>
-              <div class="action">紧急</div>
-            </template>
-            <template v-slot:action-panel>
-              <div class="action">删除</div>
-            </template>
-          </task-action-bar>
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
             :key="`task-by-types-${index}`"
@@ -70,7 +105,11 @@ export default {
   data() {
     return {
       newTaskMode: true,
-      compactTaskGroup: true,
+      showCompact: true,
+      showClassA: true,
+      showClassB: true,
+      showClassC: true,
+      showClassD: true,
       taskFormValues: {
         name: '',
         type: 'classD',
@@ -96,36 +135,41 @@ export default {
         important: 1,
         urgent: 1
       })
-      classATaskList.type = 'classA'
-      classATaskList.name = '重要且紧急'
 
       classBTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 1
       })
-      classBTaskList.type = 'classB'
-      classBTaskList.name = '紧急但不重要'
 
       classCTaskList = this.getTypedTaskList(this.taskList, {
         important: 1,
         urgent: 0
       })
-      classCTaskList.type = 'classC'
-      classCTaskList.name = '重要但不紧急'
 
       classDTaskList = this.getTypedTaskList(this.taskList, {
         important: 0,
         urgent: 0
       })
-      classDTaskList.type = 'classD'
-      classDTaskList.name = '不重要也不紧急  '
 
-      return [
-        classATaskList,
-        classBTaskList,
-        classCTaskList,
-        classDTaskList
-      ].filter(function(el) {
+      const resultArr = []
+
+      if (this.showClassA) {
+        resultArr.push(classATaskList)
+      }
+
+      if (this.showClassB) {
+        resultArr.push(classBTaskList)
+      }
+
+      if (this.showClassC) {
+        resultArr.push(classCTaskList)
+      }
+
+      if (this.showClassD) {
+        resultArr.push(classDTaskList)
+      }
+
+      return resultArr.filter(function(el) {
         return el.length !== 0
       })
     }
@@ -148,7 +192,7 @@ export default {
   },
   methods: {
     focusInput() {
-      this.$refs.taskInput.foucsInput()
+      this.$refs.taskInput.focusInput()
     },
     async getTask() {
       try {
@@ -182,14 +226,31 @@ export default {
         return 0
       }
     },
-    getTypedTaskList(taskList, typeObj) {
-      return taskList
+    getTypedTaskList(tasks, typeObj) {
+      const taskList = tasks
         .filter(function(el) {
           return (
             el.important === typeObj.important && el.urgent === typeObj.urgent
           )
         })
         .sort((a, b) => new Date(a.start_date) - new Date(b.start_date))
+
+      if (typeObj.important) {
+        if (typeObj.urgent) {
+          taskList.type = 'classA'
+          taskList.name = '重要且紧急'
+        } else {
+          taskList.type = 'classC'
+          taskList.name = '重要但不紧急'
+        }
+      } else if (typeObj.urgent) {
+        taskList.type = 'classB'
+        taskList.name = '紧急但不重要'
+      } else {
+        taskList.type = 'classD'
+        taskList.name = '不重要也不紧急'
+      }
+      return taskList
     },
     addTask() {
       this.alert = null
@@ -332,8 +393,12 @@ export default {
 }
 
 .task-groups.compact .task-group-unit::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 0;
+}
+
+.task-groups.compact .task-group-unit::-webkit-scrollbar-thumb:hover {
   background: darkorange;
-  border-radius: 5px;
 }
 
 .task-groups.compact .task-group-unit::-webkit-scrollbar-track {

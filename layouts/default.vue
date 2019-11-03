@@ -26,12 +26,16 @@
 }
 
 .middle-container::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 0;
+}
+
+.middle-container::-webkit-scrollbar-thumb:hover {
   background: darkorange;
-  border-radius: 30px;
 }
 
 .middle-container::-webkit-scrollbar-track {
-  background: black;
+  background: #dfdfdf;
 }
 
 .middle-container .middle-container-inner {
