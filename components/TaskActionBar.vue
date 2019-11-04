@@ -55,19 +55,23 @@
   color: darkorange;
 }
 
+.task-action-bar .action input:checked + label:hover {
+  filter: brightness(0.7);
+}
+
 .task-action-bar .action.classA input:checked + label {
-  color: red;
+  color: #cc0000;
 }
 
 .task-action-bar .action.classB input:checked + label {
-  color: lightskyblue;
+  color: #ff3333;
 }
 
 .task-action-bar .action.classC input:checked + label {
-  color: orchid;
+  color: #ff6666;
 }
 
 .task-action-bar .action.classD input:checked + label {
-  color: yellowgreen;
+  color: #ff007f;
 }
 </style>
