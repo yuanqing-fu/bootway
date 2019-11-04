@@ -12,45 +12,38 @@
       <div class="middle-container-inner">
         <task-action-bar>
           <template v-slot:switch-panel>
-            <div class="action">
+            <div class="action compact">
               <input id="compactAction" v-model="showCompact" type="checkbox" />
-              <label
-                v-tooltip.left="'紧凑模式'"
-                class="compact"
-                for="compactAction"
-              ></label>
+              <label v-tooltip.left="'紧凑模式'" for="compactAction"
+                ><fa :icon="['fas', 'compress-arrows-alt']"
+              /></label>
             </div>
-            <div class="action">
+            <div class="action classA">
               <input id="ClassACheck" v-model="showClassA" type="checkbox" />
-              <label
-                v-tooltip.left="'重要且紧急'"
-                class="ClassA"
-                for="ClassACheck"
-              ></label>
+              <label v-tooltip.left="'重要且紧急'" for="ClassACheck"
+                ><fa :icon="['fas', 'grin-stars']"
+              /></label>
             </div>
-            <div class="action">
+            <div class="action classB">
               <input id="ClassBCheck" v-model="showClassB" type="checkbox" />
-              <label
-                v-tooltip.left="'紧急但不重要'"
-                class="ClassB"
-                for="ClassBCheck"
-              ></label>
+              <label v-tooltip.left="'紧急但不重要'" for="ClassBCheck"
+                ><fa :icon="['fas', 'grin-beam']"
+              /></label>
             </div>
-            <div class="action">
+            <div class="action classC">
               <input id="ClassCCheck" v-model="showClassC" type="checkbox" />
-              <label
-                v-tooltip.left="'重要但不紧急'"
-                class="ClassC"
-                for="ClassCCheck"
-              ></label>
+              <label v-tooltip.left="'重要但不紧急'" for="ClassCCheck"
+                ><fa :icon="['fas', 'grin-wink']"
+              /></label>
             </div>
-            <div class="action">
+            <div class="action classD">
               <input id="ClassDCheck" v-model="showClassD" type="checkbox" />
               <label
                 v-tooltip.left="'不重要也不紧急'"
                 class="ClassD"
                 for="ClassDCheck"
-              ></label>
+                ><fa :icon="['fas', 'grin-alt']"
+              /></label>
             </div>
           </template>
         </task-action-bar>
