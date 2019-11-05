@@ -8,6 +8,7 @@
         v-for="task in taskByTypes"
         :key="task.id"
         :task="task"
+        v-on="$listeners"
       ></task-unit>
     </div>
   </div>

@@ -15,7 +15,7 @@
         :tooltip="'always'"
         :use-keyboard="true"
         :min="0"
-        :max="86400"
+        :max="86100"
         :interval="300"
         :tooltip-formatter="formatted_start_date"
         @drag-end="sliderDragEnd"
@@ -59,6 +59,9 @@
     />
     <button class="submit-task" @click="sendTaskChangeEvent">
       <fa :icon="['fas', 'arrow-alt-circle-up']" />
+    </button>
+    <button class="cancel-task" @click="sendCancelTaskEditEvent">
+      取消
     </button>
   </div>
 </template>
@@ -115,11 +118,19 @@ export default {
     focusInput() {
       this.$refs.taskInput.focus()
     },
+    setStartDate() {
+      this.start_date =
+        this.taskValues.start_date.getHours() * 3600 +
+        this.taskValues.start_date.getMinutes() * 60
+    },
     sendTaskChangeEvent() {
       if (!this.taskValues.name) {
         return
       }
       this.$emit('taskChange')
+    },
+    sendCancelTaskEditEvent() {
+      this.$emit('cancelTaskEdit')
     },
     getClassType(important, urgent) {
       if (important) {
@@ -194,7 +205,7 @@ export default {
   height: 45px;
   max-width: 500px;
   padding: 0 10px;
-  margin-left: 10px;
+  margin-left: 13px;
 }
 
 .task-input-bar .task-input-element:focus {
@@ -206,7 +217,7 @@ export default {
   display: flex;
   position: relative;
   width: 40px;
-  height: 45px;
+  height: 47px;
   flex-wrap: wrap;
   overflow: hidden;
   align-content: space-between;
@@ -270,6 +281,25 @@ export default {
   cursor: pointer;
 }
 .submit-task:hover {
-  color: darkorange;
+  filter: brightness(90%);
+}
+
+.cancel-task {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 14px;
+  color: orange;
+  cursor: pointer;
+  display: none;
+}
+
+.task-input-bar.edit .cancel-task {
+  display: inline-block;
+}
+
+.cancel-task:hover {
+  text-decoration: underline;
 }
 </style>

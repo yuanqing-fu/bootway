@@ -57,6 +57,8 @@
             :key="`task-by-types-${index}`"
             :task-by-types="taskByTypes"
             :class="taskByTypes.type"
+            @taskEdit="enterEditMode"
+            @cancelTaskEdit="cancelTaskEdit"
           ></task-type>
         </div>
         <div
@@ -74,8 +76,10 @@
     </div>
     <task-input
       ref="taskInput"
+      :class="{ edit: editMode }"
       :task-values="taskFormValues"
-      @taskChange="addTask"
+      @taskChange="addOrEditTask"
+      @cancelTaskEdit="cancelTaskEdit"
     ></task-input>
   </div>
 </template>
@@ -97,12 +101,13 @@ export default {
   },
   data() {
     return {
-      newTaskMode: true,
-      showCompact: true,
+      editMode: false,
+      showCompact: false,
       showClassA: true,
       showClassB: true,
       showClassC: true,
       showClassD: true,
+      tempTaskForEdit: null,
       taskFormValues: {
         name: '',
         type: 'classD',
@@ -245,6 +250,13 @@ export default {
       }
       return taskList
     },
+    addOrEditTask() {
+      if (!this.editMode) {
+        this.addTask()
+      } else {
+        this.editTask()
+      }
+    },
     addTask() {
       this.alert = null
       this.loading = true
@@ -275,6 +287,71 @@ export default {
           }
           window.location.reload()
         })
+    },
+    editTask() {
+      this.alert = null
+      this.loading = true
+
+      const task = {
+        task_id: this.tempTaskForEdit.task_id,
+        done: this.tempTaskForEdit.done,
+        task_name: this.taskFormValues.name,
+        important: this.getImportantValue(this.taskFormValues.type),
+        urgent: this.getUrgentValue(this.taskFormValues.type),
+        start_date: this.taskFormValues.start_date
+      }
+
+      this.$store
+        .dispatch('editTask', task)
+        .then((result) => {
+          this.alert = { type: 'success', message: result.data.message }
+          this.loading = false
+
+          this.tempTaskForEdit.task_name = task.task_name
+          this.tempTaskForEdit.done = task.done
+          this.tempTaskForEdit.important = task.important
+          this.tempTaskForEdit.urgent = task.urgent
+          this.tempTaskForEdit.start_date = task.start_date
+
+          this.cancelTaskEdit()
+        })
+        .catch((error) => {
+          this.loading = false
+          if (error.response && error.response.data) {
+            this.alert = {
+              type: 'error',
+              message: error.response.data.message || error.response.status
+            }
+          }
+          window.location.reload()
+        })
+    },
+    enterEditMode(task) {
+      // 进入编辑模式
+      this.editMode = true
+      if (this.tempTaskForEdit != null) {
+        this.tempTaskForEdit.isEdit = false
+      }
+      this.$set(task, 'isEdit', true)
+      this.tempTaskForEdit = task
+
+      this.taskFormValues.name = task.task_name
+      this.taskFormValues.type = this.$refs.taskInput.getClassType(
+        task.important,
+        task.urgent
+      )
+      this.taskFormValues.start_date = new Date(task.start_date)
+
+      this.$refs.taskInput.setStartDate()
+      this.$refs.taskInput.focusInput()
+    },
+    cancelTaskEdit() {
+      this.editMode = false
+      this.taskFormValues.name = ''
+      if (this.tempTaskForEdit != null) {
+        this.tempTaskForEdit.isEdit = false
+        this.tempTaskForEdit = null
+      }
     }
   }
 }
@@ -333,39 +410,6 @@ export default {
 .day-task-container .task-groups {
   margin-top: 30px;
   position: relative;
-}
-
-.day-task-container .task-unit {
-  font-size: 13px;
-  line-height: 22px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 5px 7px 5px 5px;
-}
-
-.task-unit .task-status {
-  flex: 0 0 var(--leftbar-size);
-  width: 30px;
-  height: 18px;
-}
-
-.task-unit .task-start-date {
-  flex: 0 0 auto;
-  color: lightgray;
-}
-
-.task-unit:hover .task-start-date {
-  color: gray;
-}
-
-.task-unit:hover .checkmark {
-  background-color: lightgray;
-}
-
-.task-unit .task-name {
-  flex: 1 1 auto;
-  margin: 0 10px 0 0;
 }
 
 .task-groups .task-group-unit {

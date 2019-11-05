@@ -15,8 +15,8 @@
 
 .task-action-bar .action-group {
   position: relative;
-  left: -40px;
-  top: 0;
+  left: -50px;
+  top: -42px;
 }
 
 .task-action-bar .action {
