@@ -59,6 +59,7 @@
             :class="taskByTypes.type"
             @taskEdit="enterEditMode"
             @cancelTaskEdit="cancelTaskEdit"
+            @taskStatusChange="editTask"
           ></task-type>
         </div>
         <div
@@ -288,17 +289,25 @@ export default {
           window.location.reload()
         })
     },
-    editTask() {
+    editTask(taskToBeSubmitted) {
       this.alert = null
       this.loading = true
 
-      const task = {
-        task_id: this.tempTaskForEdit.task_id,
-        done: this.tempTaskForEdit.done,
-        task_name: this.taskFormValues.name,
-        important: this.getImportantValue(this.taskFormValues.type),
-        urgent: this.getUrgentValue(this.taskFormValues.type),
-        start_date: this.taskFormValues.start_date
+      let task = {}
+      if (taskToBeSubmitted) {
+        task = {
+          task_id: taskToBeSubmitted.task_id,
+          done: taskToBeSubmitted.done
+        }
+      } else {
+        task = {
+          task_id: this.tempTaskForEdit.task_id,
+          done: this.tempTaskForEdit.done,
+          task_name: this.taskFormValues.name,
+          important: this.getImportantValue(this.taskFormValues.type),
+          urgent: this.getUrgentValue(this.taskFormValues.type),
+          start_date: this.taskFormValues.start_date
+        }
       }
 
       this.$store
@@ -307,13 +316,15 @@ export default {
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
 
-          this.tempTaskForEdit.task_name = task.task_name
-          this.tempTaskForEdit.done = task.done
-          this.tempTaskForEdit.important = task.important
-          this.tempTaskForEdit.urgent = task.urgent
-          this.tempTaskForEdit.start_date = task.start_date
+          if (!taskToBeSubmitted) {
+            this.tempTaskForEdit.task_name = task.task_name
+            this.tempTaskForEdit.done = task.done
+            this.tempTaskForEdit.important = task.important
+            this.tempTaskForEdit.urgent = task.urgent
+            this.tempTaskForEdit.start_date = task.start_date
 
-          this.cancelTaskEdit()
+            this.cancelTaskEdit()
+          }
         })
         .catch((error) => {
           this.loading = false
@@ -323,7 +334,7 @@ export default {
               message: error.response.data.message || error.response.status
             }
           }
-          window.location.reload()
+          // window.location.reload()
         })
     },
     enterEditMode(task) {

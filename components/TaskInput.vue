@@ -1,14 +1,6 @@
 <template>
-  <div
-    class="task-input-bar"
-    @mouseover="showSliderTooltip = true"
-    @mouseout="showSliderTooltip = false"
-  >
-    <div
-      v-show="showSliderTooltip"
-      class="date-slider-wrapper"
-      @mouseover="showSliderTooltip = true"
-    >
+  <div class="task-input-bar">
+    <div class="date-slider-wrapper">
       <vue-slider
         v-model.lazy="start_date"
         :drag-on-click="true"
@@ -90,7 +82,6 @@ export default {
   },
   data() {
     return {
-      showSliderTooltip: false,
       startDraggingTimeOut: undefined,
       start_date:
         this.taskValues.start_date.getHours() * 3600 +
@@ -169,23 +160,6 @@ export default {
 }
 </script>
 <style>
-.date-slider-wrapper {
-  width: 100%;
-  position: absolute;
-  top: -11px;
-  left: 0;
-  padding: 0 50px;
-  pointer-events: auto;
-}
-
-.date-slider-wrapper .vue-slider-rail {
-  background-color: transparent;
-}
-
-.date-slider-wrapper .vue-slider-process {
-  background-color: transparent;
-}
-
 .task-input-bar {
   border-top: 3px solid darkorange;
   flex: 0 0 73px;
@@ -211,6 +185,32 @@ export default {
 .task-input-bar .task-input-element:focus {
   border: 2px solid cornflowerblue;
   box-shadow: 0 0 10px cornflowerblue;
+}
+
+.date-slider-wrapper {
+  width: 100%;
+  position: absolute;
+  top: -11px;
+  left: 0;
+  padding: 0 50px;
+  pointer-events: auto;
+  display: none;
+}
+
+.task-input-bar:hover .date-slider-wrapper {
+  display: block;
+}
+
+.task-input-bar.edit .date-slider-wrapper {
+  display: block;
+}
+
+.date-slider-wrapper .vue-slider-rail {
+  background-color: transparent;
+}
+
+.date-slider-wrapper .vue-slider-process {
+  background-color: transparent;
 }
 
 .task-type-radios {

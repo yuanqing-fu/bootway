@@ -1,8 +1,14 @@
 <template>
-  <div class="task-unit" :class="{ edit: task.isEdit }">
+  <div class="task-unit" :class="{ edit: task.isEdit, done: task.done }">
     <div class="task-status">
       <label class="check-label">
-        <input class="check-input" type="checkbox" name="task-status" />
+        <input
+          v-model="task.done"
+          class="check-input"
+          type="checkbox"
+          name="task-status"
+          @change="taskStatusChange"
+        />
         <span class="checkmark"></span>
       </label>
     </div>
@@ -35,6 +41,9 @@ export default {
     },
     sendCancelTaskEditEvent() {
       this.$emit('cancelTaskEdit')
+    },
+    taskStatusChange() {
+      this.$emit('taskStatusChange', this.task)
     }
   }
 }
@@ -77,6 +86,12 @@ export default {
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
+  transition: all 0.4s ease;
+}
+
+.task-unit.done .task-name {
+  text-decoration: line-through;
+  color: lightgray;
 }
 
 .task-unit .edit,
