@@ -5,6 +5,7 @@
         v-model.lazy="start_date"
         :drag-on-click="true"
         :tooltip="'always'"
+        :dot-size="16"
         :use-keyboard="true"
         :min="0"
         :max="86100"
@@ -193,7 +194,7 @@ export default {
   top: -11px;
   left: 0;
   padding: 0 50px;
-  pointer-events: auto;
+  /*pointer-events: auto;*/
   display: none;
 }
 

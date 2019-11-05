@@ -3,7 +3,7 @@
     <div class="task-status">
       <label class="check-label">
         <input
-          v-model="task.done"
+          v-model="done"
           class="check-input"
           type="checkbox"
           name="task-status"
@@ -12,7 +12,9 @@
         <span class="checkmark"></span>
       </label>
     </div>
-    <div class="task-name">{{ task.task_name }}</div>
+    <div class="task-name">
+      <span class="text">{{ task.task_name }}</span>
+    </div>
     <span class="edit" @click="handelEditTaskEvent"
       ><fa :icon="['fas', 'pencil-alt']"
     /></span>
@@ -34,7 +36,15 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      done: false
+    }
+  },
   computed: {},
+  mounted() {
+    this.done = this.task.done
+  },
   methods: {
     handelEditTaskEvent() {
       this.$emit('taskEdit', this.task)
@@ -43,6 +53,7 @@ export default {
       this.$emit('cancelTaskEdit')
     },
     taskStatusChange() {
+      this.task.done = this.done
       this.$emit('taskStatusChange', this.task)
     }
   }
@@ -89,9 +100,19 @@ export default {
   transition: all 0.4s ease;
 }
 
-.task-unit.done .task-name {
-  text-decoration: line-through;
-  color: lightgray;
+.task-unit.done .task-name .text {
+  color: gray;
+  background-image: linear-gradient(
+    to bottom,
+    darkorange 33%,
+    transparent 33%,
+    transparent 66%,
+    darkorange 66%,
+    darkorange
+  );
+  background-position: 0 5px;
+  background-repeat: repeat-x;
+  background-size: 2px 6px;
 }
 
 .task-unit .edit,

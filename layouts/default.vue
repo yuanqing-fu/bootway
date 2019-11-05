@@ -161,10 +161,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 15px;
   background-color: #eee;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .check-label:hover input ~ .checkmark {
@@ -185,10 +185,10 @@
 }
 
 .check-label .checkmark:after {
-  left: 7px;
+  left: 6px;
   top: 2px;
-  width: 6px;
-  height: 11px;
+  width: 4px;
+  height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
