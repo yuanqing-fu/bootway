@@ -10,7 +10,7 @@
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
-        <task-action-bar>
+        <task-action-bar v-if="orderedTaskList.length !== 0">
           <template v-slot:switch-panel>
             <div class="action compact">
               <input id="compactAction" v-model="showCompact" type="checkbox" />
@@ -241,6 +241,7 @@ export default {
       }
     },
     async dateChange() {
+      this.taskFormValues.start_date = this.currentDatepickerValues.dateSelected
       this.taskList = await this.getTask()
       this.focusInput()
     },

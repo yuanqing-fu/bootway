@@ -19,11 +19,11 @@
       <span class="edit" @click="handelEditTaskEvent"
         ><fa :icon="['fas', 'pencil-alt']"
       /></span>
-      <span class="delete" @click="handelDeleteTaskEvent"
-        ><fa :icon="['fas', 'trash-alt']"
-      /></span>
       <span class="cancel" @click="sendCancelTaskEditEvent"
         ><fa :icon="['fas', 'times']"
+      /></span>
+      <span class="delete" @click="handelDeleteTaskEvent"
+        ><fa :icon="['fas', 'trash-alt']"
       /></span>
       <span class="task-start-date">{{
         $moment(task.start_date).format('HH:mm')
