@@ -7,6 +7,7 @@ export default {
   tasks: {
     add: (data, axios) => axios.post('tasks', data),
     get: (data, dynamicUrl, axios) => axios.get(`tasks/${dynamicUrl}`, data),
-    edit: (data, axios) => axios.patch(`tasks`, data)
+    edit: (data, axios) => axios.patch(`tasks`, data),
+    delete: (data, axios) => axios.delete(`tasks`, data)
   }
 }

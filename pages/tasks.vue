@@ -14,32 +14,40 @@
           <template v-slot:switch-panel>
             <div class="action compact">
               <input id="compactAction" v-model="showCompact" type="checkbox" />
-              <label v-tooltip.left="'紧凑模式'" for="compactAction"
+              <label
+                v-tooltip.left="getTooltipOption('紧凑模式')"
+                for="compactAction"
                 ><fa :icon="['fas', 'compress-arrows-alt']"
               /></label>
             </div>
             <div class="action classA">
               <input id="ClassACheck" v-model="showClassA" type="checkbox" />
-              <label v-tooltip.left="'重要且紧急'" for="ClassACheck"
+              <label
+                v-tooltip.left="getTooltipOption('重要且紧急')"
+                for="ClassACheck"
                 ><fa :icon="['fas', 'grin-stars']"
               /></label>
             </div>
             <div class="action classB">
               <input id="ClassBCheck" v-model="showClassB" type="checkbox" />
-              <label v-tooltip.left="'紧急但不重要'" for="ClassBCheck"
+              <label
+                v-tooltip.left="getTooltipOption('紧急但不重要')"
+                for="ClassBCheck"
                 ><fa :icon="['fas', 'grin-beam']"
               /></label>
             </div>
             <div class="action classC">
               <input id="ClassCCheck" v-model="showClassC" type="checkbox" />
-              <label v-tooltip.left="'重要但不紧急'" for="ClassCCheck"
+              <label
+                v-tooltip.left="getTooltipOption('重要但不紧急')"
+                for="ClassCCheck"
                 ><fa :icon="['fas', 'grin-wink']"
               /></label>
             </div>
             <div class="action classD">
               <input id="ClassDCheck" v-model="showClassD" type="checkbox" />
               <label
-                v-tooltip.left="'不重要也不紧急'"
+                v-tooltip.left="getTooltipOption('不重要也不紧急')"
                 class="ClassD"
                 for="ClassDCheck"
                 ><fa :icon="['fas', 'grin-alt']"
@@ -54,10 +62,12 @@
         >
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
+            v-show="isTaskGroupShow(taskByTypes.type)"
             :key="`task-by-types-${index}`"
             :task-by-types="taskByTypes"
             :class="taskByTypes.type"
             @taskEdit="enterEditMode"
+            @taskDelete="showDeleteModal"
             @cancelTaskEdit="cancelTaskEdit"
             @taskStatusChange="editTask"
           ></task-type>
@@ -82,6 +92,7 @@
       @taskChange="addOrEditTask"
       @cancelTaskEdit="cancelTaskEdit"
     ></task-input>
+    <v-dialog />
   </div>
 </template>
 
@@ -152,21 +163,29 @@ export default {
 
       const resultArr = []
 
-      if (this.showClassA) {
-        resultArr.push(classATaskList)
-      }
+      // if (this.showClassA) {
+      //   resultArr.push(classATaskList)
+      // }
+      //
+      // if (this.showClassB) {
+      //   resultArr.push(classBTaskList)
+      // }
+      //
+      // if (this.showClassC) {
+      //   resultArr.push(classCTaskList)
+      // }
+      //
+      // if (this.showClassD) {
+      //   resultArr.push(classDTaskList)
+      // }
 
-      if (this.showClassB) {
-        resultArr.push(classBTaskList)
-      }
+      resultArr.push(classATaskList)
 
-      if (this.showClassC) {
-        resultArr.push(classCTaskList)
-      }
+      resultArr.push(classBTaskList)
 
-      if (this.showClassD) {
-        resultArr.push(classDTaskList)
-      }
+      resultArr.push(classCTaskList)
+
+      resultArr.push(classDTaskList)
 
       return resultArr.filter(function(el) {
         return el.length !== 0
@@ -190,6 +209,20 @@ export default {
     }
   },
   methods: {
+    isTaskGroupShow(type) {
+      if (this.showClassA && type === 'classA') {
+        return true
+      }
+      if (this.showClassB && type === 'classB') {
+        return true
+      }
+      if (this.showClassC && type === 'classC') {
+        return true
+      }
+      if (this.showClassD && type === 'classD') {
+        return true
+      }
+    },
     focusInput() {
       this.$refs.taskInput.focusInput()
     },
@@ -275,6 +308,7 @@ export default {
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
 
+          newTask.task_id = result.data[0]
           this.taskList.push(newTask)
           this.taskFormValues.name = ''
         })
@@ -289,15 +323,15 @@ export default {
           window.location.reload()
         })
     },
-    editTask(taskToBeSubmitted) {
+    editTask(taskToBeInstantEdited) {
       this.alert = null
       this.loading = true
 
       let task = {}
-      if (taskToBeSubmitted) {
+      if (taskToBeInstantEdited) {
         task = {
-          task_id: taskToBeSubmitted.task_id,
-          done: taskToBeSubmitted.done
+          task_id: taskToBeInstantEdited.task_id,
+          done: taskToBeInstantEdited.done
         }
       } else {
         task = {
@@ -316,13 +350,67 @@ export default {
           this.alert = { type: 'success', message: result.data.message }
           this.loading = false
 
-          if (!taskToBeSubmitted) {
+          if (!taskToBeInstantEdited) {
             this.tempTaskForEdit.task_name = task.task_name
             this.tempTaskForEdit.done = task.done
             this.tempTaskForEdit.important = task.important
             this.tempTaskForEdit.urgent = task.urgent
             this.tempTaskForEdit.start_date = task.start_date
 
+            this.cancelTaskEdit()
+          }
+        })
+        .catch((error) => {
+          this.loading = false
+          if (error.response && error.response.data) {
+            this.alert = {
+              type: 'error',
+              message: error.response.data.message || error.response.status
+            }
+          }
+          window.location.reload()
+        })
+    },
+    showDeleteModal(task) {
+      this.$modal.show('dialog', {
+        // title: 'Alert!',
+        classes: ['alert-dialog'],
+        text: '确定要删除吗？',
+        buttons: [
+          {
+            title: '删除',
+            default: true,
+            handler: () => {
+              this.$modal.hide('dialog')
+              this.deleteTask(task)
+            }
+          },
+          {
+            title: '取消'
+          }
+        ]
+      })
+    },
+    deleteTask(task) {
+      this.alert = null
+      this.loading = true
+
+      const data = { task_id: task.task_id }
+      this.$store
+        .dispatch('deleteTask', { data })
+        .then((result) => {
+          this.alert = { type: 'success', message: result.data.message }
+          this.loading = false
+
+          this.taskList.splice(
+            this.taskList.indexOf(
+              this.taskList.find((element) => {
+                return element.task_id === task.task_id
+              })
+            ),
+            1
+          )
+          if (this.editMode) {
             this.cancelTaskEdit()
           }
         })
@@ -362,6 +450,12 @@ export default {
       if (this.tempTaskForEdit != null) {
         this.tempTaskForEdit.isEdit = false
         this.tempTaskForEdit = null
+      }
+    },
+    getTooltipOption(content) {
+      return {
+        content,
+        hideOnTargetClick: false
       }
     }
   }

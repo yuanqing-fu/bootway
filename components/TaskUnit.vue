@@ -1,30 +1,35 @@
 <template>
-  <div class="task-unit" :class="{ edit: task.isEdit, done: task.done }">
-    <div class="task-status">
-      <label class="check-label">
-        <input
-          v-model="done"
-          class="check-input"
-          type="checkbox"
-          name="task-status"
-          @change="taskStatusChange"
-        />
-        <span class="checkmark"></span>
-      </label>
+  <transition name="fade">
+    <div class="task-unit" :class="{ edit: task.isEdit, done: task.done }">
+      <div class="task-status">
+        <label class="check-label">
+          <input
+            v-model="done"
+            class="check-input"
+            type="checkbox"
+            name="task-status"
+            @change="taskStatusChange"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="task-name">
+        <span class="text">{{ task.task_name }}</span>
+      </div>
+      <span class="edit" @click="handelEditTaskEvent"
+        ><fa :icon="['fas', 'pencil-alt']"
+      /></span>
+      <span class="delete" @click="handelDeleteTaskEvent"
+        ><fa :icon="['fas', 'trash-alt']"
+      /></span>
+      <span class="cancel" @click="sendCancelTaskEditEvent"
+        ><fa :icon="['fas', 'times']"
+      /></span>
+      <span class="task-start-date">{{
+        $moment(task.start_date).format('HH:mm')
+      }}</span>
     </div>
-    <div class="task-name">
-      <span class="text">{{ task.task_name }}</span>
-    </div>
-    <span class="edit" @click="handelEditTaskEvent"
-      ><fa :icon="['fas', 'pencil-alt']"
-    /></span>
-    <span class="cancel" @click="sendCancelTaskEditEvent"
-      ><fa :icon="['fas', 'times']"
-    /></span>
-    <span class="task-start-date">{{
-      $moment(task.start_date).format('HH:mm')
-    }}</span>
-  </div>
+  </transition>
 </template>
 <script>
 export default {
@@ -49,6 +54,9 @@ export default {
     handelEditTaskEvent() {
       this.$emit('taskEdit', this.task)
     },
+    handelDeleteTaskEvent() {
+      this.$emit('taskDelete', this.task)
+    },
     sendCancelTaskEditEvent() {
       this.$emit('cancelTaskEdit')
     },
@@ -67,6 +75,7 @@ export default {
   flex-direction: row;
   align-items: center;
   padding: 5px 7px 5px 5px;
+  transition: all 0.4s ease;
 }
 
 .task-unit.edit {
@@ -97,26 +106,21 @@ export default {
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
-  transition: all 0.4s ease;
 }
 
 .task-unit.done .task-name .text {
   color: gray;
-  background-image: linear-gradient(
-    to bottom,
-    darkorange 33%,
-    transparent 33%,
-    transparent 66%,
-    darkorange 66%,
-    darkorange
-  );
-  background-position: 0 5px;
+  background-image: linear-gradient(to bottom, darkorange 66%, darkorange);
+  background-position: 0 7px;
   background-repeat: repeat-x;
-  background-size: 2px 6px;
+  background-size: 2px 2px;
+  font-style: italic;
+  transition: all 0.4s ease;
 }
 
 .task-unit .edit,
-.task-unit .cancel {
+.task-unit .cancel,
+.task-unit .delete {
   font-size: 12px;
   color: darkorange;
   user-select: none;
@@ -133,7 +137,8 @@ export default {
   display: inline-block;
 }
 
-.task-unit:hover .edit {
+.task-unit:hover .edit,
+.task-unit:hover .delete {
   display: inline-block;
 }
 

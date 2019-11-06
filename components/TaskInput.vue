@@ -23,7 +23,7 @@
         @change="taskTypeChange"
       />
       <label
-        v-tooltip.auto="'重要'"
+        v-tooltip.auto="getTooltipOption('重要')"
         class="important"
         for="importantTypeCheckbox"
       ></label>
@@ -35,7 +35,7 @@
         @change="taskTypeChange"
       />
       <label
-        v-tooltip.auto="'紧急'"
+        v-tooltip.auto="getTooltipOption('紧急')"
         class="urgent"
         for="urgentTypeCheckbox"
       ></label>
@@ -156,6 +156,12 @@ export default {
       )
 
       this.$refs.taskInput.focus()
+    },
+    getTooltipOption(content) {
+      return {
+        content,
+        hideOnTargetClick: false
+      }
     }
   }
 }

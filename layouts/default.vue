@@ -195,4 +195,14 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.v--modal .vue-dialog-buttons .vue-dialog-button:first-child {
+  background: darkorange;
+  color: white;
+  font-weight: bold;
+}
+
+.v--modal .vue-dialog-buttons .vue-dialog-button:first-child:hover {
+  filter: brightness(95%);
+}
 </style>
