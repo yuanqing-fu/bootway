@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="task-unit" :class="{ edit: task.isEdit, done: task.done }">
+    <div class="task-unit" :class="{ edit: task.isEdit, done: done }">
       <div class="task-status">
         <label class="check-label">
           <input
@@ -48,7 +48,7 @@ export default {
   },
   computed: {},
   mounted() {
-    this.done = this.task.done
+    this.done = this.task.done !== 0
   },
   methods: {
     handelEditTaskEvent() {
@@ -61,7 +61,7 @@ export default {
       this.$emit('cancelTaskEdit')
     },
     taskStatusChange() {
-      this.task.done = this.done
+      this.task.done = this.done ? 1 : 0
       this.$emit('taskStatusChange', this.task)
     }
   }

@@ -135,6 +135,12 @@ export default {
     user() {
       return this.$store.state.user ? this.$store.state.user : null
     },
+    hasClassA() {
+      const classAList = this.orderedTaskList.filter((el) => {
+        return el.type === 'classA'
+      })[0]
+      return classAList.length !== 0
+    },
     orderedTaskList() {
       let classATaskList = [] // type: { important:1, urgent:1 }
       let classBTaskList = [] // type: { important:0, urgent:1 }
@@ -209,6 +215,9 @@ export default {
     }
   },
   methods: {
+    completedTasksLength(taskByTypes) {
+      return taskByTypes.filter((el) => el.done === 1).length
+    },
     isTaskGroupShow(type) {
       if (this.showClassA && type === 'classA') {
         return true

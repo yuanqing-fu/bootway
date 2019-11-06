@@ -2,6 +2,7 @@
   <div>
     <div class="task-group-name">
       <span>{{ taskByTypes.name }}</span>
+      <span>总：{{ taskByTypes.length }} 完成：{{ completedTasksLength }}</span>
     </div>
     <div class="task-group-unit">
       <task-unit
@@ -33,7 +34,11 @@ export default {
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    completedTasksLength() {
+      return this.taskByTypes.filter((el) => el.done === 1).length
+    }
+  },
   methods: {}
 }
 </script>
