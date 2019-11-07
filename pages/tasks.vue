@@ -309,6 +309,7 @@ export default {
         task_name: this.taskFormValues.name,
         important: this.getImportantValue(this.taskFormValues.type),
         urgent: this.getUrgentValue(this.taskFormValues.type),
+        done: 0,
         start_date: this.taskFormValues.start_date
       }
 
@@ -525,53 +526,5 @@ export default {
 .day-task-container .task-groups {
   margin-top: 30px;
   position: relative;
-}
-
-.task-groups .task-group-unit {
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2);
-}
-
-.task-groups.compact .task-group-unit {
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 300px;
-}
-
-.task-groups.compact .task-group-unit::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
-}
-
-.task-groups.compact .task-group-unit::-webkit-scrollbar-thumb {
-  background: orange;
-  border-radius: 0;
-}
-
-.task-groups.compact .task-group-unit::-webkit-scrollbar-thumb:hover {
-  background: darkorange;
-}
-
-.task-groups.compact .task-group-unit::-webkit-scrollbar-track {
-  background: #dfdfdf;
-}
-
-.task-groups .task-group-name {
-  border-bottom: 2px solid darkorange;
-  height: 31px;
-  line-height: 31px;
-  margin-bottom: 15px;
-  font-weight: 500;
-  color: darkorange;
-  font-size: 13px;
-}
-
-.task-groups .task-group-name span {
-  position: relative;
-  background-color: #fefefe;
-  padding: 0 5px;
-  top: 12px;
-  left: 26px;
 }
 </style>
