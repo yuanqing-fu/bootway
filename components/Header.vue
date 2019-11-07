@@ -19,7 +19,7 @@
             注册
           </nuxt-link>
           <button v-if="user" class="logout" @click="logOut">
-            <fa :icon="['fas', 'sign-out-alt']" class="signout-icon-svg" />
+            <fa :icon="['fas', 'door-open']" class="signout-icon-svg" />
           </button>
         </span>
         <span class="other-actions">
@@ -114,8 +114,8 @@ export default {
   color: white;
   cursor: pointer;
   padding: 0;
-  font-size: 15px;
-  margin: 2px 0 0 10px;
+  font-size: 13px;
+  margin: 0 0 0 10px;
 }
 
 .header .logout:hover {
