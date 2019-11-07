@@ -39,10 +39,10 @@
 }
 
 .middle-container .middle-container-inner {
-  max-width: 680px;
+  max-width: 900px;
   width: 100%;
   min-width: 300px;
-  margin: 0 24px;
+  margin: 0 24px 0 56px;
   position: relative;
 }
 

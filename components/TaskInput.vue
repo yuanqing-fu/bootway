@@ -175,6 +175,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 0 10px;
 }
 
 .task-input-bar .task-input-element {
@@ -184,7 +185,7 @@ export default {
   border-radius: 5px;
   width: 100%;
   height: 45px;
-  max-width: 500px;
+  max-width: 615px;
   padding: 0 10px;
   margin-left: 13px;
 }
@@ -222,6 +223,7 @@ export default {
 
 .task-type-radios {
   display: flex;
+  flex: 0 0 auto;
   position: relative;
   width: 40px;
   height: 47px;

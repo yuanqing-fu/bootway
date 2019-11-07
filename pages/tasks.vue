@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper task-day-page">
-    <day-header class="task-header">
+    <day-header class="task-header with-other-actions">
       <template v-slot:dateselect>
         <v-date-picker
           :modelvalue="currentDatepickerValues"

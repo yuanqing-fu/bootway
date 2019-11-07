@@ -7,16 +7,13 @@
 </template>
 <style>
 .task-action-bar {
-  width: 50px;
   position: fixed;
-  top: 125px;
+  top: 20%;
+  left: 10px;
   display: flex;
 }
 
 .task-action-bar .action-group {
-  position: relative;
-  left: -50px;
-  top: -42px;
 }
 
 .task-action-bar .action {

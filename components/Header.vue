@@ -62,7 +62,7 @@ export default {
 
 .header .header-inner {
   height: 100%;
-  max-width: 825px;
+  max-width: 1022px;
   min-width: 300px;
   width: 100%;
   display: flex;
@@ -95,9 +95,13 @@ export default {
 }
 
 .header .other-actions {
-  display: flex;
+  display: none;
   flex-direction: row;
   padding-right: 13px;
+}
+
+.with-other-actions .other-actions {
+  display: flex;
 }
 
 .header .user-actions {
