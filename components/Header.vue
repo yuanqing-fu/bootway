@@ -47,7 +47,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
 .header {
   flex: 0 0 auto;
   background-color: #7f828b;
@@ -100,7 +100,7 @@ export default {
   padding-right: 13px;
 }
 
-.with-other-actions .other-actions {
+.header.with-other-actions .other-actions {
   display: flex;
 }
 
@@ -120,9 +120,8 @@ export default {
   padding: 0;
   font-size: 13px;
   margin: 0 0 0 10px;
-}
-
-.header .logout:hover {
-  color: lightgray;
+  &:hover {
+    filter: brightness(90%);
+  }
 }
 </style>

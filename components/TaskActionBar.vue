@@ -5,15 +5,12 @@
     </div>
   </div>
 </template>
-<style>
+<style lang="scss">
 .task-action-bar {
   position: fixed;
   top: 20%;
   left: 10px;
   display: flex;
-}
-
-.task-action-bar .action-group {
 }
 
 .task-action-bar .action {

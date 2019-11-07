@@ -21,7 +21,7 @@
     </div>
   </div>
 </template>
-<style>
+<style lang="scss">
 .footer {
   padding: 0 10px;
   flex: 0 0 40px;
@@ -46,12 +46,11 @@
 }
 
 .footer a {
-  color: white;
+  color: $link-color-1;
   font-size: 12px;
-}
-
-.footer a:hover {
-  filter: brightness(90%);
+  &:hover {
+    filter: brightness(90%);
+  }
 }
 
 .footer .info-a {
@@ -59,14 +58,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
-
-.footer .info-a a {
-  margin-right: 10px;
-}
-
-.footer .info-a a.email {
-  font-size: 18px;
+  a {
+    margin-right: 10px;
+    &.email {
+      font-size: 18px;
+    }
+  }
 }
 
 .footer .info-b a {
