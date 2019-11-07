@@ -76,7 +76,7 @@ export default {
 }
 
 .task-groups .task-group-name {
-  border-bottom: 2px solid darkorange;
+  border-bottom: 3px solid darkorange;
   height: 19px;
   line-height: 19px;
   margin-bottom: 15px;
