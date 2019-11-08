@@ -32,7 +32,7 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
-  color: lightgray;
+  color: $color-11;
   border-radius: 50%;
   user-select: none;
   transition: all 0.4s ease;

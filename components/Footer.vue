@@ -46,7 +46,7 @@
 }
 
 .footer a {
-  color: $link-color-1;
+  color: white;
   font-size: 12px;
   &:hover {
     filter: brightness(90%);

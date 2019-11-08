@@ -31,7 +31,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
 .datepicker-wrapper {
   color: darkorange;
   display: flex;
@@ -43,8 +43,7 @@ export default {
   width: 124px;
   border: none;
   background: none;
-  color: white;
-  font-size: 16px;
+  color: $color-4;
   cursor: pointer;
 }
 

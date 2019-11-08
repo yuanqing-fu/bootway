@@ -71,12 +71,13 @@ export default {
 }
 
 .header.task-header {
-  background-color: #db4c3f;
-  color: white;
+  background-color: $color-2;
 }
 
-.header.task-header a {
-  color: white;
+.header.task-header,
+.header.task-header a,
+.header.task-header button {
+  color: $color-4;
 }
 .header .header-links {
   flex: 1 0 auto;
@@ -87,6 +88,7 @@ export default {
 }
 
 .header .header-actions {
+  font-size: 13px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -109,13 +111,11 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
 }
 
 .header .logout {
   border: none;
   background-color: transparent;
-  color: white;
   cursor: pointer;
   padding: 0;
   font-size: 13px;

@@ -4,7 +4,13 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+button {
+  color: $color-1;
+}
+button:hover {
+  filter: brightness(90%);
+}
 .wrapper {
   height: 100vh;
   display: flex;
@@ -26,16 +32,16 @@
 }
 
 .middle-container::-webkit-scrollbar-thumb {
-  background: orange;
+  background: $color-1;
   border-radius: 0;
 }
 
 .middle-container::-webkit-scrollbar-thumb:hover {
-  background: darkorange;
+  background: $color-1-darker;
 }
 
 .middle-container::-webkit-scrollbar-track {
-  background: #dfdfdf;
+  background: $color-11;
 }
 
 .middle-container .middle-container-inner {
@@ -165,6 +171,7 @@
   width: 15px;
   background-color: #eee;
   border-radius: 3px;
+  transition: all 0.2s ease;
 }
 
 .check-label:hover input ~ .checkmark {
@@ -172,7 +179,7 @@
 }
 
 .check-label input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: $color-3;
 }
 
 .checkmark:after {

@@ -67,7 +67,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
 .task-unit {
   font-size: 13px;
   line-height: 22px;
@@ -79,7 +79,7 @@ export default {
 }
 
 .task-unit.edit {
-  border: 2px solid darkorange;
+  border: 2px solid $color-1;
   border-radius: 5px;
 }
 
@@ -91,7 +91,7 @@ export default {
 
 .task-unit .task-start-date {
   flex: 0 0 auto;
-  color: lightgray;
+  color: $color-11;
   user-select: none;
 }
 
@@ -100,7 +100,7 @@ export default {
 }
 
 .task-unit:hover .checkmark {
-  background-color: lightgray;
+  background-color: $color-11;
 }
 
 .task-unit .task-name {
@@ -109,8 +109,8 @@ export default {
 }
 
 .task-unit.done .task-name .text {
-  color: gray;
-  background-image: linear-gradient(to bottom, darkorange 66%, darkorange);
+  color: $color-11;
+  background-image: linear-gradient(to bottom, $color-10 66%, $color-10);
   background-position: 0 7px;
   background-repeat: repeat-x;
   background-size: 2px 2px;
@@ -122,10 +122,10 @@ export default {
 .task-unit .cancel,
 .task-unit .delete {
   font-size: 12px;
-  color: darkorange;
+  color: $color-1-lighter;
   user-select: none;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 8px;
   display: none;
 }
 

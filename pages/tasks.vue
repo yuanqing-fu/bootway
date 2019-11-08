@@ -473,7 +473,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 :root {
   --leftbar-size: 30px;
 }

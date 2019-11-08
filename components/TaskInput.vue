@@ -117,6 +117,7 @@ export default {
     },
     sendTaskChangeEvent() {
       if (!this.taskValues.name) {
+        this.focusInput()
         return
       }
       this.$emit('taskChange')
@@ -166,9 +167,9 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
 .task-input-bar {
-  border-top: 3px solid darkorange;
+  border-top: 3px solid $color-11;
   flex: 0 0 73px;
   display: flex;
   flex-direction: row;
@@ -176,11 +177,15 @@ export default {
   align-items: center;
   position: relative;
   padding: 0 10px;
+  transition: all 0.2s ease;
+  &:hover {
+    border-color: $color-2;
+  }
 }
 
 .task-input-bar .task-input-element {
   font-size: 13px;
-  border: 2px solid lightgray;
+  border: 2px solid $color-11;
   outline: none;
   border-radius: 5px;
   width: 100%;
@@ -188,11 +193,12 @@ export default {
   max-width: 615px;
   padding: 0 10px;
   margin-left: 13px;
+  transition: all 0.2s ease;
 }
 
 .task-input-bar .task-input-element:focus {
-  border: 2px solid cornflowerblue;
-  box-shadow: 0 0 10px cornflowerblue;
+  border: 2px solid $color-10;
+  box-shadow: 0 0 5px $color-10;
 }
 
 .date-slider-wrapper {
@@ -240,7 +246,7 @@ export default {
   height: 20px;
   cursor: pointer;
   user-select: none;
-  background: lightgray;
+  background: $color-11;
   border-radius: 5px;
   padding: 2px;
   transition: all 0.4s ease;
@@ -263,7 +269,7 @@ export default {
 }
 
 .task-type-radios input:checked + label {
-  background: darkorange;
+  background: $color-3;
 }
 
 .task-type-radios input:checked + label:after {
@@ -271,7 +277,7 @@ export default {
 }
 
 .task-type-radios input:checked + label.important {
-  background: red;
+  background: $color-1-darker;
 }
 
 .task-type-radios input {
@@ -286,11 +292,7 @@ export default {
   padding: 0;
   margin-left: 10px;
   font-size: 35px;
-  color: orange;
   cursor: pointer;
-}
-.submit-task:hover {
-  filter: brightness(90%);
 }
 
 .cancel-task {
@@ -310,5 +312,11 @@ export default {
 
 .cancel-task:hover {
   text-decoration: underline;
+}
+
+.vue-slider-dot-tooltip-inner {
+  border-color: $color-3;
+  background-color: $color-3;
+  padding: 1px 5px;
 }
 </style>
