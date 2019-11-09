@@ -79,8 +79,8 @@
           @click="focusInput"
         >
           <p class="title">你有什么想做的？</p>
-          <div class="blinking">
-            <fa :icon="['fas', 'hand-point-down']" class="hand-icon-svg" />
+          <div class="pointer">
+            &#10140;
           </div>
         </div>
       </div>
@@ -250,6 +250,7 @@ export default {
       }
     },
     async dateChange() {
+      this.cancelTaskEdit()
       this.taskFormValues.start_date = this.currentDatepickerValues.dateSelected
       this.taskList = await this.getTask()
       this.focusInput()
@@ -489,35 +490,14 @@ export default {
 .task-empty .title {
   font-size: 20px;
   font-weight: bold;
-  color: darkorange;
+  color: $color-1-lighter;
   margin-bottom: 37px;
 }
 
-.task-empty .hand-icon-svg {
-  font-size: 100px;
-  color: darkorange;
-}
-
-.blinking {
-  animation: blinkingText 0.5s;
-  animation-iteration-count: 1;
-}
-@keyframes blinkingText {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  70% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
+.task-empty .pointer {
+  font-size: 82px;
+  color: $color-3;
+  transform: rotate(90deg);
 }
 
 .day-task-container {

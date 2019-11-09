@@ -50,7 +50,8 @@ export default {
 <style lang="scss">
 .header {
   flex: 0 0 auto;
-  background-color: #7f828b;
+  background-color: $color-2;
+  color: $color-4;
   height: 65px;
   display: flex;
   flex-flow: row nowrap;
@@ -58,6 +59,7 @@ export default {
   padding: 0 10px;
   justify-content: center;
   box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2);
+  z-index: 200;
 }
 
 .header .header-inner {
@@ -74,9 +76,9 @@ export default {
   background-color: $color-2;
 }
 
-.header.task-header,
-.header.task-header a,
-.header.task-header button {
+.header,
+.header a,
+.header button {
   color: $color-4;
 }
 .header .header-links {
@@ -111,6 +113,9 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  a {
+    margin-left: 10px;
+  }
 }
 
 .header .logout {

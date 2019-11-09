@@ -46,26 +46,26 @@
 }
 
 .task-action-bar .action input:checked + label {
-  color: darkorange;
+  color: $color-1;
+}
+
+.task-action-bar .action.compact input:checked + label {
+  color: $color-3;
 }
 
 .task-action-bar .action input:checked + label:hover {
-  filter: brightness(0.7);
-}
-
-.task-action-bar .action.classA input:checked + label {
-  color: #cc0000;
+  filter: brightness(0.8);
 }
 
 .task-action-bar .action.classB input:checked + label {
-  color: #ff3333;
+  opacity: 0.8;
 }
 
 .task-action-bar .action.classC input:checked + label {
-  color: #ff6666;
+  opacity: 0.6;
 }
 
 .task-action-bar .action.classD input:checked + label {
-  color: #ff007f;
+  opacity: 0.4;
 }
 </style>

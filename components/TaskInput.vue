@@ -54,7 +54,7 @@
       <fa :icon="['fas', 'arrow-alt-circle-up']" />
     </button>
     <button class="cancel-task" @click="sendCancelTaskEditEvent">
-      取消
+      &#10006;
     </button>
   </div>
 </template>
@@ -253,13 +253,13 @@ export default {
 }
 
 .task-type-radios input + label.urgent {
-  background: #ddd;
+  background: $color-13;
 }
 
 .task-type-radios input + label:after {
   position: relative;
   border-radius: 100px;
-  background: #fff;
+  background: $color-4;
   content: '';
   display: block;
   width: 50%;
@@ -300,18 +300,18 @@ export default {
   border: 0;
   padding: 0;
   margin-left: 10px;
-  font-size: 14px;
-  color: orange;
+  font-size: 23px;
+  font-weight: bold;
+  color: $color-1-lighter;
   cursor: pointer;
   display: none;
+  &:hover {
+    filter: brightness(90%);
+  }
 }
 
 .task-input-bar.edit .cancel-task {
   display: inline-block;
-}
-
-.cancel-task:hover {
-  text-decoration: underline;
 }
 
 .vue-slider-dot-tooltip-inner {

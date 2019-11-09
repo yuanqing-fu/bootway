@@ -10,14 +10,17 @@
               <nuxt-link class="actions" to="/register">
                 注册
               </nuxt-link>
-              <span class="actions active">登录</span>
+              <!--              <span class="actions active">登录</span>-->
             </div>
           </div>
-          <!--        <error-messages v-show="Object.keys(error).length" :error="error" />-->
+          <div class="message">
+            <span v-if="hasError">{{ errorMessage }}</span>
+          </div>
           <form @submit.prevent="submit">
             <fieldset class="form-group">
               <input
                 id="email"
+                ref="email"
                 v-model.trim="email"
                 class="form-control form-control-lg"
                 type="text"
@@ -30,6 +33,7 @@
             <fieldset class="form-group">
               <input
                 id="password"
+                ref="password"
                 v-model.trim="password"
                 class="form-control form-control-lg"
                 type="password"
@@ -50,6 +54,7 @@
   </div>
 </template>
 <script>
+import validator from 'validator'
 import otherHeader from '~/components/Header.vue'
 import HomeFooter from '~/components/Footer.vue'
 
@@ -62,16 +67,30 @@ export default {
     return {
       email: '',
       password: '',
-      alert: null,
-      loading: false
+      loading: false,
+      hasError: false,
+      errorMessage: ''
     }
   },
   methods: {
     submit() {
-      if (!this.email || !this.password) {
+      this.hasError = true
+
+      if (!this.email || !validator.isEmail(this.email)) {
+        this.errorMessage = '请正确填写邮箱'
+        this.$refs.email.focus()
+      } else if (!this.password || this.password.length < 6) {
+        this.errorMessage = '至少输入6位密码'
+        this.$refs.password.focus()
+      } else {
+        this.hasError = false
+        this.errorMessage = ''
+      }
+
+      if (this.hasError) {
         return
       }
-      this.alert = null
+
       this.loading = true
       this.$store
         .dispatch('login', {
@@ -79,18 +98,13 @@ export default {
           password: this.password
         })
         .then((result) => {
-          this.alert = { type: 'success', message: result.data.message }
           this.loading = false
           this.$router.push('/tasks') // 页面跳转
         })
-        .catch((error) => {
+        .catch(() => {
           this.loading = false
-          if (error.response && error.response.data) {
-            this.alert = {
-              type: 'error',
-              message: error.response.data.message || error.response.status
-            }
-          }
+          this.hasError = true
+          this.errorMessage = '密码错误'
         })
     }
   }

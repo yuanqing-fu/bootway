@@ -27,8 +27,8 @@
   flex: 0 0 40px;
   display: flex;
   flex-direction: row;
-  background-color: #100e17;
-  color: white;
+  background-color: $color-2;
+  color: $color-4;
   justify-content: center;
   align-items: center;
   font-size: 12px;
@@ -46,7 +46,7 @@
 }
 
 .footer a {
-  color: white;
+  color: $color-4;
   font-size: 12px;
   &:hover {
     filter: brightness(90%);
@@ -67,10 +67,10 @@
 }
 
 .footer .info-b a {
-  color: gray;
+  color: $color-12;
 }
 
 .footer .copyright {
-  color: #ccc;
+  color: $color-11;
 }
 </style>

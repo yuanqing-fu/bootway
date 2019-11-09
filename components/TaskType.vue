@@ -79,7 +79,7 @@ export default {
 }
 
 .task-groups.compact .task-group-unit::-webkit-scrollbar-thumb {
-  background: $color-1;
+  background: $color-3;
   border-radius: 0;
 }
 
@@ -174,7 +174,7 @@ export default {
   height: 3px;
   background-color: $color-1;
   width: 10px;
-  margin: 0 2px;
+  margin: 0 3px;
   padding: 0;
 }
 </style>

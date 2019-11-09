@@ -63,8 +63,15 @@ body::before {
 }
 
 ::selection {
-  background-color: orange;
-  color: white;
+  background-color: $color-3;
+  color: $color-4;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
 input:focus {
@@ -101,8 +108,8 @@ a {
 }
 
 .tooltip .tooltip-inner {
-  background: black;
-  color: white;
+  background: $color-2;
+  color: $color-4;
   border-radius: 5px;
   padding: 2px 4px 3px 4px;
   font-size: 14px;
@@ -114,7 +121,7 @@ a {
   border-style: solid;
   position: absolute;
   margin: 5px;
-  border-color: black;
+  border-color: $color-5;
   z-index: 1;
 }
 
@@ -179,15 +186,15 @@ a {
 }
 
 .tooltip.popover .popover-inner {
-  background: #f9f9f9;
-  color: black;
+  background: $color-8;
+  color: $color-2;
   padding: 24px;
   border-radius: 5px;
   box-shadow: 0 5px 30px rgba(black, .1);
 }
 
 .tooltip.popover .popover-arrow {
-  border-color: #f9f9f9;
+  border-color: $color-8;
 }
 
 .tooltip[aria-hidden='true'] {

@@ -54,10 +54,12 @@ button:hover {
 
 .form-main {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-main form {
-  margin: 20px 0 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .form-main form fieldset {
@@ -71,7 +73,7 @@ button:hover {
 }
 
 .form-main form input {
-  border: 1px solid #ddd;
+  border: 1px solid $color-13;
   width: 100%;
   height: 46px;
   border-radius: 5px;
@@ -79,12 +81,12 @@ button:hover {
 }
 
 .form-main form input:focus {
-  border: 2px solid cornflowerblue;
+  border: 2px solid $color-3;
   padding: 0 12px;
 }
 
 .form-main a {
-  color: #db4c3f;
+  color: $color-3;
   font-size: 13px;
 }
 
@@ -94,10 +96,18 @@ button:hover {
   align-items: center;
 }
 
+.form-main .message {
+  color: $color-1;
+  font-size: 13px;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+}
+
 .logo-text {
   font-size: 30px;
   font-family: Verdana, sans-serif;
-  color: #c4c4c4;
+  color: $color-11;
   font-weight: bold;
   font-style: italic;
   text-shadow: 0px 0px 0 rgb(-59, -59, -59), 1px 1px 0 rgb(-314, -314, -314),
@@ -111,7 +121,6 @@ button:hover {
 
 .form-main .form-top .form-top-r a {
   font-size: 14px;
-  color: #73809c;
   font-weight: 500;
 }
 
@@ -120,11 +129,11 @@ button:hover {
 }
 
 .form-main .form-top .form-top-r a:hover {
-  color: #1f4271;
+  filter: brightness(80%);
 }
 
 .form-main .form-top .form-top-r .active {
-  color: #0096ff;
+  color: $color-1;
   font-size: 14px;
   font-weight: 500;
 }
@@ -132,8 +141,8 @@ button:hover {
 .form-main .submit {
   width: 100%;
   height: 46px;
-  background-color: #db4c3f;
-  color: white;
+  background-color: $color-1;
+  color: $color-4;
   font-size: 21px;
   font-weight: bold;
   border: 0;
@@ -169,13 +178,13 @@ button:hover {
   left: 0;
   height: 16px;
   width: 15px;
-  background-color: #eee;
+  background-color: $color-9;
   border-radius: 3px;
   transition: all 0.2s ease;
 }
 
 .check-label:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: $color-11;
 }
 
 .check-label input:checked ~ .checkmark {
@@ -196,7 +205,7 @@ button:hover {
   top: 2px;
   width: 4px;
   height: 10px;
-  border: solid white;
+  border: solid $color-4;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -204,8 +213,8 @@ button:hover {
 }
 
 .v--modal .vue-dialog-buttons .vue-dialog-button:first-child {
-  background: darkorange;
-  color: white;
+  background: $color-1-lighter;
+  color: $color-4;
   font-weight: bold;
 }
 
