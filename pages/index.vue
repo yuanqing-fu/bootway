@@ -2,8 +2,10 @@
   <div class="wrapper home-page">
     <day-header></day-header>
     <div class="middle-container home-middle">
-      <home-bg></home-bg>
-      <home-cat></home-cat>
+      <!--      <home-bg></home-bg>-->
+      <div class="home-middle-inner">
+        <home-animate></home-animate>
+      </div>
     </div>
     <home-footer />
   </div>
@@ -12,15 +14,15 @@
 <script>
 import DayHeader from '~/components/Header.vue'
 import HomeFooter from '~/components/Footer.vue'
-import HomeBg from '~/components/HomeBg'
-import HomeCat from '~/components/HomeAnimate'
+// import HomeBg from '~/components/HomeBg'
+import HomeAnimate from '~/components/HomeAnimate'
 
 export default {
   components: {
     DayHeader,
     HomeFooter,
-    HomeBg,
-    HomeCat
+    // HomeBg,
+    HomeAnimate
   },
   data() {
     return {
@@ -41,5 +43,10 @@ export default {
   color: $color-1;
   font-size: 500px;
   animation: rotate 10s linear infinite;
+}
+
+.home-middle-inner {
+  display: flex;
+  flex-direction: column;
 }
 </style>

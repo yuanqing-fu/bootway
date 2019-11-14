@@ -16,6 +16,9 @@
 </template>
 <style lang="scss">
 .home-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
   background: #4e54c8;
   background: linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
@@ -38,7 +41,7 @@
   width: 20px;
   height: 20px;
   background: rgba(255, 255, 255, 0.2);
-  animation: animate 25s linear infinite;
+  animation: bgAnimate 25s linear infinite;
   bottom: -150px;
 }
 
@@ -117,7 +120,7 @@
   animation-duration: 11s;
 }
 
-@keyframes animate {
+@keyframes bgAnimate {
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
