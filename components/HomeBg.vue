@@ -1,136 +1,19 @@
 <template>
-  <div class="home-bg">
-    <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
+  <div class="home-bg"></div>
 </template>
 <style lang="scss">
 .home-bg {
+  z-index: -1;
   position: absolute;
   left: 0;
   top: 0;
-  background: #4e54c8;
-  background: linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
   height: 100%;
-}
-
-.circles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.circles li {
-  position: absolute;
-  display: block;
-  list-style: none;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  animation: bgAnimate 25s linear infinite;
-  bottom: -150px;
-}
-
-.circles li:nth-child(1) {
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
-}
-
-.circles li:nth-child(2) {
-  left: 10%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 2s;
-  animation-duration: 12s;
-}
-
-.circles li:nth-child(3) {
-  left: 70%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 4s;
-}
-
-.circles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 0s;
-  animation-duration: 18s;
-}
-
-.circles li:nth-child(5) {
-  left: 65%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 0s;
-}
-
-.circles li:nth-child(6) {
-  left: 75%;
-  width: 110px;
-  height: 110px;
-  animation-delay: 3s;
-}
-
-.circles li:nth-child(7) {
-  left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 7s;
-}
-
-.circles li:nth-child(8) {
-  left: 50%;
-  width: 25px;
-  height: 25px;
-  animation-delay: 15s;
-  animation-duration: 45s;
-}
-
-.circles li:nth-child(9) {
-  left: 20%;
-  width: 15px;
-  height: 15px;
-  animation-delay: 2s;
-  animation-duration: 35s;
-}
-
-.circles li:nth-child(10) {
-  left: 85%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 0s;
-  animation-duration: 11s;
-}
-
-@keyframes bgAnimate {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-    border-radius: 0;
-  }
-
-  100% {
-    transform: translateY(-1000px) rotate(720deg);
-    opacity: 0;
-    border-radius: 50%;
-  }
+  background-color: rgb(245, 245, 242);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23d22042'  points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23b01f24'  points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23c7307a'  points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23a81b56'  points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23a44fa3'  points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%2388367a'  points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%237167b8'  points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%235a498a'  points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%233976b6'  points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23285384'  points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%231a7ea4'  points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23125570'  points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center center;
 }
 </style>
