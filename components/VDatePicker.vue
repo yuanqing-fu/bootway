@@ -33,7 +33,7 @@ export default {
 </script>
 <style lang="scss">
 .datepicker-wrapper {
-  color: darkorange;
+  color: $color-3;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -50,11 +50,33 @@ export default {
 .datepicker-wrapper .vdp-datepicker__calendar {
   right: 0;
   border-radius: 5px;
-  border: 2px solid darkorange;
+  border: 2px solid $color-1;
+}
+
+.vdp-datepicker__calendar header .next:after {
+  border-left: 10px solid $color-3 !important;
+}
+
+.vdp-datepicker__calendar header .prev:after {
+  border-right: 10px solid $color-3 !important;
+}
+
+.datepicker-wrapper .vdp-datepicker__calendar {
+  border: 2px solid $color-3 !important;
 }
 
 .datepicker-wrapper .vdp-datepicker__calendar .cell {
-  border-radius: 50px;
+  border-radius: 50%;
+  &:hover {
+    border-color: $color-3 !important;
+  }
+  &.selected {
+    &:hover {
+      background-color: $color-3 !important;
+      border-color: $color-3 !important;
+    }
+    background-color: $color-3;
+  }
 }
 
 .vdp-datepicker__calendar .cell.selected {

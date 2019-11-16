@@ -258,7 +258,7 @@ export default {
 
 .task-type-radios input + label:after {
   position: relative;
-  border-radius: 100px;
+  border-radius: 50%;
   background: $color-4;
   content: '';
   display: block;

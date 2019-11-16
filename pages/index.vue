@@ -48,5 +48,7 @@ export default {
 .home-middle-inner {
   display: flex;
   flex-direction: column;
+  max-width: 970px;
+  width: 100%;
 }
 </style>
