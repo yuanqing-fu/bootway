@@ -197,8 +197,8 @@ export default {
 }
 
 .task-input-bar .task-input-element:focus {
-  border: 2px solid $color-10;
-  box-shadow: 0 0 5px $color-10;
+  border: 2px solid $color-3;
+  box-shadow: 0 0 5px $color-9;
 }
 
 .date-slider-wrapper {

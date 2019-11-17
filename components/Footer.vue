@@ -36,7 +36,7 @@
 
 .footer .footer-inner {
   height: 100%;
-  max-width: 1022px;
+  max-width: 1200px;
   min-width: 300px;
   width: 100%;
   display: flex;

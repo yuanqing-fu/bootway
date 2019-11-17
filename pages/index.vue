@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper home-page">
-    <day-header></day-header>
+    <day-header class="home-header"></day-header>
     <div class="middle-container home-middle">
       <!--      <home-bg></home-bg>-->
       <div class="home-middle-inner">

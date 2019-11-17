@@ -45,6 +45,7 @@ export default {
   background: none;
   color: $color-4;
   cursor: pointer;
+  text-align: center;
 }
 
 .datepicker-wrapper .vdp-datepicker__calendar {

@@ -2,24 +2,24 @@
   <div class="header">
     <div class="header-inner">
       <div class="header-links">
-        <nuxt-link class="" to="/">
-          首页
+        <nuxt-link class="home-link" to="/">
+          <logo></logo>
         </nuxt-link>
-        <nuxt-link v-if="user" class="" to="/tasks">
-          任务
-        </nuxt-link>
+        <!--        <nuxt-link v-if="user" class="" to="/tasks">-->
+        <!--          任务-->
+        <!--        </nuxt-link>-->
       </div>
       <div class="header-actions">
         <span class="user-actions">
           <span v-if="user">{{ user.email }}</span>
-          <nuxt-link v-if="!user" class="" to="/login">
-            登录
-          </nuxt-link>
-          <nuxt-link v-if="!user" class="" to="/register">
-            注册
-          </nuxt-link>
+          <!--          <nuxt-link v-if="!user" class="" to="/login">-->
+          <!--            登录-->
+          <!--          </nuxt-link>-->
+          <!--          <nuxt-link v-if="!user" class="" to="/register">-->
+          <!--            注册-->
+          <!--          </nuxt-link>-->
           <button v-if="user" class="logout" @click="logOut">
-            <fa :icon="['fas', 'door-open']" class="signout-icon-svg" />
+            <fa :icon="['fas', 'sign-out-alt']" class="signout-icon-svg" />
           </button>
         </span>
         <span class="other-actions">
@@ -32,7 +32,11 @@
   </div>
 </template>
 <script>
+import Logo from '~/components/Logo.vue'
 export default {
+  components: {
+    Logo
+  },
   computed: {
     user() {
       return this.$store.state.user ? this.$store.state.user : null
@@ -64,7 +68,7 @@ export default {
 
 .header .header-inner {
   height: 100%;
-  max-width: 1022px;
+  max-width: 1200px;
   min-width: 300px;
   width: 100%;
   display: flex;
@@ -74,6 +78,13 @@ export default {
 
 .header.task-header {
   background-color: $color-2;
+}
+
+.home-link {
+  display: inline-block;
+  width: 143px;
+  position: relative;
+  top: 5px;
 }
 
 .header,
