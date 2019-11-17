@@ -12,12 +12,12 @@
       <div class="header-actions">
         <span class="user-actions">
           <span v-if="user">{{ user.email }}</span>
-          <!--          <nuxt-link v-if="!user" class="" to="/login">-->
-          <!--            登录-->
-          <!--          </nuxt-link>-->
-          <!--          <nuxt-link v-if="!user" class="" to="/register">-->
-          <!--            注册-->
-          <!--          </nuxt-link>-->
+          <nuxt-link v-if="!user" class="" to="/login">
+            登录
+          </nuxt-link>
+          <nuxt-link v-if="!user" class="" to="/register">
+            注册
+          </nuxt-link>
           <button v-if="user" class="logout" @click="logOut">
             <fa :icon="['fas', 'sign-out-alt']" class="signout-icon-svg" />
           </button>
@@ -125,7 +125,7 @@ export default {
   justify-content: center;
   align-items: center;
   a {
-    margin-left: 10px;
+    margin-left: 15px;
   }
 }
 

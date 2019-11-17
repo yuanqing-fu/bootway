@@ -2,6 +2,10 @@
   <div class="footer">
     <div class="footer-inner">
       <div class="info-a">
+        <span class="wechat-wrapper">
+          <img class="wechat" src="~/assets/img/wechat.png" />
+          <img class="qr-code" src="~/assets/img/wechat-qrcode.png" />
+        </span>
         <a
           class="email"
           title="kofbossyagami@163.com"
@@ -50,6 +54,34 @@
   font-size: 12px;
   &:hover {
     filter: brightness(90%);
+  }
+}
+
+.footer .wechat-wrapper {
+  display: inline-block;
+  height: 16px;
+  margin-right: 10px;
+  position: relative;
+  .wechat {
+    height: 100%;
+    filter: grayscale(1) brightness(1.5);
+    &:hover {
+      filter: grayscale(0) brightness(1);
+    }
+  }
+  .qr-code {
+    display: none;
+    position: absolute;
+    top: -210px;
+    left: 0;
+    max-width: none;
+    width: 200px;
+    height: 200px;
+  }
+  &:hover {
+    .qr-code {
+      display: inline-block;
+    }
   }
 }
 

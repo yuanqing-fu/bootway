@@ -13,7 +13,7 @@ export default {
     htmlAttrs: {
       lang: 'zh_CN'
     },
-    title: process.env.npm_package_name || '',
+    title: 'Bootway',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,7 +23,21 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        size: '16x16',
+        href: '/favicon-16x16.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        size: '32x32',
+        href: '/favicon-32x32.png'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color

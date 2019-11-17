@@ -5,12 +5,12 @@
       <div class="middle-container-inner form-middle-container-inner">
         <div class="form-main">
           <div class="form-top">
-            <div class="form-top-l"><span class="logo-text">Bootway</span></div>
+            <div class="form-top-l"><span class="logo-text">注册</span></div>
             <div class="form-top-r ar">
               <!--              <span class="actions active">注册</span>-->
-              <nuxt-link class="actions" to="/login">
-                登录
-              </nuxt-link>
+              <!--              <nuxt-link class="actions" to="/login">-->
+              <!--                登录-->
+              <!--              </nuxt-link>-->
             </div>
           </div>
           <div class="message">
