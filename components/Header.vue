@@ -5,7 +5,7 @@
         <nuxt-link class="" to="/">
           首页
         </nuxt-link>
-        <nuxt-link class="" to="/tasks">
+        <nuxt-link v-if="user" class="" to="/tasks">
           任务
         </nuxt-link>
       </div>

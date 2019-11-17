@@ -26,12 +26,12 @@
       </h1>
       <p>每天在不同事情之间</p>
       <p>来回穿梭</p>
-      <button class="try-btn">
+      <nuxt-link class="try-btn" to="/tasks">
         <span class="inner">
           <span class="text">试试这个吧</span>
           <span class="start">开始</span>
         </span>
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -62,11 +62,13 @@
   justify-content: center;
   align-items: center;
   h1 {
+    font-size: 32px;
     margin-bottom: 65px;
     span {
       user-select: none;
       display: inline-block;
-      transition: all 0.2s ease-in;
+      transition: all 0.1s ease-in;
+      zoom: 1.005;
       &.urgent {
         color: $color-3;
       }
@@ -74,7 +76,7 @@
         color: $color-1;
       }
       &:hover {
-        transform: rotateX(10deg) rotateZ(-15deg);
+        transform: rotateZ(-7deg);
       }
     }
   }
@@ -218,24 +220,24 @@
   0% {
     transform: translate3d(60px, 60px, -115px) rotateX(0deg) rotateY(90deg);
   }
-
-  25% {
+  15% {
     transform: translate3d(60px, 297px, -115px) rotateX(90deg) rotateY(0);
   }
-
-  35% {
+  30% {
     transform: translate3d(60px, 297px, 100px) rotateX(0) rotateY(-90deg);
   }
-
-  60% {
+  45% {
     transform: translate3d(298px, 297px, 100px) rotateX(0) rotateY(0);
   }
 
-  75% {
+  60% {
     transform: translate3d(298px, 66px, 100px) rotateX(270deg) rotateY(0);
   }
-  85% {
+  75% {
     transform: translate3d(298px, 66px, -115px) rotateX(0) rotateY(-180deg);
+  }
+  90% {
+    transform: translate3d(60px, 60px, -115px) rotateX(0deg) rotateY(90deg);
   }
   100% {
     transform: translate3d(60px, 60px, -115px) rotateX(0deg) rotateY(90deg);
@@ -243,13 +245,14 @@
 }
 
 .cube {
+  user-select: none;
   will-change: transform;
   width: 100px;
   height: 100px;
   position: relative;
   transform-style: preserve-3d;
   transform: translate3d(60px, 60px, 35px) rotateX(0) rotateY(90deg);
-  animation: cubeAnimate 10s ease-in-out infinite;
+  animation: cubeAnimate 13s ease-in-out infinite;
 
   &:hover {
     animation-play-state: paused;
@@ -301,6 +304,8 @@
 }
 
 .try-btn {
+  font-size: 13px;
+  text-align: center;
   margin-top: 65px;
   margin-bottom: 10%;
   color: $color-4;
