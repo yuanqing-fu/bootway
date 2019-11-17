@@ -485,6 +485,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .task-empty .title {
@@ -497,7 +498,11 @@ export default {
 .task-empty .pointer {
   font-size: 82px;
   color: $color-3;
+  transition: all 0.1s ease;
   transform: rotate(90deg);
+  &:hover {
+    transform: rotate(90deg) translateX(10px);
+  }
 }
 
 .day-task-container {
