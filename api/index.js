@@ -3,7 +3,8 @@ export default {
     authenticate: (axios) => axios.post('auth/authenticate'),
     login: (data, axios) => axios.post('auth/login', data),
     register: (data, axios) => axios.post('auth/register', data),
-    sendEmailVerification: (data, axios) => axios.post('auth/register', data),
+    sendEmailVerification: (data, axios) =>
+      axios.post('auth/send-verification-email', data),
     verifyEmail: (data, axios) => axios.post('auth/email-verification', data)
   },
   tasks: {

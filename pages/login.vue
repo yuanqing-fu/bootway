@@ -141,7 +141,7 @@ export default {
       this.showEmailVerification = false
       this.loading = true
       this.$store
-        .dispatch('sendVerificationEmail', {
+        .dispatch('sendEmailVerification', {
           email: this.emailNeedsVerified
         })
         .then((result) => {

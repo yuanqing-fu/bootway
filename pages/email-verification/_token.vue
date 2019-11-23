@@ -43,35 +43,39 @@ export default {
   async asyncData({ store, route, $axios, redirect }) {
     let response = {}
     let verified = false
-    try {
-      if (store.state.user) {
-        redirect('/')
-      }
+    let user = null
+    let token = ''
+    if (!store.state.user) {
       response = await store.dispatch('verifyEmail', {
         token: route.params.token
       })
 
       if (response.data.type === 'success') {
         verified = true
+        user = response.data.user
+        token = response.data.token
       }
-    } catch (error) {}
-
+    }
     return {
       verified,
-      user: response.data.user,
-      token: response.data.token
+      user,
+      token
     }
   },
   mounted() {
     this.loading = false
 
-    // 验证成功让用户自动登录，并跳转到任务页面
-    this.$store.dispatch('setLoginStatus', {
-      user: this.user,
-      token: this.token
-    })
+    if (this.verified) {
+      // 验证成功让用户自动登录，并跳转到任务页面
+      this.$store.dispatch('setLoginStatus', {
+        user: this.user,
+        token: this.token
+      })
 
-    this.$router.push('/tasks') // 页面跳转
+      this.$router.push('/tasks') // 页面跳转
+    } else {
+      this.$router.push('/') // 页面跳转
+    }
   },
   methods: {}
 }
