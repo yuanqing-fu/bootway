@@ -4,12 +4,12 @@
     <div class="middle-container">
       <loading :loading="loading"></loading>
       <div class="middle-container-inner form-middle-container-inner">
-        <div v-if="registerComplete" class="register-complete-info">
+        <div v-if="registerEmailSendingComplete" class="register-complete-info">
           <div>一封邮件已经发送到</div>
           <div class="email">{{ email }}</div>
           <div>请点击邮件里的链接激活账号</div>
         </div>
-        <div v-if="!registerComplete" class="form-main">
+        <div v-if="!registerEmailSendingComplete" class="form-main">
           <div class="form-top">
             <div class="form-top-l"><span class="logo-text">注册</span></div>
             <div class="form-top-r ar"></div>
@@ -105,7 +105,7 @@ export default {
       message: '',
       showEmailVerification: false,
       emailNeedsVerified: '',
-      registerComplete: false
+      registerEmailSendingComplete: false
     }
   },
   mounted() {
@@ -154,21 +154,21 @@ export default {
           if (result.data.errorCode !== undefined) {
             if (result.data.errorCode === 1) {
               // 用户未验证邮箱 显示重发邮件界面
-              // eslint-disable-next-line no-console
-              console.log('未激活 ', result)
               this.showEmailVerification = true
 
               this.showMessage('需要验证邮箱')
               this.emailNeedsVerified = this.email
+              this.password = ''
+              this.rePassword = ''
             }
           } else {
-            this.registerComplete = true
-
-            // this.$router.push('/tasks') // 页面跳转
+            this.registerEmailSendingComplete = true
           }
         })
         .catch(() => {
           this.loading = false
+          this.password = ''
+          this.rePassword = ''
           this.showMessage('邮箱已被注册')
         })
     },
@@ -182,15 +182,11 @@ export default {
         .then((result) => {
           this.loading = false
 
-          // eslint-disable-next-line no-console
-          console.log('邮件已发送 ', result)
-
-          this.showMessage('验证邮件已发送，请查收')
+          this.registerEmailSendingComplete = true
         })
         .catch(() => {
           this.loading = false
-
-          this.showMessage('邮箱发送失败')
+          this.showMessage('邮件发送失败')
         })
     }
   }

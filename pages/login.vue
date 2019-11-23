@@ -4,7 +4,12 @@
     <div class="middle-container">
       <loading :loading="loading"></loading>
       <div class="middle-container-inner form-middle-container-inner">
-        <div class="form-main">
+        <div v-if="registerEmailSendingComplete" class="register-complete-info">
+          <div>一封邮件已经发送到</div>
+          <div class="email">{{ email }}</div>
+          <div>请点击邮件里的链接激活账号</div>
+        </div>
+        <div v-if="!registerEmailSendingComplete" class="form-main">
           <div class="form-top">
             <div class="form-top-l"><span class="logo-text">登录</span></div>
             <div class="form-top-r ar"></div>
@@ -24,7 +29,7 @@
                 v-model.trim="email"
                 class="form-control form-control-lg"
                 type="text"
-                placeholder="邮箱"
+                placeholder="请输入邮箱"
                 :disabled="loading"
                 maxlength="32"
                 autofocus
@@ -37,7 +42,7 @@
                 v-model.trim="password"
                 class="form-control form-control-lg"
                 type="password"
-                placeholder="密码"
+                placeholder="请输入密码"
                 :disabled="loading"
                 autocomplete="off"
                 maxlength="32"
@@ -47,6 +52,9 @@
               登&nbsp;录
             </button>
           </form>
+          <div class="form-bottom ar">
+            <nuxt-link to="/password/reset">忘记密码</nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -74,7 +82,8 @@ export default {
       loading: true,
       message: '',
       showEmailVerification: false,
-      emailNeedsVerified: ''
+      emailNeedsVerified: '',
+      registerEmailSendingComplete: false
     }
   },
   mounted() {
@@ -119,12 +128,12 @@ export default {
               this.showMessage('用户未注册')
             } else if (result.data.errorCode === 1) {
               // 用户未验证邮箱 显示重发邮件界面
-              // eslint-disable-next-line no-console
-              console.log('未激活 ', result)
+
               this.showEmailVerification = true
 
               this.showMessage('需要验证邮箱')
               this.emailNeedsVerified = this.email
+              this.password = ''
             }
           } else {
             this.$router.push('/tasks') // 页面跳转
@@ -147,10 +156,7 @@ export default {
         .then((result) => {
           this.loading = false
 
-          // eslint-disable-next-line no-console
-          console.log('邮件已发送 ', result)
-
-          this.showMessage('验证邮件已发送，请查收')
+          this.registerEmailSendingComplete = true
         })
         .catch(() => {
           this.loading = false

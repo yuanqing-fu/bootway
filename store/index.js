@@ -55,6 +55,18 @@ export const actions = {
         return response
       })
   },
+  sendResetPasswordEmail({ commit }, data) {
+    return api.auth
+      .sendResetPasswordEmail(data, this.$axios)
+      .then((response) => {
+        return response
+      })
+  },
+  resetPassword({ commit }, data) {
+    return api.auth.resetPassword(data, this.$axios).then((response) => {
+      return response
+    })
+  },
   verifyEmail({ commit }, data) {
     return api.auth.verifyEmail(data, this.$axios).then((response) => {
       return response

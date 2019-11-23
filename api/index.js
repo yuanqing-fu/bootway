@@ -5,6 +5,9 @@ export default {
     register: (data, axios) => axios.post('auth/register', data),
     sendEmailVerification: (data, axios) =>
       axios.post('auth/send-verification-email', data),
+    sendResetPasswordEmail: (data, axios) =>
+      axios.post('auth/send-reset-password-email', data),
+    resetPassword: (data, axios) => axios.patch('auth/reset-password', data),
     verifyEmail: (data, axios) => axios.post('auth/email-verification', data)
   },
   tasks: {

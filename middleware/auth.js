@@ -3,7 +3,8 @@ export default function({ store, redirect, route }) {
   const urlRequiresAuth = /^\/tasks(\/|$)/.test(route.fullPath)
   const urlRequiresNonAuth =
     /^\/login(\/|$)/.test(route.fullPath) ||
-    /^\/register(\/|$)/.test(route.fullPath)
+    /^\/register(\/|$)/.test(route.fullPath) ||
+    /^\/password(\/|$)/.test(route.fullPath)
   if (!userIsLoggedIn && urlRequiresAuth) {
     return redirect('/login')
   }
