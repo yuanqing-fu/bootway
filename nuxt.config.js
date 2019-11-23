@@ -3,8 +3,8 @@ export default {
   env: {
     baseURL:
       process.env.NODE_ENV === 'development'
-        ? 'http://api.test.com'
-        : 'http://api.bootway.com'
+        ? 'http://api.test.com:3003'
+        : 'http://api.bootway.com:3003'
   },
   /*
    ** Headers of the page
@@ -109,6 +109,6 @@ export default {
     extend(config, ctx) {}
   },
   server: {
-    port: 3000 // default: 3000
+    port: 80 // default: 3000
   }
 }

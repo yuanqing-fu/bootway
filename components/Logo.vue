@@ -1,5 +1,5 @@
 <template>
-  <span class="logo-container">
+  <span class="logo-container" title="Bootway">
     <svg
       width="100%"
       height="100%"
@@ -10,13 +10,20 @@
         <style>
           .cls-1 {
             fill: #d22042;
+            transition: all 0.2s ease;
+          }
+          .logo-container:hover .cls-1 {
+            fill: #1a7ea4;
           }
           .cls-2 {
             fill: #1a7ea4;
+            transition: all 0.2s ease;
+          }
+          .logo-container:hover .cls-2 {
+            fill: #d22042;
           }
         </style>
       </defs>
-      <title>Asset 1</title>
       <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">
           <polygon

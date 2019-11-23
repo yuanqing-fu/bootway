@@ -15,34 +15,48 @@ export const mutations = {
   }
 }
 export const actions = {
-  fetch({ commit, dispatch }) {
+  authenticate({ commit, dispatch }) {
     return api.auth
-      .me(this.$axios)
+      .authenticate(this.$axios)
       .then((response) => {
         commit('set_user', response.data.result)
         return response
       })
       .catch((error) => {
-        dispatch('reset')
+        dispatch('clearLoginStatus')
         // commit('reset_user')
         // resetAuthToken(this.$axios)
         // cookies.remove('x-access-token')
         return error
       })
   },
-  login({ commit }, data) {
+  login({ commit, dispatch }, data) {
     return api.auth.login(data, this.$axios).then((response) => {
-      commit('set_user', response.data.user)
-      setAuthToken(response.data.token, this.$axios)
-      cookies.set('x-access-token', response.data.token, { expires: 7 })
+      dispatch('setLoginStatus', {
+        user: response.data.user,
+        token: response.data.token
+      })
+
+      // commit('set_user', response.data.user)
+      // setAuthToken(response.data.token, this.$axios)
+      // cookies.set('x-access-token', response.data.token, { expires: 7 })
       return response
     })
   },
   register({ commit }, data) {
     return api.auth.register(data, this.$axios).then((response) => {
-      commit('set_user', response.data.user)
-      setAuthToken(response.data.token, this.$axios)
-      cookies.set('x-access-token', response.data.token, { expires: 7 })
+      return response
+    })
+  },
+  sendEmailVerification({ commit }, data) {
+    return api.auth
+      .sendEmailVerification(data, this.$axios)
+      .then((response) => {
+        return response
+      })
+  },
+  verifyEmail({ commit }, data) {
+    return api.auth.verifyEmail(data, this.$axios).then((response) => {
       return response
     })
   },
@@ -66,10 +80,17 @@ export const actions = {
       return response
     })
   },
-  reset({ commit }) {
+  clearLoginStatus({ commit }) {
     commit('reset_user')
     resetAuthToken(this.$axios)
     cookies.remove('x-access-token')
+    return Promise.resolve()
+  },
+  setLoginStatus({ commit }, data) {
+    commit('set_user', data.user)
+    setAuthToken(data.token, this.$axios)
+    cookies.set('x-access-token', data.token, { expires: 7 })
+
     return Promise.resolve()
   },
   nuxtServerInit({ dispatch }, context) {
@@ -77,7 +98,7 @@ export const actions = {
       const cookies = cookie.parse(context.req.headers.cookie || '')
       if (cookies.hasOwnProperty('x-access-token')) {
         setAuthToken(cookies['x-access-token'], this.$axios)
-        dispatch('fetch')
+        dispatch('authenticate')
           .then((result) => {
             resolve(true)
           })

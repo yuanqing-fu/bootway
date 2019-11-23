@@ -52,9 +52,6 @@
 .footer a {
   color: $color-4;
   font-size: 12px;
-  &:hover {
-    filter: brightness(90%);
-  }
 }
 
 .footer .wechat-wrapper {

@@ -26,6 +26,50 @@ button:hover {
   justify-content: center;
 }
 
+@keyframes loadingRotate {
+  100% {
+    transform: rotate(1turn) scale(30);
+  }
+}
+
+.loading-page {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  opacity: 0.7;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: calc(200%);
+    height: calc(200%);
+    background-color: #399953;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient($color-1, $color-1),
+      linear-gradient($color-2, $color-2), linear-gradient($color-3, $color-3);
+    animation: loadingRotate 4s linear infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 6px;
+    top: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    background: white;
+  }
+}
+
 .middle-container::-webkit-scrollbar {
   width: 13px;
   height: 13px;
@@ -78,16 +122,18 @@ button:hover {
   height: 46px;
   border-radius: 5px;
   padding: 0 13px;
-}
-
-.form-main form input:focus {
-  border: 2px solid $color-3;
-  padding: 0 12px;
+  &:focus {
+    border: 2px solid $color-3;
+    padding: 0 12px;
+  }
 }
 
 .form-main a {
   color: $color-3;
   font-size: 13px;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .form-main .form-top {
@@ -99,20 +145,21 @@ button:hover {
 .form-main .message {
   color: $color-1;
   font-size: 13px;
-  display: inline-block;
   height: 25px;
   line-height: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  span {
+    flex: 1 1 auto;
+  }
 }
 
 .logo-text {
-  font-size: 30px;
+  font-size: 23px;
   font-family: Verdana, sans-serif;
-  color: $color-11;
+  color: $color-3;
   font-weight: bold;
-  font-style: italic;
-  text-shadow: 0px 0px 0 rgb(-59, -59, -59), 1px 1px 0 rgb(-314, -314, -314),
-    2px 2px 1px rgba(0, 0, 0, 0.05), 2px 2px 1px rgba(0, 0, 0, 0.5),
-    0px 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .form-main .form-top .form-top-r {
@@ -143,17 +190,29 @@ button:hover {
   height: 46px;
   background-color: $color-1;
   color: $color-4;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: bold;
   border: 0;
   border-radius: 3px;
   cursor: pointer;
 }
 
+.register-complete-info {
+  font-size: 16px;
+  color: $color-3;
+  div {
+    margin-bottom: 15px;
+  }
+  .email {
+    color: $color-1;
+  }
+}
+
 .middle-container .middle-container-inner.form-middle-container-inner {
   max-width: 410px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .check-label {

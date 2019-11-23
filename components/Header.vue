@@ -12,10 +12,10 @@
       <div class="header-actions">
         <span class="user-actions">
           <span v-if="user">{{ user.email }}</span>
-          <nuxt-link v-if="!user" class="" to="/login">
+          <nuxt-link v-if="!user && !isLoginPage" class="" to="/login">
             登录
           </nuxt-link>
-          <nuxt-link v-if="!user" class="" to="/register">
+          <nuxt-link v-if="!user && !isRegisterPage" class="" to="/register">
             注册
           </nuxt-link>
           <button v-if="user" class="logout" @click="logOut">
@@ -37,6 +37,20 @@ export default {
   components: {
     Logo
   },
+  props: {
+    isLoginPage: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    },
+    isRegisterPage: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
+  },
   computed: {
     user() {
       return this.$store.state.user ? this.$store.state.user : null
@@ -44,7 +58,7 @@ export default {
   },
   methods: {
     logOut() {
-      this.$store.dispatch('reset').then(() => {
+      this.$store.dispatch('clearLoginStatus').then(() => {
         this.$router.push('/')
       })
     }

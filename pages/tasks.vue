@@ -204,12 +204,18 @@ export default {
     // }
     //
     // await stall() // 暂停执行，用来模拟慢速网络
+    let response = {}
 
-    const response = await store.dispatch(
-      'getTask',
-      $moment(new Date()).format('YYYY-MM-DD'),
-      {}
-    )
+    try {
+      response = await store.dispatch(
+        'getTask',
+        $moment(new Date()).format('YYYY-MM-DD'),
+        {}
+      )
+    } catch (error) {
+      response.data = []
+    }
+
     return {
       taskList: response.data
     }
