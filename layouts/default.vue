@@ -280,4 +280,22 @@ button:hover {
 .v--modal .vue-dialog-buttons .vue-dialog-button:first-child:hover {
   filter: brightness(95%);
 }
+
+@media screen and (max-width: 900px) {
+  .middle-container {
+    overflow-x: hidden;
+  }
+  .home-middle-inner {
+    width: auto !important;
+  }
+
+  .scene-wrapper .intro {
+    width: 100%;
+    height: auto !important;
+  }
+
+  .scene {
+    transform: scale(0.65);
+  }
+}
 </style>

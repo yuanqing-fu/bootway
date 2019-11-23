@@ -12,9 +12,9 @@
           href="mailto:kofbossyagami@163.com"
           >&#9993;</a
         >
-        <nuxt-link class="" to="/">
-          关于我
-        </nuxt-link>
+        <!--        <nuxt-link class="" to="/">-->
+        <!--          关于我-->
+        <!--        </nuxt-link>-->
       </div>
       <div class="copyright">
         &copy; 2019 Bootway.com 版权所有
