@@ -8,8 +8,7 @@
             highlight:
               taskByTypes.type === 'classA' || taskByTypes.type === 'classC'
           }"
-          >重要</span
-        >
+        ></span>
         <span class="line"></span>
         <span
           class="urgent"
@@ -17,8 +16,7 @@
             highlight:
               taskByTypes.type === 'classA' || taskByTypes.type === 'classB'
           }"
-          >紧急</span
-        >
+        ></span>
       </span>
       <span class="count"
         >总：{{ taskByTypes.length }} 完成：{{ completedTasksLength }}</span
@@ -130,7 +128,7 @@ export default {
   align-items: center;
 }
 
-.task-groups .task-group-name .name span {
+.task-groups .task-group-name .name > span {
   display: inline-block;
   background-color: $color-11;
   padding: 0 35px;
@@ -138,28 +136,37 @@ export default {
   color: $color-12;
   user-select: none;
 }
-
-.task-groups .task-group-name .name span.important {
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.task-groups .task-group-name .name span.urgent {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
 .task-groups .task-group-name .name span.highlight {
   color: $color-4;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.task-groups .task-group-name .name span.important.highlight {
-  background-color: $color-1-lighter;
+.task-groups .task-group-name .name span.important {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  &:after {
+    content: '不重要';
+  }
+  &.highlight {
+    background-color: $color-1-lighter;
+    &:after {
+      content: '重要';
+    }
+  }
 }
 
-.task-groups .task-group-name .name span.urgent.highlight {
-  background-color: $color-3;
+.task-groups .task-group-name .name span.urgent {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  &:after {
+    content: '不紧急';
+  }
+  &.highlight {
+    background-color: $color-3;
+    &:after {
+      content: '紧急';
+    }
+  }
 }
 
 .task-groups .task-group-name .count {

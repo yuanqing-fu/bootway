@@ -50,7 +50,11 @@
       @keyup.enter="sendTaskChangeEvent"
       @mouseover="taskInputMouseover"
     />
-    <button class="submit-task" @click="sendTaskChangeEvent">
+    <button
+      class="submit-task"
+      :class="{ 'no-input-text': taskValues.name === '' }"
+      @click="sendTaskChangeEvent"
+    >
       <fa :icon="['fas', 'arrow-alt-circle-up']" />
     </button>
     <button class="cancel-task" @click="sendCancelTaskEditEvent">
@@ -253,7 +257,7 @@ export default {
 }
 
 .task-type-radios input + label.urgent {
-  background: $color-13;
+  background: rgba($color-3-rgb-r, $color-3-rgb-g, $color-3-rgb-b, 0.5);
 }
 
 .task-type-radios input + label:after {
@@ -269,15 +273,19 @@ export default {
 }
 
 .task-type-radios input:checked + label {
-  background: $color-3;
+  background: rgba($color-3-rgb-r, $color-3-rgb-g, $color-3-rgb-b, 1);
 }
 
 .task-type-radios input:checked + label:after {
   left: 50%;
 }
 
+.task-type-radios input + label.important {
+  background: rgba($color-1-rgb-r, $color-1-rgb-g, $color-1-rgb-b, 0.5);
+}
+
 .task-type-radios input:checked + label.important {
-  background: $color-1-darker;
+  background: rgba($color-1-rgb-r, $color-1-rgb-g, $color-1-rgb-b, 1);
 }
 
 .task-type-radios input {
@@ -293,6 +301,12 @@ export default {
   margin-left: 10px;
   font-size: 35px;
   cursor: pointer;
+  &.no-input-text {
+    color: $color-11;
+  }
+  &:hover {
+    color: $color-1;
+  }
 }
 
 .cancel-task {

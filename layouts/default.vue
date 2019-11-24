@@ -281,7 +281,7 @@ button:hover {
   filter: brightness(95%);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 824px) {
   .middle-container {
     overflow-x: hidden;
   }
@@ -294,6 +294,12 @@ button:hover {
     height: auto !important;
   }
 
+  .scene {
+    transform: scale(0.9);
+  }
+}
+
+@media screen and (max-width: 500px) {
   .scene {
     transform: scale(0.65);
   }
