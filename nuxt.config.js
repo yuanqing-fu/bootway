@@ -3,8 +3,8 @@ export default {
   env: {
     baseURL:
       process.env.NODE_ENV === 'development'
-        ? 'http://api.test.com:3003'
-        : 'http://api.bootway.com:3003'
+        ? 'http://api.test.com'
+        : 'http://api.bootway.com'
   },
   /*
    ** Headers of the page
