@@ -142,6 +142,10 @@ export default {
   display: inline-block;
 }
 
+.task-unit.edit:hover .delete {
+  display: none;
+}
+
 .task-unit.edit .edit {
   display: none;
 }

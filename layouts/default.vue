@@ -94,6 +94,7 @@ button:hover {
   min-width: 300px;
   margin: 0 24px 0 56px;
   position: relative;
+  transition: all 0.2s ease;
 }
 
 .form-main {
@@ -271,6 +272,131 @@ button:hover {
   transform: rotate(45deg);
 }
 
+.vue-dialog div {
+  box-sizing: border-box;
+}
+.vue-dialog .dialog-flex {
+  width: 100%;
+  height: 100%;
+}
+.vue-dialog .dialog-content {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+}
+.vue-dialog .dialog-c-title {
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+.vue-dialog .dialog-c-text {
+}
+.vue-dialog .vue-dialog-buttons {
+  display: flex;
+  flex: 0 1 auto;
+  width: 100%;
+  border-top: 1px solid #eee;
+}
+.vue-dialog .vue-dialog-buttons-none {
+  width: 100%;
+  padding-bottom: 15px;
+}
+.vue-dialog-button {
+  font-size: 12px !important;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: 40px;
+  height: 40px;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+.vue-dialog-button:hover {
+  background: rgba(0, 0, 0, 0.01);
+}
+.vue-dialog-button:active {
+  background: rgba(0, 0, 0, 0.025);
+}
+.vue-dialog-button:not(:first-of-type) {
+  border-left: 1px solid #eee;
+}
+
+.v--modal-block-scroll {
+  overflow: hidden;
+  width: 100vw;
+}
+.v--modal-overlay {
+  position: fixed;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 1;
+}
+.v--modal-overlay.scrollable {
+  height: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.v--modal-overlay .v--modal-background-click {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+}
+.v--modal-overlay .v--modal-box {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.v--modal-overlay.scrollable .v--modal-box {
+  margin-bottom: 2px;
+}
+.v--modal {
+  background-color: white;
+  text-align: left;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+  padding: 0;
+}
+.v--modal.v--modal-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+.v--modal-top-right {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: all 0.2s;
+}
+.overlay-fade-enter,
+.overlay-fade-leave-active {
+  opacity: 0;
+}
+.nice-modal-fade-enter-active,
+.nice-modal-fade-leave-active {
+  transition: all 0.4s;
+}
+.nice-modal-fade-enter,
+.nice-modal-fade-leave-active {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
 .v--modal .vue-dialog-buttons .vue-dialog-button:first-child {
   background: $color-1-lighter;
   color: $color-4;
@@ -302,6 +428,44 @@ button:hover {
 @media screen and (max-width: 500px) {
   .scene {
     transform: scale(0.65);
+  }
+
+  .task-groups .task-group-unit {
+    padding: 5px 0 !important;
+  }
+
+  .home-link {
+    width: 109px !important;
+  }
+
+  .middle-container .middle-container-inner {
+    margin: 0 10px;
+  }
+
+  .sidebar-menu-button {
+    display: inline-block !important;
+  }
+  .task-action-bar {
+    align-items: flex-start !important;
+    left: -46px !important;
+    width: 46px;
+    top: 65px !important;
+    bottom: 73px !important;
+    background-color: $color-7;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    padding-top: 33px;
+  }
+
+  .sidebar-mode .task-action-bar {
+    left: 0 !important;
+  }
+
+  .sidebar-mode .middle-container .middle-container-inner {
+    margin: 0 10px 0 57px !important;
+  }
+
+  .home-link {
+    top: 3px !important;
   }
 }
 </style>

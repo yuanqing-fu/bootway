@@ -1,6 +1,11 @@
 <template>
-  <div class="wrapper task-day-page">
+  <div class="wrapper task-day-page" :class="{ 'sidebar-mode': sidebarMode }">
     <day-header class="task-header with-other-actions">
+      <template v-slot:menu>
+        <button class="sidebar-menu-button" @click="toggleSidebar">
+          &#8801;
+        </button>
+      </template>
       <template v-slot:dateselect>
         <v-date-picker
           :modelvalue="currentDatepickerValues"
@@ -113,6 +118,7 @@ export default {
   },
   data() {
     return {
+      sidebarMode: false,
       editMode: false,
       showCompact: false,
       showClassA: true,
@@ -329,6 +335,7 @@ export default {
           newTask.task_id = result.data[0]
           this.taskList.push(newTask)
           this.taskFormValues.name = ''
+          this.$refs.taskInput.focusInput()
         })
         .catch((error) => {
           this.loading = false
@@ -475,6 +482,9 @@ export default {
         content,
         hideOnTargetClick: false
       }
+    },
+    toggleSidebar() {
+      this.sidebarMode = !this.sidebarMode
     }
   }
 }

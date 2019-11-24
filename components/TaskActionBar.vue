@@ -11,10 +11,13 @@
   top: 20%;
   left: 10px;
   display: flex;
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
 }
 
 .task-action-bar .action {
-  width: 35px;
   height: 35px;
   cursor: pointer;
   border-radius: 50%;

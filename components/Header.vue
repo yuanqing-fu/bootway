@@ -2,6 +2,7 @@
   <div class="header">
     <div class="header-inner">
       <div class="header-links">
+        <slot name="menu"></slot>
         <nuxt-link class="home-link" to="/">
           <logo></logo>
         </nuxt-link>
@@ -77,7 +78,7 @@ export default {
   padding: 0 10px;
   justify-content: center;
   box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2);
-  z-index: 200;
+  z-index: 500;
 }
 
 .header .header-inner {
@@ -153,5 +154,16 @@ export default {
   &:hover {
     filter: brightness(90%);
   }
+}
+
+.sidebar-menu-button {
+  display: none;
+  margin-right: 10px;
+  border: none;
+  background: none;
+  color: $color-4;
+  font-size: 26px;
+  position: relative;
+  top: 2px;
 }
 </style>
