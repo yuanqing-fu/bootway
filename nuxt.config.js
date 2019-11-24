@@ -109,6 +109,6 @@ export default {
     extend(config, ctx) {}
   },
   server: {
-    port: 80 // default: 3000
+    port: 3000 // default: 3000
   }
 }
