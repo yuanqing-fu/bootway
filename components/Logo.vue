@@ -6,24 +6,6 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 355.03 55.44"
     >
-      <defs>
-        <style>
-          .cls-1 {
-            fill: #d22042;
-            transition: all 0.2s ease;
-          }
-          .logo-container:hover .cls-1 {
-            fill: #1a7ea4;
-          }
-          .cls-2 {
-            fill: #1a7ea4;
-            transition: all 0.2s ease;
-          }
-          .logo-container:hover .cls-2 {
-            fill: #d22042;
-          }
-        </style>
-      </defs>
       <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">
           <polygon
@@ -99,5 +81,19 @@
 <style lang="scss">
 .logo-container {
   display: inline-block;
+}
+.cls-1 {
+  fill: #d22042;
+  transition: all 0.2s ease;
+}
+.logo-container:hover .cls-1 {
+  fill: #1a7ea4;
+}
+.cls-2 {
+  fill: #1a7ea4;
+  transition: all 0.2s ease;
+}
+.logo-container:hover .cls-2 {
+  fill: #d22042;
 }
 </style>
