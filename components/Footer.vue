@@ -8,7 +8,7 @@
         </span>
         <a
           class="email"
-          target="_blank"
+          target="_top"
           title="kofbossyagami@163.com"
           href="mailto:kofbossyagami@163.com"
           >&#9993;</a
