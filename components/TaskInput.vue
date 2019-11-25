@@ -168,9 +168,15 @@ export default {
       }
     },
     getTooltipOption(content) {
+      if (content === '重要') {
+        content = this.important ? '重要' : '不重要'
+      } else {
+        content = this.urgent ? '紧急' : '不紧急'
+      }
       return {
         content,
-        hideOnTargetClick: false
+        hideOnTargetClick: false,
+        trigger: this.$device.isMobile ? 'click' : 'hover'
       }
     }
   }

@@ -502,7 +502,8 @@ export default {
     getTooltipOption(content) {
       return {
         content,
-        hideOnTargetClick: false
+        hideOnTargetClick: false,
+        trigger: this.$device.isMobile ? 'click' : 'hover'
       }
     },
     toggleSidebar() {
