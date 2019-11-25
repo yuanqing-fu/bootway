@@ -467,5 +467,28 @@ button:hover {
   .home-link {
     top: 3px !important;
   }
+  .middle-container::-webkit-scrollbar {
+    width: 3px !important;
+    height: 3px !important;
+  }
+
+  .task-groups.compact .task-group-unit::-webkit-scrollbar {
+    width: 2px !important;
+    height: 2px !important;
+  }
+
+  .alertDialog.v--modal-overlay .v--modal-box {
+    width: 300px !important;
+    left: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .task-groups .task-group-name .name > span {
+    padding: 0 20px !important;
+  }
+
+  .task-unit {
+    padding: 5px 0 !important;
+  }
 }
 </style>

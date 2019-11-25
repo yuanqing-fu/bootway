@@ -69,6 +69,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
   max-height: 300px;
+  scroll-behavior: smooth;
 }
 
 .task-groups.compact .task-group-unit::-webkit-scrollbar {

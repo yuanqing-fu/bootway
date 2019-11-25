@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper task-day-page" :class="{ 'sidebar-mode': sidebarMode }">
     <day-header class="task-header with-other-actions">
-      <template v-slot:menu>
+      <template v-if="taskList.length !== 0" v-slot:menu>
         <button class="sidebar-menu-button" @click="toggleSidebar">
           &#8801;
         </button>
@@ -15,17 +15,17 @@
     </day-header>
     <div class="middle-container day-task-container">
       <div class="middle-container-inner">
-        <task-action-bar v-if="orderedTaskList.length !== 0">
+        <task-action-bar v-if="taskList.length !== 0">
           <template v-slot:switch-panel>
-            <div class="action compact">
-              <input id="compactAction" v-model="showCompact" type="checkbox" />
+            <div v-if="showCompact" class="action compact">
+              <input id="compactAction" v-model="compact" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('紧凑模式')"
                 for="compactAction"
                 ><fa :icon="['fas', 'compress-arrows-alt']"
               /></label>
             </div>
-            <div class="action classA">
+            <div v-if="hasClassA" class="action classA">
               <input id="ClassACheck" v-model="showClassA" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('重要且紧急')"
@@ -33,7 +33,7 @@
                 ><fa :icon="['fas', 'grin-stars']"
               /></label>
             </div>
-            <div class="action classB">
+            <div v-if="hasClassB" class="action classB">
               <input id="ClassBCheck" v-model="showClassB" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('紧急但不重要')"
@@ -41,7 +41,7 @@
                 ><fa :icon="['fas', 'grin-beam']"
               /></label>
             </div>
-            <div class="action classC">
+            <div v-if="hasClassC" class="action classC">
               <input id="ClassCCheck" v-model="showClassC" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('重要但不紧急')"
@@ -49,7 +49,7 @@
                 ><fa :icon="['fas', 'grin-wink']"
               /></label>
             </div>
-            <div class="action classD">
+            <div v-if="hasClassD" class="action classD">
               <input id="ClassDCheck" v-model="showClassD" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('不重要也不紧急')"
@@ -61,9 +61,9 @@
           </template>
         </task-action-bar>
         <div
-          v-if="orderedTaskList.length !== 0"
+          v-if="taskList.length !== 0"
           class="task-groups"
-          :class="{ compact: showCompact }"
+          :class="{ compact: compact }"
         >
           <task-type
             v-for="(taskByTypes, index) in orderedTaskList"
@@ -97,7 +97,7 @@
       @taskChange="addOrEditTask"
       @cancelTaskEdit="cancelTaskEdit"
     ></task-input>
-    <v-dialog />
+    <v-dialog class="alertDialog" />
   </div>
 </template>
 
@@ -120,7 +120,7 @@ export default {
     return {
       sidebarMode: false,
       editMode: false,
-      showCompact: false,
+      compact: false,
       showClassA: true,
       showClassB: true,
       showClassC: true,
@@ -141,11 +141,34 @@ export default {
     user() {
       return this.$store.state.user ? this.$store.state.user : null
     },
+    showCompact() {
+      return this.$device.isMobile
+        ? this.taskList.length > 20
+        : this.taskList.length > 30
+    },
     hasClassA() {
-      const classAList = this.orderedTaskList.filter((el) => {
+      const list = this.orderedTaskList.filter((el) => {
         return el.type === 'classA'
       })[0]
-      return classAList.length !== 0
+      return list && list.length !== 0
+    },
+    hasClassB() {
+      const list = this.orderedTaskList.filter((el) => {
+        return el.type === 'classB'
+      })[0]
+      return list && list.length !== 0
+    },
+    hasClassC() {
+      const list = this.orderedTaskList.filter((el) => {
+        return el.type === 'classC'
+      })[0]
+      return list && list.length !== 0
+    },
+    hasClassD() {
+      const list = this.orderedTaskList.filter((el) => {
+        return el.type === 'classD'
+      })[0]
+      return list && list.length !== 0
     },
     orderedTaskList() {
       let classATaskList = [] // type: { important:1, urgent:1 }
@@ -399,7 +422,6 @@ export default {
     showDeleteModal(task) {
       this.$modal.show('dialog', {
         // title: 'Alert!',
-        classes: ['alert-dialog'],
         text: '确定要删除吗？',
         buttons: [
           {

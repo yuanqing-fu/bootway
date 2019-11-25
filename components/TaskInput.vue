@@ -147,10 +147,14 @@ export default {
         this.$refs.importantCheck.checked,
         this.$refs.urgentCheck.checked
       )
-      this.focusInput()
+      if (!this.$device.isMobile) {
+        this.focusInput()
+      }
     },
     taskInputMouseover() {
-      this.focusInput()
+      if (!this.$device.isMobile) {
+        this.focusInput()
+      }
     },
     sliderDragEnd() {
       this.taskValues.start_date.setHours(
@@ -159,8 +163,9 @@ export default {
       this.taskValues.start_date.setMinutes(
         this.$moment.duration(this.start_date, 'seconds').minutes()
       )
-
-      this.$refs.taskInput.focus()
+      if (!this.$device.isMobile) {
+        this.focusInput()
+      }
     },
     getTooltipOption(content) {
       return {

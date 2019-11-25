@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/device": "^1.2.3",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
     "cookie": "^0.4.0",

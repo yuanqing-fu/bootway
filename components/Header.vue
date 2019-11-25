@@ -105,7 +105,7 @@ export default {
 .header,
 .header a,
 .header button {
-  color: $color-4;
+  color: $color-13;
 }
 .header .header-links {
   flex: 1 0 auto;
