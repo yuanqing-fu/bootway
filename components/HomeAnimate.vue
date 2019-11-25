@@ -26,6 +26,7 @@
       </h1>
       <p>每天在不同事情之间</p>
       <p>来回穿梭</p>
+      <p>怎么安排日程？</p>
       <nuxt-link class="try-btn" to="/tasks">
         <span class="inner">
           <span class="text">试试这个吧</span>
@@ -307,7 +308,7 @@
   font-size: 13px;
   text-align: center;
   margin-top: 65px;
-  margin-bottom: 10%;
+  margin-bottom: 30px;
   color: $color-4;
   font-weight: bold;
   position: relative;

@@ -428,6 +428,8 @@ button:hover {
 @media screen and (max-width: 500px) {
   .scene {
     transform: scale(0.65);
+    position: relative;
+    top: -16px;
   }
 
   .task-groups .task-group-unit {
@@ -438,8 +440,27 @@ button:hover {
     width: 109px !important;
   }
 
-  .middle-container .middle-container-inner {
-    margin: 0 10px;
+  .middle-container {
+    .middle-container-inner {
+      margin: 0 10px;
+    }
+  }
+
+  .scene-wrapper {
+    position: relative;
+    top: -50px;
+    .intro {
+      position: relative;
+      top: -87px;
+      background: none !important;
+      h1 {
+        margin-bottom: 30px !important;
+      }
+    }
+  }
+
+  .try-btn {
+    margin-top: 27px !important;
   }
 
   .sidebar-menu-button {
