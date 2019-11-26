@@ -46,7 +46,6 @@
       type="text"
       placeholder="今天想做什么？"
       class="task-input-element"
-      autofocus
       @keyup.enter="sendTaskChangeEvent"
       @mouseover="taskInputMouseover"
     />
@@ -147,9 +146,7 @@ export default {
         this.$refs.importantCheck.checked,
         this.$refs.urgentCheck.checked
       )
-      if (!this.$device.isMobile) {
-        this.focusInput()
-      }
+      this.focusInput()
     },
     taskInputMouseover() {
       if (!this.$device.isMobile) {

@@ -249,6 +249,11 @@ export default {
       taskList: response.data
     }
   },
+  mounted() {
+    if (!this.$device.isMobile) {
+      this.focusInput()
+    }
+  },
   methods: {
     completedTasksLength(taskByTypes) {
       return taskByTypes.filter((el) => el.done === 1).length
@@ -288,7 +293,9 @@ export default {
       this.cancelTaskEdit()
       this.taskFormValues.start_date = this.currentDatepickerValues.dateSelected
       this.taskList = await this.getTask()
-      this.focusInput()
+      if (!this.$device.isMobile) {
+        this.focusInput()
+      }
     },
     getImportantValue(type) {
       if (type.includes('classA') || type.includes('classC')) {
