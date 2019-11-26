@@ -4,7 +4,7 @@ export default {
     baseURL:
       process.env.NODE_ENV === 'development'
         ? 'http://api.test.com'
-        : 'http://api.bootway.com'
+        : 'https://api.bootway.com'
   },
   /*
    ** Headers of the page
