@@ -3,9 +3,11 @@
     <div class="scene">
       <div class="axes">
         <div class="axis x-axis">
+          <div class="arrow"></div>
           <div class="dot"></div>
         </div>
         <div class="axis y-axis">
+          <div class="arrow"></div>
           <div class="dot"></div>
         </div>
         <div class="axis z-axis"></div>
@@ -116,13 +118,33 @@
   left: 231px;
   transform-origin: center;
 
-  &:before {
-    content: '>';
+  .arrow {
     position: absolute;
-    top: -19px;
-    left: -10px;
-    font-size: 43px;
-    transform: rotate(-90deg);
+    top: 6px;
+    left: 14px;
+    transform: rotate(90deg);
+    &:before {
+      content: '';
+      background-color: $color-1;
+      position: absolute;
+      width: 4px;
+      height: 23px;
+      top: -4px;
+      right: 0;
+      transform: rotate(68deg);
+      border-radius: 5px;
+    }
+    &:after {
+      content: '';
+      background-color: $color-1;
+      position: absolute;
+      width: 4px;
+      height: 23px;
+      top: 4px;
+      right: 0;
+      transform: rotate(-68deg);
+      border-radius: 5px;
+    }
   }
 
   &:after {
@@ -194,6 +216,12 @@
     transform: rotate(0deg);
     top: -39px;
     left: -15px;
+  }
+  .arrow {
+    &:before,
+    &:after {
+      background-color: $color-3;
+    }
   }
 }
 
