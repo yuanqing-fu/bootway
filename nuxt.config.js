@@ -13,7 +13,7 @@ export default {
     htmlAttrs: {
       lang: 'zh_CN'
     },
-    title: 'Bootway',
+    title: '个人日程记录',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
