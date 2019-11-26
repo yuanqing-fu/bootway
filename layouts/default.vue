@@ -8,9 +8,11 @@
 button {
   color: $color-1;
 }
+
 button:hover {
   filter: brightness(90%);
 }
+
 .wrapper {
   height: 100vh;
   display: flex;
@@ -123,6 +125,7 @@ button:hover {
   height: 46px;
   border-radius: 5px;
   padding: 0 13px;
+
   &:focus {
     border: 2px solid $color-3;
     padding: 0 12px;
@@ -132,6 +135,7 @@ button:hover {
 .form-main a {
   color: $color-3;
   font-size: 13px;
+
   &:hover {
     text-decoration: underline;
   }
@@ -151,6 +155,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
   span {
     flex: 1 1 auto;
   }
@@ -201,9 +206,11 @@ button:hover {
 .register-complete-info {
   font-size: 16px;
   color: $color-3;
+
   div {
     margin-bottom: 15px;
   }
+
   .email {
     color: $color-1;
   }
@@ -275,32 +282,39 @@ button:hover {
 .vue-dialog div {
   box-sizing: border-box;
 }
+
 .vue-dialog .dialog-flex {
   width: 100%;
   height: 100%;
 }
+
 .vue-dialog .dialog-content {
   flex: 1 0 auto;
   width: 100%;
   padding: 15px;
   font-size: 14px;
 }
+
 .vue-dialog .dialog-c-title {
   font-weight: 600;
   padding-bottom: 15px;
 }
+
 .vue-dialog .dialog-c-text {
 }
+
 .vue-dialog .vue-dialog-buttons {
   display: flex;
   flex: 0 1 auto;
   width: 100%;
   border-top: 1px solid #eee;
 }
+
 .vue-dialog .vue-dialog-buttons-none {
   width: 100%;
   padding-bottom: 15px;
 }
+
 .vue-dialog-button {
   font-size: 12px !important;
   background: transparent;
@@ -315,12 +329,15 @@ button:hover {
   font: inherit;
   outline: none;
 }
+
 .vue-dialog-button:hover {
   background: rgba(0, 0, 0, 0.01);
 }
+
 .vue-dialog-button:active {
   background: rgba(0, 0, 0, 0.025);
 }
+
 .vue-dialog-button:not(:first-of-type) {
   border-left: 1px solid #eee;
 }
@@ -329,6 +346,7 @@ button:hover {
   overflow: hidden;
   width: 100vw;
 }
+
 .v--modal-overlay {
   position: fixed;
   box-sizing: border-box;
@@ -340,25 +358,30 @@ button:hover {
   z-index: 999;
   opacity: 1;
 }
+
 .v--modal-overlay.scrollable {
   height: 100%;
   min-height: 100vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+
 .v--modal-overlay .v--modal-background-click {
   width: 100%;
   min-height: 100%;
   height: auto;
 }
+
 .v--modal-overlay .v--modal-box {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
 }
+
 .v--modal-overlay.scrollable .v--modal-box {
   margin-bottom: 2px;
 }
+
 .v--modal {
   background-color: white;
   text-align: left;
@@ -366,6 +389,7 @@ button:hover {
   box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
   padding: 0;
 }
+
 .v--modal.v--modal-fullscreen {
   width: 100vw;
   height: 100vh;
@@ -373,24 +397,29 @@ button:hover {
   left: 0;
   top: 0;
 }
+
 .v--modal-top-right {
   display: block;
   position: absolute;
   right: 0;
   top: 0;
 }
+
 .overlay-fade-enter-active,
 .overlay-fade-leave-active {
   transition: all 0.2s;
 }
+
 .overlay-fade-enter,
 .overlay-fade-leave-active {
   opacity: 0;
 }
+
 .nice-modal-fade-enter-active,
 .nice-modal-fade-leave-active {
   transition: all 0.4s;
 }
+
 .nice-modal-fade-enter,
 .nice-modal-fade-leave-active {
   opacity: 0;
@@ -449,10 +478,12 @@ button:hover {
   .scene-wrapper {
     position: relative;
     top: -50px;
+
     .intro {
       position: relative;
       top: -87px;
       background: none !important;
+
       h1 {
         margin-bottom: 30px !important;
       }
@@ -510,6 +541,17 @@ button:hover {
 
   .task-unit {
     padding: 5px 0 !important;
+  }
+
+  .footer a {
+    font-size: 10px !important;
+  }
+  .footer .info-a a.email {
+    display: none !important;
+  }
+
+  .footer .copyright span {
+    display: none;
   }
 }
 </style>
