@@ -43,6 +43,7 @@
     <input
       ref="taskInput"
       v-model.trim="taskValues.name"
+      maxlength="255"
       type="text"
       placeholder="今天想做什么？"
       class="task-input-element"

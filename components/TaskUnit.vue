@@ -106,6 +106,7 @@ export default {
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
+  word-break: break-word;
 }
 
 .task-unit.done .task-name .text {
