@@ -52,6 +52,7 @@ export default {
    */
   plugins: [
     '~/plugins/axios',
+    { src: '~/plugins/autosize-textarea.js', ssr: false },
     { src: '~/plugins/vuetouch.js', ssr: false },
     { src: '~/plugins/tooltip.js', ssr: false },
     { src: '~/plugins/datepicker', ssr: false },

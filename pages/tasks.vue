@@ -73,8 +73,10 @@
             v-show="isTaskGroupShow(taskByTypes.type)"
             :key="`task-by-types-${index}`"
             :task-by-types="taskByTypes"
+            :task-values="taskFormValues"
             :class="taskByTypes.type"
             @taskEdit="enterEditMode"
+            @taskChange="addOrEditTask"
             @taskDelete="showDeleteModal"
             @cancelTaskEdit="cancelTaskEdit"
             @taskStatusChange="editTask"
@@ -489,7 +491,10 @@ export default {
       if (this.tempTaskForEdit != null) {
         this.tempTaskForEdit.isEdit = false
       }
+
+      // 使用 $set 而不是 task.isEdit 这种方式可以让新添加的属性相应即时变化
       this.$set(task, 'isEdit', true)
+
       this.tempTaskForEdit = task
 
       this.taskFormValues.name = task.task_name

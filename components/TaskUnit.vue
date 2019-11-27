@@ -5,8 +5,7 @@
       class="task-unit"
       :class="{
         edit: task.isEdit,
-        done: done,
-        'show-actions': task.showActionsInMobileMode
+        done: done
       }"
     >
       <div class="task-status">
@@ -23,6 +22,15 @@
       </div>
       <div class="task-name">
         <span class="text">{{ task.task_name }}</span>
+        <client-only v-if="task.isEdit">
+          <textarea-autosize
+            ref="editTaskTextarea"
+            v-model.trim="$attrs['task-values'].name"
+            class="edit-task-textarea"
+            @keyup.native.enter="sendTaskChangeEvent"
+            @input.native="handleEditTaskTextareaInputEvent"
+          />
+        </client-only>
       </div>
       <span class="edit" @click="handelEditTaskEvent"
         ><fa :icon="['fas', 'pencil-alt']"
@@ -59,11 +67,31 @@ export default {
     this.done = this.task.done !== 0
   },
   methods: {
+    handleEditTaskTextareaInputEvent() {
+      this.$attrs['task-values'].name = this.$attrs['task-values'].name.replace(
+        /\n/g,
+        ''
+      )
+    },
+    sendTaskChangeEvent() {
+      this.$attrs['task-values'].name = this.$attrs['task-values'].name.replace(
+        /\n/g,
+        ''
+      )
+      if (!this.$attrs['task-values'].name) {
+        this.sendCancelTaskEditEvent()
+        return
+      }
+      this.$emit('taskChange')
+    },
     onLongTap() {
       this.$emit('taskEdit', this.task)
     },
     handelEditTaskEvent() {
       this.$emit('taskEdit', this.task)
+      this.$nextTick(() => {
+        this.$refs.editTaskTextarea.$el.focus()
+      })
     },
     handelDeleteTaskEvent() {
       this.$emit('taskDelete', this.task)
@@ -118,6 +146,23 @@ export default {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
   word-break: break-word;
+  .edit-task-textarea {
+    display: none;
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+}
+
+.task-unit.edit {
+  .task-name {
+    .text {
+      display: none;
+    }
+    .edit-task-textarea {
+      display: inline-block;
+    }
+  }
 }
 
 .task-unit.done .task-name .text {
