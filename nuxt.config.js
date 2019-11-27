@@ -24,6 +24,26 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || ''
+      },
+      {
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes'
+      },
+      {
+        name: 'full-screen',
+        content: 'yes'
+      },
+      {
+        name: 'browsermode',
+        content: 'application'
+      },
+      {
+        name: 'x5-fullscreen',
+        content: 'true'
+      },
+      {
+        name: 'x5-page-mode',
+        content: 'app'
       }
     ],
     link: [
