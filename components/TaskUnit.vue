@@ -156,8 +156,13 @@ export default {
 .task-unit .task-name {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
+  -ms-word-break: break-all;
+  word-break: break-all;
   word-break: break-word;
-  overflow-wrap: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
   .edit-task-textarea {
     display: none;
     width: 100%;
