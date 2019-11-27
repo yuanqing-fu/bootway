@@ -59,6 +59,7 @@ export default {
   },
   data() {
     return {
+      isMobile: this.$device.isMobile,
       done: false
     }
   },
@@ -85,7 +86,9 @@ export default {
       this.$emit('taskChange')
     },
     onLongTap() {
-      this.$emit('taskEdit', this.task)
+      if (this.isMobile) {
+        this.$emit('taskEdit', this.task)
+      }
     },
     handelEditTaskEvent() {
       this.$emit('taskEdit', this.task)
@@ -152,6 +155,10 @@ export default {
     border: none;
     outline: none;
   }
+}
+
+.mobile-mode .task-unit .task-name {
+  user-select: none;
 }
 
 .task-unit.edit {
