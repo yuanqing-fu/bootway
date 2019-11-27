@@ -73,6 +73,7 @@ export default {
       if (this.isMobile) {
         event.preventDefault()
         event.stopPropagation()
+        event.stopImmediatePropagation()
       }
     },
     handleEditTaskTextareaInputEvent() {
