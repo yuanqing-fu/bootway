@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper task-day-page" :class="{ 'sidebar-mode': sidebarMode }">
+  <div
+    class="wrapper task-day-page"
+    :class="{ 'sidebar-mode': sidebarMode, 'mobile-mode': isMobile }"
+  >
     <day-header class="task-header with-other-actions">
       <template v-if="taskList.length !== 0" v-slot:menu>
         <button class="sidebar-menu-button" @click="toggleSidebar">
@@ -118,6 +121,7 @@ export default {
   },
   data() {
     return {
+      isMobile: this.$device.isMobile,
       sidebarMode: false,
       editMode: false,
       compact: false,
@@ -142,7 +146,7 @@ export default {
       return this.$store.state.user ? this.$store.state.user : null
     },
     showCompact() {
-      return this.$device.isMobile
+      return this.isMobile
         ? this.taskList.length > 20
         : this.taskList.length > 30
     },
@@ -250,7 +254,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$device.isMobile) {
+    if (!this.isMobile) {
       this.focusInput()
     }
   },
@@ -293,7 +297,7 @@ export default {
       this.cancelTaskEdit()
       this.taskFormValues.start_date = this.currentDatepickerValues.dateSelected
       this.taskList = await this.getTask()
-      if (!this.$device.isMobile) {
+      if (!this.isMobile) {
         this.focusInput()
       }
     },
@@ -510,7 +514,7 @@ export default {
       return {
         content,
         hideOnTargetClick: false,
-        trigger: this.$device.isMobile ? 'click' : 'hover'
+        trigger: this.isMobile ? 'click' : 'hover'
       }
     },
     toggleSidebar() {

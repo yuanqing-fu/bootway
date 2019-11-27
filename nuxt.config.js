@@ -52,6 +52,7 @@ export default {
    */
   plugins: [
     '~/plugins/axios',
+    { src: '~/plugins/vuetouch.js', ssr: false },
     { src: '~/plugins/tooltip.js', ssr: false },
     { src: '~/plugins/datepicker', ssr: false },
     { src: '~/plugins/modal' }

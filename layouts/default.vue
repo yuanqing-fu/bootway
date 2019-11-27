@@ -541,6 +541,9 @@ button:hover {
 
   .task-unit {
     padding: 5px 0 !important;
+    &.edit {
+      padding: 5px 3px !important;
+    }
   }
 
   .footer a {

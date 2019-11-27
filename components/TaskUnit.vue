@@ -1,6 +1,14 @@
 <template>
   <transition name="fade">
-    <div class="task-unit" :class="{ edit: task.isEdit, done: done }">
+    <div
+      v-touch:longtap="onLongTap"
+      class="task-unit"
+      :class="{
+        edit: task.isEdit,
+        done: done,
+        'show-actions': task.showActionsInMobileMode
+      }"
+    >
       <div class="task-status">
         <label class="check-label">
           <input
@@ -51,6 +59,9 @@ export default {
     this.done = this.task.done !== 0
   },
   methods: {
+    onLongTap() {
+      this.$emit('taskEdit', this.task)
+    },
     handelEditTaskEvent() {
       this.$emit('taskEdit', this.task)
     },
@@ -145,6 +156,16 @@ export default {
 
 .task-unit.edit:hover .delete {
   display: none;
+}
+
+.mobile-mode {
+  .task-unit:hover .edit,
+  .task-unit:hover .delete {
+    display: none;
+  }
+  .task-unit.edit .delete {
+    display: inline-block;
+  }
 }
 
 .task-unit.edit .edit {
