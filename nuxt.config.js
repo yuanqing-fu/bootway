@@ -40,6 +40,36 @@ export default {
       {
         name: 'X-UA-Compatible',
         content: 'IE=edge,chrome=1'
+      },
+      {
+        hid: 'mobile-web-app-capable',
+        name: 'mobile-web-app-capable',
+        content: 'yes'
+      },
+      {
+        hid: 'apple-mobile-web-app-capable',
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes'
+      },
+      {
+        hid: 'full-screen',
+        name: 'full-screen',
+        content: 'yes'
+      },
+      {
+        hid: 'browsermode',
+        name: 'browsermode',
+        content: 'application'
+      },
+      {
+        hid: 'x5-fullscreen',
+        name: 'x5-fullscreen',
+        content: 'true'
+      },
+      {
+        hid: 'x5-page-mode',
+        name: 'x5-page-mode',
+        content: 'app'
       }
     ],
     link: [
