@@ -24,30 +24,37 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: '全新个人日程记录体验'
       },
       {
-        name: 'apple-mobile-web-app-capable',
-        content: 'yes'
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'Time Management,时间管理,Task management,任务管理,urgent,紧急,important,重要,日程记录,日程管理,任务,日程,时间,Bootway,Boot'
       },
       {
-        name: 'full-screen',
-        content: 'yes'
+        hid: 'x-dns-prefetch-control',
+        name: 'x-dns-prefetch-control',
+        content: 'on'
       },
       {
-        name: 'browsermode',
-        content: 'application'
-      },
-      {
-        name: 'x5-fullscreen',
-        content: 'true'
-      },
-      {
-        name: 'x5-page-mode',
-        content: 'app'
+        name: 'X-UA-Compatible',
+        content: 'IE=edge,chrome=1'
       }
     ],
     link: [
+      {
+        rel: 'dns-prefetch',
+        href: '//bootway.com'
+      },
+      {
+        rel: 'dns-prefetch',
+        href: '//www.bootway.com'
+      },
+      {
+        rel: 'dns-prefetch',
+        href: '//api.bootway.com'
+      },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'icon',
