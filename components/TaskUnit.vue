@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-touch:swipe.left="onLongTap"
+      v-touch:longtap="handleLongTap"
       class="task-unit"
       :class="{
         edit: task.isEdit,
@@ -93,7 +93,7 @@ export default {
       }
       this.$emit('taskChange')
     },
-    onLongTap() {
+    handleLongTap() {
       if (this.isMobile) {
         this.$emit('taskEdit', this.task)
       }
@@ -157,6 +157,7 @@ export default {
   flex: 1 1 auto;
   margin: 0 10px 0 0;
   word-break: break-word;
+  overflow-wrap: break-word;
   .edit-task-textarea {
     display: none;
     width: 100%;
