@@ -182,6 +182,7 @@ export default {
 </script>
 <style lang="scss">
 .task-input-bar {
+  z-index: 200;
   border-top: 3px solid $color-11;
   flex: 0 0 73px;
   display: flex;
