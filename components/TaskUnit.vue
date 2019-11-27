@@ -124,10 +124,6 @@ export default {
   align-items: center;
   padding: 5px 7px 5px 5px;
   transition: all 0.4s ease;
-  pointer-events: none;
-  -webkit-pointer-events: none;
-  -ms-pointer-events: none;
-  -moz-pointer-events: none;
 }
 
 .task-unit.edit {
