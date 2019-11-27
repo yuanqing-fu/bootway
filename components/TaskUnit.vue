@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-touch:longtap="onLongTap"
+      v-touch:swipe.left="onLongTap"
       class="task-unit"
       :class="{
         edit: task.isEdit,
