@@ -7,6 +7,7 @@
         edit: task.isEdit,
         done: done
       }"
+      @contextmenu="handleContextmenuEvent"
     >
       <div class="task-status">
         <label class="check-label">
@@ -68,6 +69,11 @@ export default {
     this.done = this.task.done !== 0
   },
   methods: {
+    handleContextmenuEvent(event) {
+      if (this.isMobile) {
+        event.preventDefault()
+      }
+    },
     handleEditTaskTextareaInputEvent() {
       this.$attrs['task-values'].name = this.$attrs['task-values'].name.replace(
         /\n/g,

@@ -371,7 +371,9 @@ export default {
           newTask.task_id = result.data[0]
           this.taskList.push(newTask)
           this.taskFormValues.name = ''
-          this.$refs.taskInput.focusInput()
+          this.$nextTick(() => {
+            this.$refs.taskInput.focusInput()
+          })
         })
         .catch((error) => {
           this.loading = false
