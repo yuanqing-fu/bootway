@@ -7,8 +7,6 @@
         edit: task.isEdit,
         done: done
       }"
-      @touchstart="handleTouch"
-      @touchsend="handleTouch"
       @contextmenu="handleContextmenuEvent"
     >
       <div class="task-status">
@@ -71,12 +69,6 @@ export default {
     this.done = this.task.done !== 0
   },
   methods: {
-    handleTouch(event) {
-      if (this.isMobile) {
-        event.preventDefault()
-        return false
-      }
-    },
     handleContextmenuEvent(event) {
       if (this.isMobile) {
         event.preventDefault()
