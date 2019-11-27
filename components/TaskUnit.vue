@@ -72,6 +72,7 @@ export default {
     handleContextmenuEvent(event) {
       if (this.isMobile) {
         event.preventDefault()
+        event.stopPropagation()
       }
     },
     handleEditTaskTextareaInputEvent() {
