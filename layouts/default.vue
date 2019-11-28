@@ -506,7 +506,7 @@ button:hover {
     left: -46px !important;
     width: 46px;
     top: 65px !important;
-    bottom: 73px !important;
+    bottom: 0 !important;
     background-color: $color-7;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding-top: 33px;

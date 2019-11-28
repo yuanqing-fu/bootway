@@ -11,7 +11,7 @@
   top: 20%;
   left: 10px;
   display: flex;
-  z-index: 500;
+  z-index: 300;
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
@@ -26,9 +26,17 @@
 }
 
 .task-action-bar .action.compact {
-  margin: 0 1px 20px 1px;
+  margin: 0 1px 35px 1px;
   font-size: 27px;
   height: 29px;
+}
+
+.task-action-bar .action.fullscreen {
+  display: none;
+}
+
+.mobile-mode .task-action-bar .action.fullscreen {
+  display: block;
 }
 
 .task-action-bar .action label {
