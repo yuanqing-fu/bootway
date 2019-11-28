@@ -3,7 +3,7 @@ export default {
   env: {
     baseURL:
       process.env.NODE_ENV === 'development'
-        ? 'http://api.test.com'
+        ? 'http://192.168.2.115:3003'
         : 'https://api.bootway.com'
   },
   /*
@@ -172,6 +172,7 @@ export default {
     extend(config, ctx) {}
   },
   server: {
-    port: 3000 // default: 3000
+    port: process.env.NODE_ENV === 'development' ? 80 : 3000, // default: 3000
+    host: '0.0.0.0'
   }
 }

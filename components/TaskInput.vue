@@ -342,5 +342,6 @@ export default {
   border-color: $color-3;
   background-color: $color-3;
   padding: 1px 5px;
+  border-radius: 3px;
 }
 </style>

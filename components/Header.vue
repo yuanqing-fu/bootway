@@ -6,9 +6,6 @@
         <nuxt-link class="home-link" to="/">
           <logo></logo>
         </nuxt-link>
-        <!--        <nuxt-link v-if="user" class="" to="/tasks">-->
-        <!--          任务-->
-        <!--        </nuxt-link>-->
       </div>
       <div class="header-actions">
         <span class="user-actions">
@@ -117,7 +114,6 @@ export default {
 
 .header .header-actions {
   font-size: 13px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -128,6 +124,7 @@ export default {
   display: none;
   flex-direction: row;
   padding-right: 13px;
+  margin-top: 7px;
 }
 
 .header.with-other-actions .other-actions {

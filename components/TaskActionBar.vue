@@ -26,8 +26,9 @@
 }
 
 .task-action-bar .action.compact {
-  margin: 0 0 20px 3px;
+  margin: 0 1px 20px 1px;
   font-size: 27px;
+  height: 29px;
 }
 
 .task-action-bar .action label {
@@ -52,7 +53,30 @@
   color: $color-1;
 }
 
+.task-action-bar .action.compact label {
+  border: 3px solid $color-11;
+  border-radius: 5px;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    width: 3px;
+    height: 14px;
+    background-color: $color-11;
+  }
+}
+
 .task-action-bar .action.compact input:checked + label {
+  color: $color-3;
+  border-color: $color-3;
+  &:after {
+    background-color: $color-3;
+  }
+}
+
+.task-action-bar .action.fullscreen input:checked + label {
   color: $color-3;
 }
 

@@ -465,6 +465,10 @@ button:hover {
     padding: 5px 0 !important;
   }
 
+  .task-groups.compact .task-group-unit {
+    padding: 5px 5px 5px 0 !important;
+  }
+
   .home-link {
     width: 109px !important;
   }

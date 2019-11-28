@@ -20,13 +20,25 @@
       <div class="middle-container-inner">
         <task-action-bar v-if="taskList.length !== 0">
           <template v-slot:switch-panel>
+            <div class="action fullscreen">
+              <input
+                id="fullscreenAction"
+                :checked="fullscreen"
+                type="checkbox"
+                @change="fullscreenChange"
+              />
+              <label
+                v-tooltip.left="getTooltipOption('全屏模式')"
+                for="fullscreenAction"
+                ><fa :icon="['fas', 'arrows-alt']"
+              /></label>
+            </div>
             <div v-if="showCompact" class="action compact">
               <input id="compactAction" v-model="compact" type="checkbox" />
               <label
                 v-tooltip.left="getTooltipOption('紧凑模式')"
                 for="compactAction"
-                ><fa :icon="['fas', 'compress-arrows-alt']"
-              /></label>
+              ></label>
             </div>
             <div v-if="hasClassA" class="action classA">
               <input id="ClassACheck" v-model="showClassA" type="checkbox" />
@@ -127,6 +139,7 @@ export default {
       sidebarMode: false,
       editMode: false,
       compact: false,
+      fullscreen: false,
       showClassA: true,
       showClassB: true,
       showClassC: true,
@@ -261,6 +274,36 @@ export default {
     }
   },
   methods: {
+    fullscreenChange() {
+      const doc = window.document
+      const docEl = doc.documentElement
+
+      // eslint-disable-next-line no-unused-vars
+      const requestFullScreen =
+        docEl.requestFullscreen ||
+        docEl.mozRequestFullScreen ||
+        docEl.webkitRequestFullScreen ||
+        docEl.msRequestFullscreen
+      // eslint-disable-next-line no-unused-vars
+      const cancelFullScreen =
+        doc.exitFullscreen ||
+        doc.mozCancelFullScreen ||
+        doc.webkitExitFullscreen ||
+        doc.msExitFullscreen
+
+      if (
+        !doc.fullscreenElement &&
+        !doc.mozFullScreenElement &&
+        !doc.webkitFullscreenElement &&
+        !doc.msFullscreenElement
+      ) {
+        this.fullscreen = true
+        requestFullScreen.call(docEl)
+      } else {
+        this.fullscreen = false
+        cancelFullScreen.call(doc)
+      }
+    },
     completedTasksLength(taskByTypes) {
       return taskByTypes.filter((el) => el.done === 1).length
     },

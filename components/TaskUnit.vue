@@ -135,7 +135,6 @@ export default {
 
 .task-unit .task-status {
   flex: 0 0 var(--leftbar-size);
-  width: 30px;
   height: 18px;
 }
 
