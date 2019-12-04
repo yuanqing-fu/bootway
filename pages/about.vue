@@ -70,7 +70,8 @@ export default {
         '数据库选型、表设计（MySQL）',
         '后端接口 API 设计、开发',
         '前端页面、功能的实现',
-        '网站安全（Helmet.js）'
+        '网站安全（Helmet.js）',
+        '远程 Linux 服务器开发环境搭建，项目部署并上线'
       ],
       skills: ['JavaScript, HTML5, CSS3', 'Vue.js, Nuxt.js', 'Node.js, Koa.js']
     }
