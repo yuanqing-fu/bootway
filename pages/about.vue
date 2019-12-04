@@ -71,6 +71,7 @@ export default {
         '后端接口 API 设计、开发',
         '前端页面、功能的实现',
         '网站安全（Helmet.js）',
+        '适配移动端浏览器',
         '远程 Linux 服务器开发环境搭建，项目部署并上线'
       ],
       skills: ['JavaScript, HTML5, CSS3', 'Vue.js, Nuxt.js', 'Node.js, Koa.js']

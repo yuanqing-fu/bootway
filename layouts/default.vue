@@ -560,5 +560,21 @@ button:hover {
   .footer .copyright span {
     display: none;
   }
+
+  .about-middle-inner section {
+    padding: 10px !important;
+    .info {
+      padding: 10px 0 10px 3px !important;
+      &:before {
+        margin-right: 5px !important;
+      }
+      ul {
+        margin: 10px 0 0 7px !important;
+        li:before {
+          margin-right: 5px !important;
+        }
+      }
+    }
+  }
 }
 </style>
