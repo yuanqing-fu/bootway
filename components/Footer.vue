@@ -13,15 +13,16 @@
         <!--          href="mailto:kofbossyagami@163.com"-->
         <!--          >&#9993;</a-->
         <!--        >-->
-        <span class="contact">
-          联系我
-          <div class="info">
-            <ul>
-              <li><b>微信</b> kofbossyagami</li>
-              <li><b>Email</b> kofbossyagami@163.com</li>
-            </ul>
-          </div>
-        </span>
+        <nuxt-link to="/about">关于</nuxt-link>
+        <!--        <span class="contact">-->
+        <!--          联系我-->
+        <!--          <div class="info">-->
+        <!--            <ul>-->
+        <!--              <li><b>微信</b> kofbossyagami</li>-->
+        <!--              <li><b>Email</b> kofbossyagami@163.com</li>-->
+        <!--            </ul>-->
+        <!--          </div>-->
+        <!--        </span>-->
       </div>
       <div class="copyright">&copy; 2019 Bootway.com <span>版权所有</span></div>
       <div class="info-b">
@@ -31,7 +32,7 @@
         <a
           target="_blank"
           href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010602001021"
-          ><img src="~/assets/img/beian.png" />川公网安备 51010602001021号</a
+          ><img src="~/assets/img/beian.png" />川公网安备51010602001021号</a
         >
       </div>
     </div>
