@@ -103,7 +103,7 @@ export default {
       top: 0;
       text-align: center;
       border-bottom: 2px solid $color-1;
-      font-size: 30px;
+      font-size: 25px;
       line-height: 73px;
       color: $color-3;
     }
