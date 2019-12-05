@@ -29,9 +29,10 @@
       <p>每天在不同事情之间</p>
       <p>来回穿梭</p>
       <p>怎么安排日程？</p>
+      <p>用 Bootway 来记录您的日程</p>
       <nuxt-link class="try-btn" to="/tasks">
         <span class="inner">
-          <span class="text">试试这个吧</span>
+          <span class="text">试试吧</span>
           <span class="start">开始</span>
         </span>
       </nuxt-link>
