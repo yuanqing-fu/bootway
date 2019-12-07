@@ -340,8 +340,8 @@ export default {
 }
 
 .vue-slider-dot-tooltip-inner {
-  border-color: $color-3;
-  background-color: $color-3;
+  border-color: $color-3 !important;
+  background-color: $color-3 !important;
   padding: 1px 5px;
   border-radius: 3px;
 }
