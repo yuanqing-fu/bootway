@@ -102,10 +102,10 @@ export default {
     }
     &.active {
       width: 77px;
-      background: linear-gradient(top, $color-1-lighter, $color-1-darker);
+      background: linear-gradient(to bottom, $color-1-lighter, $color-1-darker);
       border: 1px solid $color-1-darker;
       &.demo-switch {
-        background: linear-gradient(top, $color-3, $color-3-darker);
+        background: linear-gradient(to bottom, $color-3, $color-3-darker);
         border: 1px solid $color-3-darker;
       }
     }
