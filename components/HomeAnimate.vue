@@ -3,7 +3,7 @@
     <div class="scene">
       <div class="scene-switch" @click="toggleSceneSwitch">
         <div class="switch" :class="{ active: axisActive }"></div>
-        <div class="switch" :class="{ active: !axisActive }"></div>
+        <div class="switch demo-switch" :class="{ active: !axisActive }"></div>
       </div>
       <img
         class="demo"
@@ -89,14 +89,23 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 105px;
+  width: 107px;
   .switch {
-    height: 7px;
-    width: 50px;
+    height: 9px;
+    width: 23px;
     background-color: $color-2;
     cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.1s ease-in;
+    &:hover {
+      filter: brightness(75%);
+    }
     &.active {
+      width: 77px;
       background-color: $color-1;
+      &.demo-switch {
+        background-color: $color-3;
+      }
     }
   }
 }

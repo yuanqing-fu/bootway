@@ -444,6 +444,10 @@ button:hover {
     width: auto !important;
   }
 
+  .scene-wrapper {
+    justify-content: center !important;
+  }
+
   .scene-wrapper .intro {
     width: 100%;
     height: auto !important;
