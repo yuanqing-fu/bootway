@@ -1,7 +1,16 @@
 <template>
   <div class="scene-wrapper">
     <div class="scene">
-      <div class="axes">
+      <div class="scene-switch" @click="toggleSceneSwitch">
+        <div class="switch" :class="{ active: axisActive }"></div>
+        <div class="switch" :class="{ active: !axisActive }"></div>
+      </div>
+      <img
+        class="demo"
+        :class="{ active: !axisActive }"
+        src="~assets/img/demo.gif"
+      />
+      <div class="axes" :class="{ 'not-active': !axisActive }">
         <div class="axis x-axis">
           <div class="arrow"></div>
           <div class="dot"></div>
@@ -39,6 +48,20 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      axisActive: true
+    }
+  },
+  methods: {
+    toggleSceneSwitch() {
+      this.axisActive = !this.axisActive
+    }
+  }
+}
+</script>
 <style lang="scss">
 .scene-wrapper {
   display: flex;
@@ -55,6 +78,39 @@
   perspective-origin: center;
   height: 565px;
   overflow: hidden;
+  position: relative;
+}
+
+.scene-switch {
+  z-index: 50;
+  position: absolute;
+  bottom: 0;
+  left: 187px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 105px;
+  .switch {
+    height: 7px;
+    width: 50px;
+    background-color: $color-2;
+    cursor: pointer;
+    &.active {
+      background-color: $color-1;
+    }
+  }
+}
+
+.scene .demo {
+  position: absolute;
+  transition: all 0.5s ease-in;
+  transform: translate3d(565px, -614px, -2782px) scale(0);
+  border-radius: 5px;
+  &.active {
+    transform: translate3d(33px, 0px, 0px);
+    width: 486px;
+    z-index: 50;
+  }
 }
 
 .scene-wrapper .intro {
@@ -65,25 +121,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h1 {
     font-size: 32px;
     margin-bottom: 65px;
+
     span {
       user-select: none;
       display: inline-block;
       transition: all 0.1s ease-in;
       zoom: 1.005;
+
       &.urgent {
         color: $color-3;
       }
+
       &.important {
         color: $color-1;
       }
+
       &:hover {
         transform: rotateZ(-7deg);
       }
     }
   }
+
   p {
     margin-bottom: 13px;
     user-select: none;
@@ -98,6 +160,18 @@
   transform-origin: center;
   transform: rotateX(-15deg) rotateY(-29deg) rotateZ(0deg)
     translate3d(0px, 20px, 0px);
+  transition: all 0.5s ease-in;
+  &.not-active {
+    transform: scale(0.5) translateX(150px);
+    .axis {
+      &.x-axis {
+        transform: rotateZ(90deg) translate3d(278px, 170px, -113px);
+      }
+      &.y-axis {
+        transform: rotateX(90deg) translate3d(-177px, -240px, -307px);
+      }
+    }
+  }
 }
 
 .axes .ground {
@@ -118,12 +192,15 @@
   top: 26px;
   left: 231px;
   transform-origin: center;
+  transition: all 0.5s ease-in;
+  z-index: 50;
 
   .arrow {
     position: absolute;
     top: 6px;
     left: 14px;
     transform: rotate(90deg);
+
     &:before {
       content: '';
       background-color: $color-1;
@@ -135,6 +212,7 @@
       transform: rotate(68deg);
       border-radius: 5px;
     }
+
     &:after {
       content: '';
       background-color: $color-1;
@@ -218,6 +296,7 @@
     top: -39px;
     left: -15px;
   }
+
   .arrow {
     &:before,
     &:after {
@@ -348,9 +427,11 @@
   border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
+
   span {
     transition: all 0.1s ease-in;
     display: inline-block;
+
     &.inner {
       position: absolute;
       left: 0;
@@ -362,15 +443,18 @@
       align-items: center;
       justify-content: center;
     }
+
     &.text {
       width: 100%;
       background-color: $color-3;
     }
+
     &.start {
       width: 100%;
       background-color: $color-1;
     }
   }
+
   &:hover {
     span.inner {
       left: -100%;
