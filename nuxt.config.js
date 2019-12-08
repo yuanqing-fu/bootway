@@ -38,7 +38,7 @@ export default {
         content: 'on'
       },
       {
-        name: 'X-UA-Compatible',
+        'http-equiv': 'X-UA-Compatible',
         content: 'IE=edge,chrome=1'
       },
       {
