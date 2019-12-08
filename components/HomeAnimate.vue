@@ -118,7 +118,7 @@ export default {
   transform: translate3d(565px, -614px, -2782px) scale(0);
   border-radius: 5px;
   &.active {
-    transform: translate3d(33px, 0px, 0px);
+    transform: translate3d(33px, 0px, 0px) scale(1);
     width: 486px;
     z-index: 50;
   }
