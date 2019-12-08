@@ -196,6 +196,7 @@ export default {
 }
 
 .axes .axis {
+  border-radius: 5px;
   position: absolute;
   /*//background-color: $color-2;*/
   width: 5px;
@@ -208,7 +209,7 @@ export default {
 
   .arrow {
     position: absolute;
-    top: 6px;
+    top: 7px;
     left: 14px;
     transform: rotate(90deg);
 
@@ -289,7 +290,7 @@ export default {
 
 .axes .axis.x-axis {
   transform: rotateZ(90deg);
-  background-color: $color-1;
+  background: linear-gradient(to bottom, $color-1-lighter 10%, $color-1-darker);
   color: $color-1;
 
   &:after {
@@ -298,7 +299,7 @@ export default {
 }
 
 .axes .axis.y-axis {
-  background-color: $color-3;
+  background: linear-gradient(to bottom, $color-3 10%, $color-3-darker);
   color: $color-3;
 
   &:after {
