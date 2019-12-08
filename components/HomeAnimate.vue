@@ -93,18 +93,20 @@ export default {
   .switch {
     height: 9px;
     width: 23px;
-    background-color: $color-2;
+    background-color: $color-14;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 5px;
     transition: all 0.1s ease-in;
     &:hover {
-      filter: brightness(75%);
+      filter: brightness(85%);
     }
     &.active {
       width: 77px;
-      background-color: $color-1;
+      background: linear-gradient(top, $color-1-lighter, $color-1-darker);
+      border: 1px solid $color-1-darker;
       &.demo-switch {
-        background-color: $color-3;
+        background: linear-gradient(top, $color-3, $color-3-darker);
+        border: 1px solid $color-3-darker;
       }
     }
   }
